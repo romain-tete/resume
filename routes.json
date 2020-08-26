@@ -1,0 +1,18 @@
+{
+  "routes": [
+    {
+      "route": "/fr/assets/*"
+    },
+    {
+      "route": "/fr/*",
+      "serve": "/fr/index.html"
+    },
+    {
+      "route": "/en/assets/*"
+    },
+    {
+      "route": "/en/*",
+      "serve": "/en/index.html"
+    }
+  ]
+}
