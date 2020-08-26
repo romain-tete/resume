@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod --localize",
+    "build:Azure": "ng build --prod --localize && touch dist/resume/index.html && echo 'Dummy file for Static Web App structure compliance' > dist/resume/index.html",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
