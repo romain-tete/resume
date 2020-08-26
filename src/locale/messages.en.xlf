@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-16"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US">
+    <body>
+      <trans-unit id="43f65af7f79c53d3b62d5468e4c53ea82c459e55">
+        <source>Tél: </source>
+        <target>Phone:</target>
+      </trans-unit>
+      <trans-unit id="193724b684a002fdf3150c821dae1210eb6264b0">
+        <source>@: </source>
+        <target>@:</target>
+      </trans-unit>
+      <trans-unit id="00f8ac53bcc69fd4883d2cdf6a8d467f06df7a63">
+        <source>Recherche rôle de développeur fullstack en télétravail</source>
+        <target>Looking for a remote role as fullstack developer</target>
+      </trans-unit>
+      <trans-unit id="9b7338999584030373bdbfb8043adc405985c91f">
+        <source>Équipe recherchée: </source>
+        <target>Team:</target>
+      </trans-unit>
+      <trans-unit id="fcdb7484a4b28e9233233c2a0ed1916ce2f7a2cb">
+        <source>Petite équipe agile, pluridisciplinaire et très horizontale.</source>
+        <target>Small, agile, multidiscipliinary and very horizontal team</target>
+      </trans-unit>
+      <trans-unit id="51132b20f93363c7cd784c5087fa1b8e6d98872b">
+        <source>Projet recherché: </source>
+        <target>Project:</target>
+      </trans-unit>
+      <trans-unit id="95498bdd0225523355dd1f49a7b2bc273c297a33">
+        <source>Développement d&apos;un produit ambitieux, B2C (ou à destination de petites entreprises) et une proposition
+        de valeur mesurable.
+      </source>
+        <target>Develop an ambitious project targeted either at consumers (B2C) or small businesses, and with a measurable value proposition.</target>
+      </trans-unit>
+      <trans-unit id="9bf328959404e78c8f5f4a313ec7dc3a1f48aa2f">
+        <source>Qualités personnelles: </source>
+        <target>Personal qualities:</target>
+      </trans-unit>
+      <trans-unit id="4df1c4aedb600365e7a45d390141568d2a81e0de">
+        <source>Très bon niveau technique général</source>
+        <target>Strong technical skills </target>
+      </trans-unit>
+      <trans-unit id="23b8271167f38334e5d6ba8a514ed360b5b378c7">
+        <source>Communication technique et vulgarisation</source>
+        <target>Communication and vulgarization</target>
+      </trans-unit>
+      <trans-unit id="d822d1c91a5cd83c41f8b2450f1d5f80a7e5b061">
+        <source>Capacité à monter en compétence rapidement et en autonomie</source>
+        <target>Fast and autonomous learner</target>
+      </trans-unit>
+      <trans-unit id="b1e7da424b588345f259e1e0969949bdc73c7f78">
+        <source>Je sais faire face aux challenges et à l&apos;inconnu</source>
+        <target>Keen on taking on challenges and the unknown</target>
+      </trans-unit>
+      <trans-unit id="1851d810affe411031923672b2746f4832bf1aea">
+        <source>Je sais m&apos;investir pour tenir une deadline</source>
+        <target>Strive to meet deadlines</target>
+      </trans-unit>
+      <trans-unit id="488721b3e850bdb1eebeb8912c722a033671da4c">
+        <source>Technologies recherchées (maitrise actuelle): </source>
+        <target>Technologies I am interested in (current mastery):</target>
+      </trans-unit>
+      <trans-unit id="1cd7eeecee2a43039a599ab9349b5d7a3cd72ba3">
+        <source>Frontend: Angular (expert), React (débutant)</source>
+        <target>Frontend: Angular (expert), React (beginner)</target>
+      </trans-unit>
+      <trans-unit id="800c142f6d0bbbdf794e0adf469ad3bbb09de4b3">
+        <source>Backend: NestJS (maitrise), Express (débutant), Serverless (débutant)</source>
+        <target>Backend: NestJS (proficient), Express (beginner), Serverless (beginner)</target>
+      </trans-unit>
+      <trans-unit id="f1e9a6a3b009ba8d8fe8d744efb90bfb4ee53874">
+        <source>Architecture: Microservices (maitrise), Microfrentend (débutant)</source>
+        <target>Architectures: Microservices (proficient), Microfrontends (beginner)</target>
+      </trans-unit>
+      <trans-unit id="3701453429e4ec94b5f5304a72868ea855700954">
+        <source>Mention spéciale: Rust (débutant), WASM (débutant), Microsoft Azure Cloud (intermédiaire)</source>
+        <target>Special mentions: Rust (beginner), WASM (beginner)</target>
+      </trans-unit>
+      <trans-unit id="e01a8194a697e4664ca9f4fdb6db989d99fc056e">
+        <source>Sep. 2017</source>
+        <target>Sep. 2017</target>
+      </trans-unit>
+      <trans-unit id="5ff08c4f5940fb18ca809c03e4f2640243497158">
+        <source>- Avr. 2020</source>
+        <target>- Apr. 2020</target>
+      </trans-unit>
+      <trans-unit id="19b968216fe8ca11461f744bf5fb2a3c0e77e906">
+        <source>Tandemploy</source>
+        <target>Tandemploy</target>
+      </trans-unit>
+      <trans-unit id="9204b9f129444c925b2b866354f3175c39d550e7">
+        <source>(Berlin)</source>
+        <target>(Berlin)</target>
+      </trans-unit>
+      <trans-unit id="27b87c41bb9d40fb7835decbfc87c6deb7a48391">
+        <source>Rôle CTO (Sep. 2018 - Avr. 2020)</source>
+        <target>CTO role (Sep. 2018 - Apr. 2020)</target>
+      </trans-unit>
+      <trans-unit id="a693a08d547faf822d97d38279c668cbbc659f3e">
+        <source>Management d&apos;une équipe de 6 personnes</source>
+        <target>Managing a team of 6</target>
+      </trans-unit>
+      <trans-unit id="55f67f6828c09f8fd5c7bad9f8a86931d3eb0469">
+        <source>Réécriture du backend Rails en microservices NestJS</source>
+        <target>Full rewrite of a Rails backend in NestJS microservices</target>
+      </trans-unit>
+      <trans-unit id="da6773b38571c3789ea5ab2c1e25c1392a31fb33">
+        <source>Migration de l&apos;infrastructure de Docker Swarm vers Kubernetes</source>
+        <target>Migrating the infrastrucure from Docker Swarm to Kubernetes</target>
+      </trans-unit>
+      <trans-unit id="91bffabc155b6c13a8926b67bf9bdeba7f911bed">
+        <source>Amélioration des workflows (CI/CD, Telepresence, etc.)</source>
+        <target>Workflows improvements (CI/CD, Telepresence, etc.)</target>
+      </trans-unit>
+      <trans-unit id="fc14b95172642bd9da26c5be5c3f828689be2842">
+        <source>PaaS/IaaS Microsoft Azure</source>
+        <target>PaaS/IaaS Microsoft Azure</target>
+      </trans-unit>
+      <trans-unit id="1694b2f185a7f05c506e2efe705953806b192c42">
+        <source>Infrastructure as Code avec Ansible et Terraform</source>
+        <target>Infrastructure as Code with Ansible and Terraform</target>
+      </trans-unit>
+      <trans-unit id="16eb7321effc9671e8fa30371c60e75a159a3ff5">
+        <source>Rôle lead-développeur frontend (Sep. 2017 - Août 2018)</source>
+        <target>Lead frontend developer role (Sep. 2017 - Aug. 2018)</target>
+      </trans-unit>
+      <trans-unit id="c2219b32bee3ae8a7bbc03db8e91bfaddf04a069">
+        <source>Développement et maintenance d&apos;une SPA multi-tenants avec Angular</source>
+        <target>Developing and maintaining a multi-tenant Angular SPA</target>
+      </trans-unit>
+      <trans-unit id="539c9dc4dbd67e160f7f2cc1b8866e880234055a">
+        <source>Refactoring de la base de code en monorepo</source>
+        <target>Refactoring the codebase into a monorepo</target>
+      </trans-unit>
+      <trans-unit id="b3182efd258bd6d17dd5532ad8da0de04c5a7df7">
+        <source>Migration de Angular 1 vers Angular 6+</source>
+        <target>Migrating an Angular 1 app to Angular 6+</target>
+      </trans-unit>
+      <trans-unit id="fa597b084a99aff6aec77d59a830efbf9f1b1fb3">
+        <source>Juin 2012</source>
+        <target>June 2012</target>
+      </trans-unit>
+      <trans-unit id="26072179523c9a96fd8247774ff0894280a16333">
+        <source>- Jul. 2017</source>
+        <target>- Jul. 2017</target>
+      </trans-unit>
+      <trans-unit id="06936e194f73e09d1434240cc70bb50ce2e7abfb">
+        <source>Skilvioo</source>
+        <target>Skilvioo</target>
+      </trans-unit>
+      <trans-unit id="015321523fc45f3137f8ccabd1e9f7f022893c03">
+        <source>(Lyon)</source>
+        <target>(Lyon)</target>
+      </trans-unit>
+      <trans-unit id="0ddae7a95a10a2d056a0350cbf92629031cbf808">
+        <source>Rôle CTO (Sep. 2015 - Jul. 2017)</source>
+        <target>CTO role (Sep. 2015 - Jul. 2017)</target>
+      </trans-unit>
+      <trans-unit id="68d7a17bae9d5bab9cad38c59d1fef8f5f043a29">
+        <source>Gestion d&apos;une équipe de 5 en interne et 1 extèrne</source>
+        <target>Managing a team of 5 internally + 1 extern</target>
+      </trans-unit>
+      <trans-unit id="a01fdf178d02bd9cba837ad7679b9b8fed937f1a">
+        <source>Mise en place de Scrum</source>
+        <target>Deployment of Scrum</target>
+      </trans-unit>
+      <trans-unit id="a97995599ae55dbad59655b4438792f11f683dcb">
+        <source>Rôle apprenti (Sep. 2012 - Jul. 2015)</source>
+        <target>Apprentice role (Sep. 2012 - Jul. 2015)</target>
+      </trans-unit>
+      <trans-unit id="9abf2f98dd37edf0889bf6c5b31fb8a905785b3c">
+        <source>Création de zéro du produit commercialisé par Skilvioo et de tous les workflows associés.</source>
+        <target>Creation from scratch of the commercialized product and the related workflows</target>
+      </trans-unit>
+      <trans-unit id="6bc51bba0e4ac28d500eb9fc564417a2172e3706">
+        <source>Ecriture et maintenance de l&apos;application avec PHP, MySQL, Symfony 2 et jQuery</source>
+        <target>Writing and maintaining an application with a PHP, MySQL, Symfony and jQuery stack</target>
+      </trans-unit>
+      <trans-unit id="4708a4a1b06c7dcd8b673a821f7ff3900ad91fbc">
+        <source>Diplômes</source>
+        <target>Degrees</target>
+      </trans-unit>
+      <trans-unit id="abee7fe2b45187d87290b0f76ecb04a77857a757">
+        <source>Diplôme d&apos;ingénieur en développement logiciel à Polytech Lyon promotion 2015</source>
+        <target>Software Engineering degree from Polytech Lyon promotion 2015</target>
+      </trans-unit>
+      <trans-unit id="f12f5e185e9a742dbb1eaf5dd5592de9cb49a0a7">
+        <source>DUT Informatique à l&apos;IUT de Lyon promotion 2012</source>
+        <target>Bachelors degree in IT from the University of Lyon promotion 2012</target>
+      </trans-unit>
+      <trans-unit id="3e55a7eb29c4f5d695f0d8a6715dfded660c97a7">
+        <source>Langues</source>
+        <target>Languages</target>
+      </trans-unit>
+      <trans-unit id="c37521ef61cc67eabaf4373e668543c6c5f35e2b">
+        <source>Français (maternelle)</source>
+        <target>French (native)</target>
+      </trans-unit>
+      <trans-unit id="ff052c7b0ef80dc39f088958fb1fc01dc197f346">
+        <source>Anglais (courant)</source>
+        <target>English (fluent)</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

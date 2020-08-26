@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="43f65af7f79c53d3b62d5468e4c53ea82c459e55" datatype="html">
+        <source>Tél: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="193724b684a002fdf3150c821dae1210eb6264b0" datatype="html">
+        <source>@: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="00f8ac53bcc69fd4883d2cdf6a8d467f06df7a63" datatype="html">
+        <source>Recherche rôle de développeur fullstack en télétravail</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9b7338999584030373bdbfb8043adc405985c91f" datatype="html">
+        <source>Équipe recherchée: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fcdb7484a4b28e9233233c2a0ed1916ce2f7a2cb" datatype="html">
+        <source>Petite équipe agile, pluridisciplinaire et très horizontale.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="51132b20f93363c7cd784c5087fa1b8e6d98872b" datatype="html">
+        <source>Projet recherché: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="95498bdd0225523355dd1f49a7b2bc273c297a33" datatype="html">
+        <source>Développement d&apos;un produit ambitieux, B2C (ou à destination de petites entreprises) et une proposition
+        de valeur mesurable.
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9bf328959404e78c8f5f4a313ec7dc3a1f48aa2f" datatype="html">
+        <source>Qualités personnelles: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4df1c4aedb600365e7a45d390141568d2a81e0de" datatype="html">
+        <source>Très bon niveau technique général</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="23b8271167f38334e5d6ba8a514ed360b5b378c7" datatype="html">
+        <source>Communication technique et vulgarisation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d822d1c91a5cd83c41f8b2450f1d5f80a7e5b061" datatype="html">
+        <source>Capacité à monter en compétence rapidement et en autonomie</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b1e7da424b588345f259e1e0969949bdc73c7f78" datatype="html">
+        <source>Je sais faire face aux challenges et à l&apos;inconnu</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1851d810affe411031923672b2746f4832bf1aea" datatype="html">
+        <source>Je sais m&apos;investir pour tenir une deadline</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="488721b3e850bdb1eebeb8912c722a033671da4c" datatype="html">
+        <source>Technologies recherchées (maitrise actuelle): </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1cd7eeecee2a43039a599ab9349b5d7a3cd72ba3" datatype="html">
+        <source>Frontend: Angular (expert), React (débutant)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="800c142f6d0bbbdf794e0adf469ad3bbb09de4b3" datatype="html">
+        <source>Backend: NestJS (maitrise), Express (débutant), Serverless (débutant)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f1e9a6a3b009ba8d8fe8d744efb90bfb4ee53874" datatype="html">
+        <source>Architecture: Microservices (maitrise), Microfrentend (débutant)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3701453429e4ec94b5f5304a72868ea855700954" datatype="html">
+        <source>Mention spéciale: Rust (débutant), WASM (débutant), Microsoft Azure Cloud (intermédiaire)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e01a8194a697e4664ca9f4fdb6db989d99fc056e" datatype="html">
+        <source>Sep. 2017</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5ff08c4f5940fb18ca809c03e4f2640243497158" datatype="html">
+        <source>- Avr. 2020</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="19b968216fe8ca11461f744bf5fb2a3c0e77e906" datatype="html">
+        <source>Tandemploy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9204b9f129444c925b2b866354f3175c39d550e7" datatype="html">
+        <source>(Berlin)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="27b87c41bb9d40fb7835decbfc87c6deb7a48391" datatype="html">
+        <source>Rôle CTO (Sep. 2018 - Avr. 2020)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a693a08d547faf822d97d38279c668cbbc659f3e" datatype="html">
+        <source>Management d&apos;une équipe de 6 personnes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="55f67f6828c09f8fd5c7bad9f8a86931d3eb0469" datatype="html">
+        <source>Réécriture du backend Rails en microservices NestJS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="da6773b38571c3789ea5ab2c1e25c1392a31fb33" datatype="html">
+        <source>Migration de l&apos;infrastructure de Docker Swarm vers Kubernetes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="91bffabc155b6c13a8926b67bf9bdeba7f911bed" datatype="html">
+        <source>Amélioration des workflows (CI/CD, Telepresence, etc.)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fc14b95172642bd9da26c5be5c3f828689be2842" datatype="html">
+        <source>PaaS/IaaS Microsoft Azure</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1694b2f185a7f05c506e2efe705953806b192c42" datatype="html">
+        <source>Infrastructure as Code avec Ansible et Terraform</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="16eb7321effc9671e8fa30371c60e75a159a3ff5" datatype="html">
+        <source>Rôle lead-développeur frontend (Sep. 2017 - Août 2018)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c2219b32bee3ae8a7bbc03db8e91bfaddf04a069" datatype="html">
+        <source>Développement et maintenance d&apos;une SPA multi-tenants avec Angular</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="539c9dc4dbd67e160f7f2cc1b8866e880234055a" datatype="html">
+        <source>Refactoring de la base de code en monorepo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b3182efd258bd6d17dd5532ad8da0de04c5a7df7" datatype="html">
+        <source>Migration de Angular 1 vers Angular 6+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fa597b084a99aff6aec77d59a830efbf9f1b1fb3" datatype="html">
+        <source>Juin 2012</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="26072179523c9a96fd8247774ff0894280a16333" datatype="html">
+        <source>- Jul. 2017</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="06936e194f73e09d1434240cc70bb50ce2e7abfb" datatype="html">
+        <source>Skilvioo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="015321523fc45f3137f8ccabd1e9f7f022893c03" datatype="html">
+        <source>(Lyon)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0ddae7a95a10a2d056a0350cbf92629031cbf808" datatype="html">
+        <source>Rôle CTO (Sep. 2015 - Jul. 2017)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68d7a17bae9d5bab9cad38c59d1fef8f5f043a29" datatype="html">
+        <source>Gestion d&apos;une équipe de 5 en interne et 1 extèrne</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a01fdf178d02bd9cba837ad7679b9b8fed937f1a" datatype="html">
+        <source>Mise en place de Scrum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a97995599ae55dbad59655b4438792f11f683dcb" datatype="html">
+        <source>Rôle apprenti (Sep. 2012 - Jul. 2015)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9abf2f98dd37edf0889bf6c5b31fb8a905785b3c" datatype="html">
+        <source>Création de zéro du produit commercialisé par Skilvioo et de tous les workflows associés.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6bc51bba0e4ac28d500eb9fc564417a2172e3706" datatype="html">
+        <source>Ecriture et maintenance de l&apos;application avec PHP, MySQL, Symfony 2 et jQuery</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4708a4a1b06c7dcd8b673a821f7ff3900ad91fbc" datatype="html">
+        <source>Diplômes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="abee7fe2b45187d87290b0f76ecb04a77857a757" datatype="html">
+        <source>Diplôme d&apos;ingénieur information à Polytech Lyon promotion 2015</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f12f5e185e9a742dbb1eaf5dd5592de9cb49a0a7" datatype="html">
+        <source>DUT Informatique à l&apos;IUT de Lyon promotion 2012</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3e55a7eb29c4f5d695f0d8a6715dfded660c97a7" datatype="html">
+        <source>Langues</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c37521ef61cc67eabaf4373e668543c6c5f35e2b" datatype="html">
+        <source>Français (maternelle)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ff052c7b0ef80dc39f088958fb1fc01dc197f346" datatype="html">
+        <source>Anglais (courant)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
