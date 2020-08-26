@@ -16,7 +16,8 @@
     },
     {
       "route": "/*",
-      "serve": "/en/index.html"
+      "serve": "/en/",
+      "statusCode": 301
     }
   ]
 }
