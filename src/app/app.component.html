@@ -10,10 +10,10 @@
     <ng-container i18n>Tél: </ng-container><a href="tel:+33674393989">+33 6 74 39 39 89</a><br />
     <ng-container i18n>@: </ng-container><a href="mailto:romain.tete@gmail.com">romain.tete@gmail.com</a>
   </address>
-  <app-actions></app-actions>
+  <xa-actions></xa-actions>
 </header>
 
-<h1 i18n>Recherche rôle de développeur fullstack en télétravail</h1>
+<h1 i18n class="my-5">Recherche rôle de développeur fullstack en télétravail</h1>
 
 <section id="search" class="content-section">
   <dl class="row">
@@ -58,50 +58,37 @@
 <hr />
 
 <section id="experience" class="content-section">
-  <article class="row">
-    <h6 class="col-md-5 col-12">
-      <span class="experience-start" i18n>Sep. 2017</span>&nbsp;
-      <span class="experience-end" i18n>- Avr. 2020</span><br />
-      <span class="experience-company" i18n>Tandemploy</span>&nbsp;
-      <span class="experience-location" i18n>(Berlin)</span>
-    </h6>
-    <div class="col-md-7 col-12">
-      <ul class="lighter-list-style">
-        <small class="d-block font-weight-bold" i18n>Rôle CTO (Sep. 2018 - Avr. 2020)</small>
-        <li i18n>Management d'une équipe de 6 personnes</li>
-        <li i18n>Réécriture d'un backend Rails en microservices NestJS</li>
-        <li i18n>Migration de l'infrastructure de Docker Swarm vers Kubernetes</li>
-        <li i18n>Amélioration des workflows (CI/CD, Telepresence, etc.)</li>
-        <li i18n>PaaS/IaaS Microsoft Azure</li>
+  <xa-experience start="01/09/2017" end="30/04/2020" company="Tandemploy" location="Berlin">
+    <xa-role i18n-name name="CTO" start="01/09/2018" end="30/04/2020">
+      <xa-role-highlight i18n>Management d'une équipe de 6 personnes</xa-role-highlight>
+      <xa-role-highlight i18n>Réécriture d'un backend Rails en microservices NestJS</xa-role-highlight>
+      <xa-role-highlight i18n>Migration de l'infrastructure de Docker Swarm vers Kubernetes</xa-role-highlight>
+      <xa-role-highlight i18n>Amélioration des workflows (CI/CD, Telepresence, etc.)</xa-role-highlight>
+      <xa-role-highlight i18n>PaaS/IaaS Microsoft Azure</xa-role-highlight>
+    </xa-role>
 
-        <small class="d-block font-weight-bolder" i18n>Rôle lead-développeur frontend (Sep. 2017 - Août 2018)</small>
-        <li i18n>Développement et maintenance d'une SPA multi-tenants avec Angular</li>
-        <li i18n>Refactoring de la base de code en monorepo</li>
-        <li i18n>Migration de Angular 1 vers Angular 6+</li>
-      </ul>
-    </div>
-  </article>
+    <xa-role i18n-name name="Lead frontend developper" start="01/09/2017" end="31/08/2018">
+      <xa-role-highlight i18n>Développement et maintenance d'une SPA multi-tenants avec Angular</xa-role-highlight>
+      <xa-role-highlight i18n>Refactoring de la base de code en monorepo</xa-role-highlight>
+      <xa-role-highlight i18n>Migration de Angular 1 vers Angular 6+</xa-role-highlight>
+    </xa-role>
+  </xa-experience>
 
-  <article class="row">
-    <h6 class="col-md-5 col-12">
-      <span class="experience-start" i18n>Juin 2012</span>&nbsp;
-      <span class="experience-end" i18n>- Jul. 2017</span><br />
-      <span class="experience-company" i18n>Skilvioo</span>&nbsp;
-      <span class="experience-location" i18n>(Lyon)</span>
-    </h6>
-    <div class="col-md-7 col-12">
-      <ul class="lighter-list-style">
-        <small class="d-block font-weight-bold" i18n>Rôle CTO (Sep. 2015 - Jul. 2017)</small>
-        <li i18n>Gestion d'une équipe de 5 en interne et 1 extèrne</li>
-        <li i18n>Mise en place de Scrum</li>
+  <xa-experience start="01/09/2012" end="01/07/2017" location="Lyon" company="Lyon">
+    <xa-role start="01/09/2015" end="31/07/2017" name="CTO" i18n-name>
+      <xa-role-highlight i18n>Gestion d'une équipe de 5 en interne et 1 extèrne</xa-role-highlight>
+      <xa-role-highlight i18n>Mise en place de Scrum</xa-role-highlight>
+    </xa-role>
 
-        <small class="d-block font-weight-bold" i18n>Rôle apprenti (Sep. 2012 - Jul. 2015)</small>
-        <li i18n>Création de zéro du produit commercialisé par Skilvioo et de tous les workflows associés.</li>
-        <li i18n>Ecriture et maintenance de l'application avec PHP, MySQL, Symfony 2 et jQuery</li>
-      </ul>
-    </div>
-  </article>
+    <xa-role start="01/09/2012" end="01/09/2015" name="Apprenti" i18n-name>
+      <xa-role-highlight i18n>Création du produit commercialisé par Skilvioo et de tous les workflows associés.
+      </xa-role-highlight>
+      <xa-role-highlight i18n>Ecriture et maintenance de l'application avec PHP, MySQL, Symfony 2 et jQuery
+      </xa-role-highlight>
+    </xa-role>
+  </xa-experience>
 </section>
+
 <hr />
 
 <section id="miscellaneous" class="content-section">
