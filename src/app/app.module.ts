@@ -1,3 +1,4 @@
+import { ExperienceModule } from './experience/experience.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,6 +16,7 @@ import { ActionsComponent } from './actions/actions.component';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
+    ExperienceModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
