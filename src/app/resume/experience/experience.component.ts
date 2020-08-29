@@ -7,7 +7,7 @@ import {
   HostBinding,
 } from '@angular/core';
 
-import { timeBoundMixin } from '../mixins/time-bound.mixin';
+import { timeBoundMixin } from '../../mixins/time-bound.mixin';
 
 @Component({
   selector: 'xa-experience',

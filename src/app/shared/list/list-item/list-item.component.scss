@@ -1,0 +1,14 @@
+$paddingLeft: 0.8rem;
+
+:host {
+  position: relative;
+  display: block;
+  padding-left: $paddingLeft;
+
+  &:before {
+    display: inline-block;
+    content: "- ";
+    width: $paddingLeft;
+    margin-left: -$paddingLeft;
+  }
+}

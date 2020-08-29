@@ -1,0 +1,10 @@
+<div class='col-md-2 col-12'>
+  {{ company }}<br />
+  {{ location }}<br />
+  {{ startDate | date:'MM/yyyy' }}<br />
+  {{ endDate | date:'MM/yyyy' }}
+</div>
+
+<div class='col-md-10 col-12'>
+  <ng-content></ng-content>
+</div>

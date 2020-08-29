@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoleHighlightComponent } from './role-highlight.component';
+import { ListItemComponent } from './list-item.component';
 
-describe('RoleHighlightComponent', () => {
-  let component: RoleHighlightComponent;
-  let fixture: ComponentFixture<RoleHighlightComponent>;
+describe('ListItemComponent', () => {
+  let component: ListItemComponent;
+  let fixture: ComponentFixture<ListItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RoleHighlightComponent ]
+      declarations: [ ListItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RoleHighlightComponent);
+    fixture = TestBed.createComponent(ListItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
