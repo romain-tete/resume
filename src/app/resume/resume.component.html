@@ -1,11 +1,13 @@
 <header class="row mb-5">
   <ng-template #contactToggleBtn>
-    <button i18n class="btn btn-link" (click)="showContact()">Afficher les information de contact</button>
+    <div>
+      <button i18n class="btn btn-link" (click)="showContact()">Afficher les information de contact</button>
+    </div>
   </ng-template>
   <ng-template #contactInformation>
     <address class="col">
       Romain Tête<br />
-      <ng-container i18n>@: </ng-container><a href="mailto:romain.tete@gmail.com">romain.tete@gmail.com</a>
+      <ng-container i18n>@: </ng-container><a href="mailto:jobsearch.romain@gmail.com">jobsearch.romain@gmail.com</a>
     </address>
     <div class="col-auto justify-end picture-wrapper">
       <img src="assets/images/picture.png" />
