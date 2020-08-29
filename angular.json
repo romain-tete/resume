@@ -37,7 +37,9 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "serviceWorker": true,
             "scripts": []
           },
@@ -103,7 +105,9 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "scripts": []
           }
         },
@@ -115,7 +119,9 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "e2e": {
@@ -133,5 +139,8 @@
       }
     }
   },
-  "defaultProject": "resume"
+  "defaultProject": "resume",
+  "cli": {
+    "analytics": "5903e4b7-fd1e-4d60-a627-fa078b0e4a90"
+  }
 }
