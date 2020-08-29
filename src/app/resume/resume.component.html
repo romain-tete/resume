@@ -1,11 +1,17 @@
 <header class="row mb-5">
-  <address class="col">
-    Romain<br />
-    <a href="#" i18n>contact</a>
-  </address>
-  <div class="col-auto justify-end picture-wrapper">
-    <img src="assets/images/picture.png" />
-  </div>
+  <ng-template #contactToggleBtn>
+    <button i18n class="btn btn-link" (click)="showContact()">Afficher les information de contact</button>
+  </ng-template>
+  <ng-template #contactInformation>
+    <address class="col">
+      Romain Tête<br />
+      <ng-container i18n>@: </ng-container><a href="mailto:romain.tete@gmail.com">romain.tete@gmail.com</a>
+    </address>
+    <div class="col-auto justify-end picture-wrapper">
+      <img src="assets/images/picture.png" />
+    </div>
+  </ng-template>
+  <ng-container [ngTemplateOutlet]="contactShown ? contactInformation : contactToggleBtn"></ng-container>
   <div class="row">
     <xa-actions></xa-actions>
   </div>
@@ -51,8 +57,7 @@
   <xa-role start="01/09/2015" end="31/07/2017" name="CTO" i18n-name>
     <xa-list>
       <xa-list-heading xaRoleHeading></xa-list-heading>
-      <xa-list-item i18n>Management de l'équipe de devs (5 personnes)</xa-list-item>
-      <xa-list-item i18n>Formation de </xa-list-item>
+      <xa-list-item i18n>Organisation de l'équipe de devs (5 personnes)</xa-list-item>
     </xa-list>
   </xa-role>
 
