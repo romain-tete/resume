@@ -1,0 +1,95 @@
+<header class="row mb-5">
+  <ng-template #contactToggleBtn>
+    <button i18n class="btn btn-link" (click)="showContact()">Afficher les information de contact</button>
+  </ng-template>
+  <ng-template #contactInformation>
+    <address class="col">
+      Romain Tête<br />
+      <ng-container i18n>@: </ng-container><a href="mailto:romain.tete@gmail.com">romain.tete@gmail.com</a>
+    </address>
+    <div class="col-auto justify-end picture-wrapper">
+      <img src="assets/images/picture.png" />
+    </div>
+  </ng-template>
+  <ng-container [ngTemplateOutlet]="contactShown ? contactInformation : contactToggleBtn"></ng-container>
+  <div class="row">
+    <xa-actions></xa-actions>
+  </div>
+</header>
+
+<xa-experience start="01/09/2017" end="30/04/2020" company="Tandemploy" location="Berlin">
+  <xa-role i18n-name name="CTO" start="01/09/2018" end="30/04/2020">
+    <xa-list>
+      <xa-list-heading xaRoleHeading></xa-list-heading>
+      <xa-list-item i18n>Refonte du backend rails: transition vers NestJS et adoption d'une architecture en
+        microservices plus propre (communication par messages, isolation des BDD, ajout d'une gestion des identités
+        indépendante, ajout d'un reverse-proxy indépendant).
+      </xa-list-item>
+      <xa-list-item i18n>Transition de Docker Swarm vers Kubernetes avec une très grosse amélioration de
+        l'expérience de développement et des possibilités nouvelles pour la gestion des multiples environnements
+        (multi-tenancy).
+      </xa-list-item>
+      <xa-list-item i18n>
+        Réduction de la charge de maintenance de l'infrastructure par l'adoption des services
+        gérés du IaaS Microsoft Azure: Kubernetes, Service Bus, B2C Tenant, CosmosDB, Postgres, etc.
+      </xa-list-item>
+    </xa-list>
+  </xa-role>
+
+  <xa-role i18n-name name="Lead frontend developper" start="01/09/2017" end="31/08/2018">
+    <xa-list>
+      <xa-list-heading xaRoleHeading></xa-list-heading>
+      <xa-list-item>Migration depuis Angular 1 vers Angular 6+</xa-list-item>
+      <xa-list-item>
+        Responsable de la structuration du code Angular pour répondre aux enjeux du projet (de multiples environnements
+        une base de code globalement commune mais avec des configurations différentes, voire des développements
+        spécifiques à un tenant, des textes différents, etc.).
+      </xa-list-item>
+      <xa-list-item>
+        Garant de la qualité du code par la revue du code avec acceptation des merge-requests et la formation des
+        développeurs frontend aux bonnes pratiques et la les design-patterns adaptés
+      </xa-list-item>
+    </xa-list>
+  </xa-role>
+</xa-experience>
+
+<xa-experience start="01/09/2012" end="01/07/2017" location="Lyon" company="Skilvioo">
+  <xa-role start="01/09/2015" end="31/07/2017" name="CTO" i18n-name>
+    <xa-list>
+      <xa-list-heading xaRoleHeading></xa-list-heading>
+      <xa-list-item i18n>Organisation de l'équipe de devs (5 personnes)</xa-list-item>
+    </xa-list>
+  </xa-role>
+
+  <xa-role start="01/09/2012" end="01/09/2015" name="Apprenti" i18n-name>
+    <xa-list>
+      <xa-list-heading xaRoleHeading></xa-list-heading>
+      <xa-list-item i18n>Développement d'une application avec PHP, MySQL, Symfony 2 et jQuery</xa-list-item>
+    </xa-list>
+  </xa-role>
+</xa-experience>
+
+<hr />
+
+<section class="row">
+  <xa-list class="col">
+    <xa-list-heading i18n>Mes points forts:</xa-list-heading>
+    <xa-list-item i18n>Niveau technique</xa-list-item>
+    <xa-list-item i18n>Communication</xa-list-item>
+    <xa-list-item i18n>Investissement personnel</xa-list-item>
+    <xa-list-item i18n>Créativité</xa-list-item>
+    <xa-list-item i18n>Autonomie</xa-list-item>
+  </xa-list>
+
+  <xa-list class="col">
+    <xa-list-heading i18n>Langues:</xa-list-heading>
+    <xa-list-item i18n>Français (maternelle)</xa-list-item>
+    <xa-list-item i18n>Anglais (courant)</xa-list-item>
+  </xa-list>
+
+  <xa-list class="col">
+    <xa-list-heading i18n>Diplômes:</xa-list-heading>
+    <xa-list-item i18n>Diplôme d'ingénieur en développement logiciel à Polytech Lyon</xa-list-item>
+    <xa-list-item i18n>DUT Informatique à l'IUT de Lyon</xa-list-item>
+  </xa-list>
+</section>
