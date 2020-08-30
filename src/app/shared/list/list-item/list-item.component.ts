@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'xa-list-item',
@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
   },
 })
 export class ListItemComponent implements OnInit {
+  @HostBinding('class') classes = "mb-2";
+
   constructor() {}
 
   ngOnInit(): void {}
