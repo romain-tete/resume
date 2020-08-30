@@ -1,13 +1,12 @@
 <ng-template #contactToggleBtn>
-    <button i18n class="btn btn-link" (click)="showContact()">Afficher les information de contact</button>
+    <button i18n class="btn btn-outline-primary btn-sm" (click)="showContact()">Afficher les information de contact</button>
   </ng-template>
   <ng-template #contactInformation>
-    <address class="col">
-      Romain Tête<br />
-      <ng-container i18n>@: </ng-container><a href="mailto:romain.tete@gmail.com">romain.tete@gmail.com</a>
-    </address>
-    <div class="col-auto justify-end picture-wrapper">
-      <img src="assets/images/picture.png" />
+    <div class="row">
+      <address class="col">
+        Romain Tête<br />
+        <ng-container i18n>@: </ng-container><a href="mailto:romain.tete@gmail.com">romain.tete@gmail.com</a>
+      </address>
     </div>
   </ng-template>
   <ng-container [ngTemplateOutlet]="contactShown ? contactInformation : contactToggleBtn"></ng-container>

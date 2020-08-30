@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'xa-list-heading',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-heading.component.scss'],
 })
 export class ListHeadingComponent implements OnInit {
+  @HostBinding('class') classes = "text-primary font-weight-bold"
+  
   constructor() {}
 
   ngOnInit(): void {}
