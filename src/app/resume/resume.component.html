@@ -1,5 +1,5 @@
 <header class="mb-5">
-  <h1>Ingénieur en développement logiciel</h1>
+  <h1 i18n #resumeTitle>Ingénieur en développement logiciel en télétravail</h1>
   <xa-contact></xa-contact>
   <xa-actions></xa-actions>
 </header>
@@ -8,24 +8,28 @@
   <xa-role i18n-name name="CTO" start="01/09/2018" end="30/04/2020">
     <xa-list>
       <xa-list-heading xaRoleHeading></xa-list-heading>
-      <xa-list-item i18n>Refonte du backend rails: transition vers NestJS et adoption d'une architecture en
-        microservices plus propre (communication par messages, isolation des BDD, ajout d'une gestion des identités
-        indépendante, ajout d'un reverse-proxy indépendant).
+      <xa-list-item i18n>Pilotages opérationnel et tactique de l'équipe d'ingénieurs (5 devs et un infra)</xa-list-item>
+      <xa-list-item i18n>Réécriture du backend Ruby on Rails vers NestJS avec une architecture en
+        microservices plus propre (communication par messages, isolation des base de données, ajout d'une gestion des
+        identités indépendante, ajout d'un edge gateway indépendant).
       </xa-list-item>
       <xa-list-item i18n>Transition de Docker Swarm vers Kubernetes avec une très grosse amélioration de
         l'expérience de développement et des possibilités nouvelles pour la gestion des multiples environnements
         (multi-tenancy).
       </xa-list-item>
       <xa-list-item i18n>Réduction de la charge de maintenance de l'infrastructure par l'adoption des services
-        gérés du IaaS Microsoft Azure: Kubernetes, Service Bus, B2C Tenant, CosmosDB, Postgres, etc.
+        gérés du IaaS Microsoft Azure: Kubernetes, Service Bus, B2C Tenant, CosmosDB, Postgres.
       </xa-list-item>
     </xa-list>
     <xa-role-skills>
-      <xa-role-skill kind="primary" i18n>leadership technique</xa-role-skill>
-      <xa-role-skill kind="primary" i18n>veille technologique</xa-role-skill>
-      <xa-role-skill kind="primary" i18n>interface avec les différent pôles de l'entreprise</xa-role-skill>
-      <xa-role-skill kind="primary" i18n>pilotage opérationnel et tactique</xa-role-skill>
-      <xa-role-skill kind="primary" i18n>reporting stratégique</xa-role-skill>
+      <xa-role-skill i18n>leadership technique</xa-role-skill>
+      <xa-role-skill i18n>veille technologique</xa-role-skill>
+      <xa-role-skill i18n>communication interne avec les différentes divisions de l'entreprise (légal, marketing,
+        produit et ventes)</xa-role-skill>
+      <xa-role-skill i18n>communication externe avec les ingénieurs des entreprises clientes (audits sécurité,
+        interopérabilité des systèmes d'information, etc.)</xa-role-skill>
+      <xa-role-skill i18n>pilotage opérationnel et tactique</xa-role-skill>
+      <xa-role-skill i18n>reporting stratégique</xa-role-skill>
       <xa-role-skill kind="secondary" i18n>Angular</xa-role-skill>
       <xa-role-skill kind="secondary" i18n>NestJS</xa-role-skill>
       <xa-role-skill kind="secondary" i18n>Ruby on Rails</xa-role-skill>
@@ -38,28 +42,22 @@
     </xa-role-skills>
   </xa-role>
 
-  <xa-role i18n-name name="Lead frontend developper" start="01/09/2017" end="31/08/2018">
+  <xa-role i18n-name name="Lead frontend développeur" start="01/09/2017" end="31/08/2018">
     <xa-list>
       <xa-list-heading xaRoleHeading></xa-list-heading>
-      <xa-list-item>Migration depuis Angular 1 vers Angular 6+</xa-list-item>
-      <xa-list-item>Responsable de la structuration du code Angular pour répondre aux enjeux du projet (de multiples
-        environnements une base de code globalement commune mais avec des configurations différentes, voire des
-        développements
-        spécifiques à un tenant, des textes différents, etc.).
-      </xa-list-item>
-      <xa-list-item>Garant de la qualité du code. Cela implique notamment les revues de code avant l'acceptation des
-        merge-requests et la formation des
-        développeurs aux bonnes pratiques et aux design-patterns adaptés
-      </xa-list-item>
+      <xa-list-item i18n>Maintenance et développement d'une application frontend complexe avec Angular</xa-list-item>
+      <xa-list-item i18n>Maintien en bon état la base de code selon des critères de maintenabilité, de cohérence et
+        du respect des "best-practices".</xa-list-item>
+      <xa-list-item i18n>Migration d'une application de Angular 1 vers Angular 6+</xa-list-item>
     </xa-list>
     <xa-role-skills>
-      <xa-role-skill kind="primary" i18n>Angular</xa-role-skill>
-      <xa-role-skill kind="primary" i18n>Typescript</xa-role-skill>
-      <xa-role-skill kind="primary" i18n>veille technologique</xa-role-skill>
-      <xa-role-skill kind="primary" i18n>NPM</xa-role-skill>
-      <xa-role-skill kind="primary" i18n>Git</xa-role-skill>
-      <xa-role-skill kind="primary" i18n>leadership technique</xa-role-skill>
-      <xa-role-skill kind="primary" i18n>communication</xa-role-skill>
+      <xa-role-skill i18n>Angular</xa-role-skill>
+      <xa-role-skill i18n>Typescript</xa-role-skill>
+      <xa-role-skill i18n>veille technologique</xa-role-skill>
+      <xa-role-skill i18n>NPM</xa-role-skill>
+      <xa-role-skill i18n>Git</xa-role-skill>
+      <xa-role-skill i18n>leadership technique</xa-role-skill>
+      <xa-role-skill i18n>communication</xa-role-skill>
       <xa-role-skill kind="secondary" i18n>Ruby on Rails</xa-role-skill>
       <xa-role-skill kind="secondary" i18n>Docker</xa-role-skill>
     </xa-role-skills>
@@ -70,10 +68,11 @@
   <xa-role start="01/09/2015" end="31/07/2017" name="CTO" i18n-name>
     <xa-list>
       <xa-list-heading xaRoleHeading></xa-list-heading>
-      <xa-list-item i18n>Organisation de l'équipe de devs (5 personnes).</xa-list-item>
-      <xa-list-item i18n>Discussions techniques avec les clients pour déterminer la stratégie de mise en oeuvre de la
-        solution.</xa-list-item>
-      <xa-list-item i18n>Intégration de travaux de recherche en sciences cognitives dans la solution.</xa-list-item>
+      <xa-list-item i18n>Pilotage opérationnel et tactique de l'équipe de devs (5 personnes).</xa-list-item>
+      <xa-list-item i18n>Reporting stratégique.</xa-list-item>
+      <xa-list-item i18n>Communication extèrnes avec les clients lors des phases de mise en service et support
+        pré-vente.</xa-list-item>
+      <xa-list-item i18n>Construction d'un modèle de la compétence appuyé sur des travaux scientifiques.</xa-list-item>
     </xa-list>
     <xa-role-skills>
       <xa-role-skill i18n>leadership technique</xa-role-skill>

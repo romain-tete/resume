@@ -1,4 +1,12 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostBinding,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'xa-resume',
@@ -7,12 +15,16 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 })
 export class ResumeComponent implements OnInit {
   contactShown = false;
+  @ViewChild('resumeTitle', { read: ElementRef, static: true })
+  titleEl: ElementRef<HTMLHeadingElement>;
 
-  constructor() {}
+  constructor(private titleService: Title) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.titleService.setTitle(this.titleEl.nativeElement.innerText);
+  }
 
-  showContact() {
+  showContact(): void {
     this.contactShown = true;
   }
 }

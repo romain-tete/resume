@@ -1,8 +1,8 @@
 <div>
-  <span class="text-primary" i18n>Compétences clés: </span>
+  <span class="text-primary" i18n>Compétences primaires: </span>
   <ng-content select=":not([kind='secondary'])"></ng-content>
 </div>
 <div *ngIf="hasSecondarySkills">
-  <span class="text-primary" i18n>Compétences support: </span>
+  <span class="text-primary" i18n>Compétences secondaires: </span>
   <ng-content select="[kind='secondary']"></ng-content>
 </div>

@@ -18,20 +18,28 @@
         <source>Date de fin de poste</source>
         <target>End date of the position</target>
       </trans-unit>
-      <trans-unit id="46bee13b16a66a31b3dace878367afe555d2521f">
-        <source>Compétences clés: </source>
-        <target>Key skills:</target>
+      <trans-unit id="33590236e94721def5c17b1508d0cc61836e188b">
+        <source>Compétences primaires: </source>
+        <target>Primary skills:</target>
       </trans-unit>
-      <trans-unit id="425315e117baecae61f4a67c7f292ade96d2e8df">
-        <source>Compétences support: </source>
+      <trans-unit id="66a3eb35b44e298fdb6ca422c563873326e06dd7">
+        <source>Compétences secondaires: </source>
         <target>Secondary skills:</target>
       </trans-unit>
-      <trans-unit id="7942f71a59e6f7ffbeb42f18708fd5beb092a22d">
-        <source>Refonte du backend rails: transition vers NestJS et adoption d&apos;une architecture en
-        microservices plus propre (communication par messages, isolation des BDD, ajout d&apos;une gestion des identités
-        indépendante, ajout d&apos;un reverse-proxy indépendant).
+      <trans-unit id="533291238aaa7ab5e63d06b27f071955401033ae">
+        <source>Ingénieur en développement logiciel en télétravail</source>
+        <target>Engineer in software development working remotely</target>
+      </trans-unit>
+      <trans-unit id="aaf43154edefc270c1e50e51dc0f237247220f4c">
+        <source>Pilotages opérationnel et tactique de l&apos;équipe d&apos;ingénieurs (5 devs et un infra)</source>
+        <target>Operational and tactical management of the engineering team (6 devs and 1 infra)</target>
+      </trans-unit>
+      <trans-unit id="55012830312a18b0a1dd182080bef020dfaff101">
+        <source>Réécriture du backend Ruby on Rails vers NestJS avec une architecture en
+        microservices plus propre (communication par messages, isolation des base de données, ajout d&apos;une gestion des
+        identités indépendante, ajout d&apos;un edge gateway indépendant).
       </source>
-        <target>Rewriting of the backend from Ruby on Rails to NestJS and establishing a cleaner microservice architecture (message driven, strictly isolated databases, independant identity management, and addition of an edge gateway).</target>
+        <target>Rewriting of the Ruby on Rails backend with a cleaner microservice architecture (communication between services using messages, strict databases isolation, added an independent identity management and added an edge gateway)</target>
       </trans-unit>
       <trans-unit id="720cc00c32b13f615fe8d09f77afcfa7d000d320">
         <source>Transition de Docker Swarm vers Kubernetes avec une très grosse amélioration de
@@ -40,11 +48,11 @@
       </source>
         <target>Adoption of Kubernetes over Docker Swarm. This change has allowed a significant improvement of the developer experience and new possibilities in regard to managing multiple configurations with multiple environments (multi-tenancy related concerns).</target>
       </trans-unit>
-      <trans-unit id="4a63a61033e067554b360047e1ac7787b401b7e2">
+      <trans-unit id="42ecd2030d942958d3fa37487e15fe622aac0576">
         <source>Réduction de la charge de maintenance de l&apos;infrastructure par l&apos;adoption des services
-        gérés du IaaS Microsoft Azure: Kubernetes, Service Bus, B2C Tenant, CosmosDB, Postgres, etc.
+        gérés du IaaS Microsoft Azure: Kubernetes, Service Bus, B2C Tenant, CosmosDB, Postgres.
       </source>
-        <target>Lowering of the infrastructure maintenance burden by adoption managed services from Microsot Azure IaaS (Kubernetes, Service Bus, B2C Tenant, CosmosDB, Postgres) </target>
+        <target>Lessened the infrastructure maintenance burden by adopting more managed service from the Microsoft Azure IaaS (Kubernetes, Service Bus, B2C Tenant, CosmosDB, Postgres)</target>
       </trans-unit>
       <trans-unit id="7ce443d9a1b3910604eff840b1f0f095930adca9">
         <source>leadership technique</source>
@@ -54,9 +62,15 @@
         <source>veille technologique</source>
         <target>technological awareness</target>
       </trans-unit>
-      <trans-unit id="2a768be2e238eaaf7663cca2c7934a7d3023010f">
-        <source>interface avec les différent pôles de l&apos;entreprise</source>
-        <target>interface between the company's divisions (sales, legal and marketing &amp; communication)</target>
+      <trans-unit id="dc5ebc7ffaf9d48d143d0d7401952c8440ed9758">
+        <source>communication interne avec les différentes divisions de l&apos;entreprise (légal, marketing,
+        produit et ventes)</source>
+        <target>internal communication with the different departments (legal, marketing, product and sales)</target>
+      </trans-unit>
+      <trans-unit id="aa6afb435d7d43fb60fa33e6ec2ca8cc23ca6a48">
+        <source>communication externe avec les ingénieurs des entreprises clientes (audits sécurité,
+        interopérabilité des systèmes d&apos;information, etc.)</source>
+        <target>external communication with the engineers from our customers (security audits, systems interoperability, etc.)</target>
       </trans-unit>
       <trans-unit id="9a0977e7eb0d0d03b8d89ba47c6ee63998419506">
         <source>pilotage opérationnel et tactique</source>
@@ -106,6 +120,19 @@
         <source>CTO</source>
         <target>CTO</target>
       </trans-unit>
+      <trans-unit id="c2e761f496074e319d9b6aa94deabcfb04dd444f">
+        <source>Maintenance et développement d&apos;une application frontend complexe avec Angular</source>
+        <target>Maintenance and feature development of a complex Angular application</target>
+      </trans-unit>
+      <trans-unit id="fbe77fabf7194a583125400441ac5f3e0bf4746e">
+        <source>Maintien en bon état la base de code selon des critères de maintenabilité, de cohérence et
+        du respect des &quot;best-practices&quot;.</source>
+        <target>Oversight of the codebase in order to uphold standards in maintainability, consistency and the respect of best practices.</target>
+      </trans-unit>
+      <trans-unit id="0b35820ce0f409fb7b9fd6c622c7a12aba672fa3">
+        <source>Migration d&apos;une application de Angular 1 vers Angular 6+</source>
+        <target>Migration of an Angular 1 application to Angular 6+</target>
+      </trans-unit>
       <trans-unit id="aa9658aaed58c9ab74c985c1e9666aeeb5087e59">
         <source>Typescript</source>
         <target>Typescript</target>
@@ -122,22 +149,26 @@
         <source>communication</source>
         <target>communication</target>
       </trans-unit>
-      <trans-unit id="0e6fd322802f386a41ed6d7a4cc2b6254593401f">
-        <source>Lead frontend developper</source>
+      <trans-unit id="37c51cd7f3431b14c9003ebde1a7f017fa730112">
+        <source>Lead frontend développeur</source>
         <target>Lead frontend developer</target>
       </trans-unit>
-      <trans-unit id="24113ef75e2af61e2ef5309e01158f9a062f5317">
-        <source>Organisation de l&apos;équipe de devs (5 personnes).</source>
-        <target>Dev team organisation (5 people)</target>
+      <trans-unit id="578a7b963da043c5b5ac88ce2fe8dcd669e47a76">
+        <source>Pilotage opérationnel et tactique de l&apos;équipe de devs (5 personnes).</source>
+        <target>Operational and tactical management of the development team (5 devs)</target>
       </trans-unit>
-      <trans-unit id="216b79c4a24b695430101a1a858b6b1bf579de36">
-        <source>Discussions techniques avec les clients pour déterminer la stratégie de mise en oeuvre de la
-        solution.</source>
-        <target>Technical exchange with the customer in order to determine the deployment of the solution</target>
+      <trans-unit id="fa022b38444a9c1e38cf1912d90e0c6fb647701f">
+        <source>Reporting stratégique.</source>
+        <target>Strategic reporting</target>
       </trans-unit>
-      <trans-unit id="6299f1ef859fa1cbf273f75451ea354be703cbca">
-        <source>Intégration de travaux de recherche en sciences cognitives dans la solution.</source>
-        <target>Integration of cognitive science results in the solution</target>
+      <trans-unit id="6f87e66fd3d7b4378d41d8cae71a1671569d9311">
+        <source>Communication extèrnes avec les clients lors des phases de mise en service et support
+        pré-vente.</source>
+        <target>External communication with customers during deployment phases or as a pre-sales technical support.</target>
+      </trans-unit>
+      <trans-unit id="4723879b138b86922cce7acc125889c664f813e9">
+        <source>Construction d&apos;un modèle de la compétence appuyé sur des travaux scientifiques.</source>
+        <target>Construction of a competency model in accordance with cognitive sciences research results</target>
       </trans-unit>
       <trans-unit id="16da51aa10b47914117c7c6c68dba6581513043a">
         <source>PHP</source>
@@ -211,6 +242,48 @@
       <trans-unit id="193724b684a002fdf3150c821dae1210eb6264b0">
         <source>@: </source>
         <target>@:</target>
+      </trans-unit>
+      <trans-unit id="46bee13b16a66a31b3dace878367afe555d2521f">
+        <source>Compétences clés: </source>
+        <target>Key skills:</target>
+      </trans-unit>
+      <trans-unit id="425315e117baecae61f4a67c7f292ade96d2e8df">
+        <source>Compétences support: </source>
+        <target>Secondary skills:</target>
+      </trans-unit>
+      <trans-unit id="7942f71a59e6f7ffbeb42f18708fd5beb092a22d">
+        <source>Refonte du backend rails: transition vers NestJS et adoption d&apos;une architecture en
+        microservices plus propre (communication par messages, isolation des BDD, ajout d&apos;une gestion des identités
+        indépendante, ajout d&apos;un reverse-proxy indépendant).
+      </source>
+        <target>Rewriting of the backend from Ruby on Rails to NestJS and establishing a cleaner microservice architecture (message driven, strictly isolated databases, independant identity management, and addition of an edge gateway).</target>
+      </trans-unit>
+      <trans-unit id="4a63a61033e067554b360047e1ac7787b401b7e2">
+        <source>Réduction de la charge de maintenance de l&apos;infrastructure par l&apos;adoption des services
+        gérés du IaaS Microsoft Azure: Kubernetes, Service Bus, B2C Tenant, CosmosDB, Postgres, etc.
+      </source>
+        <target>Lowering of the infrastructure maintenance burden by adoption managed services from Microsot Azure IaaS (Kubernetes, Service Bus, B2C Tenant, CosmosDB, Postgres) </target>
+      </trans-unit>
+      <trans-unit id="2a768be2e238eaaf7663cca2c7934a7d3023010f">
+        <source>interface avec les différent pôles de l&apos;entreprise</source>
+        <target>interface between the company's divisions (sales, legal and marketing &amp; communication)</target>
+      </trans-unit>
+      <trans-unit id="0e6fd322802f386a41ed6d7a4cc2b6254593401f">
+        <source>Lead frontend developper</source>
+        <target>Lead frontend developer</target>
+      </trans-unit>
+      <trans-unit id="24113ef75e2af61e2ef5309e01158f9a062f5317">
+        <source>Organisation de l&apos;équipe de devs (5 personnes).</source>
+        <target>Dev team organisation (5 people)</target>
+      </trans-unit>
+      <trans-unit id="216b79c4a24b695430101a1a858b6b1bf579de36">
+        <source>Discussions techniques avec les clients pour déterminer la stratégie de mise en oeuvre de la
+        solution.</source>
+        <target>Technical exchange with the customer in order to determine the deployment of the solution</target>
+      </trans-unit>
+      <trans-unit id="6299f1ef859fa1cbf273f75451ea354be703cbca">
+        <source>Intégration de travaux de recherche en sciences cognitives dans la solution.</source>
+        <target>Integration of cognitive science results in the solution</target>
       </trans-unit>
     </body>
   </file>
