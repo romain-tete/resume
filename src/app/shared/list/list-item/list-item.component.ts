@@ -4,12 +4,10 @@ import { Component, OnInit, HostBinding } from '@angular/core';
   selector: 'xa-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.scss'],
-  host: {
-    role: 'listitem',
-  },
 })
 export class ListItemComponent implements OnInit {
-  @HostBinding('class') classes = "mb-2";
+  @HostBinding('attr.role') role = 'listitem';
+  @HostBinding('class') classes = 'mb-2';
 
   constructor() {}
 
