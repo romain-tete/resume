@@ -3,18 +3,16 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'xa-contact',
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.scss']
+  styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent implements OnInit {
   contactShown = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   showContact() {
     this.contactShown = true;
   }
-
 }
