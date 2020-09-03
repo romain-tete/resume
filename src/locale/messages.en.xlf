@@ -18,8 +18,8 @@
         <source>Date de fin de poste</source>
         <target>End date of the position</target>
       </trans-unit>
-      <trans-unit id="33590236e94721def5c17b1508d0cc61836e188b">
-        <source>Compétences primaires: </source>
+      <trans-unit id="b28008f2ed5a7d421c77acae9dfaab46a4117fda">
+        <source>Compétences principales: </source>
         <target>Primary skills: </target>
       </trans-unit>
       <trans-unit id="66a3eb35b44e298fdb6ca422c563873326e06dd7">
@@ -226,13 +226,13 @@
     contact</source>
         <target>Display contact information</target>
       </trans-unit>
+      <trans-unit id="43f65af7f79c53d3b62d5468e4c53ea82c459e55">
+        <source>Tél: </source>
+        <target>Phone:</target>
+      </trans-unit>
       <trans-unit id="193724b684a002fdf3150c821dae1210eb6264b0">
         <source>@: </source>
         <target>@:</target>
-      </trans-unit>
-      <trans-unit id="533291238aaa7ab5e63d06b27f071955401033ae">
-        <source>Ingénieur en développement logiciel en télétravail</source>
-        <target>Engineer in software development working remotely</target>
       </trans-unit>
     </body>
   </file>
