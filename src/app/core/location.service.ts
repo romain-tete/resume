@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class LocationService {
   getOrigin(): string {
-    const origin = window.location.origin;
     const hasLocale = !!window.location.pathname.match(/^\/(en|fr)/);
     const localePath = hasLocale ? window.location.pathname.substr(0, 3) : '';
 
