@@ -7,8 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   imports: [HttpClientModule, OAuthModule.forRoot()],
   providers: [
-    LocationService,
-    AuthConfigService,
     {
       provide: APP_INITIALIZER,
       useFactory: (

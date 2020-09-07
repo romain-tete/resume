@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
+import { AuthGuardService } from './core/auth-guard.service';
 
 const routes: Routes = [
   {
     path: 'cv',
     loadChildren: () =>
       import('./resume/resume.module').then((m) => m.ResumeModule),
+    canLoad: [AuthGuardService],
   },
   { path: '', redirectTo: 'cv', pathMatch: 'full' },
 ];
