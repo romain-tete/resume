@@ -1,20 +1,25 @@
 :host {
-    display: block;
+  display: block;
 }
 
-  
 .picture-wrapper {
-    height: 110px;
-    width: auto;
-    vertical-align: top;
-  
-    img {
-      display: block;
-      height: 100%;
-    }
+  height: 110px;
+  width: auto;
+  vertical-align: top;
+
+  img {
+    display: block;
+    height: 100%;
+  }
 }
-  
+
 address {
-    vertical-align: top;
+  vertical-align: top;
 }
-  
+
+@media print {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
