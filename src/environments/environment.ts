@@ -4,12 +4,6 @@
 
 export const environment = {
   production: false,
-  identity: {
-    issuer:
-      'https://xaresume.b2clogin.com/xaresume.onmicrosoft.com/B2C_1_sign_in/v2.0/',
-    appId: '59bbf0d4-1825-4ae0-a889-c45efa942517',
-    appSecret: 'GHSR-p72~-j3~66btWhnthu.gHcE2KeTDE',
-  },
 };
 
 /*
