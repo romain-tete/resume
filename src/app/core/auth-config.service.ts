@@ -20,7 +20,7 @@ export class AuthConfigService {
         'https://xaresume.b2clogin.com/xaresume.onmicrosoft.com/B2C_1_sign_in/v2.0/',
       clientId: '59bbf0d4-1825-4ae0-a889-c45efa942517',
       dummyClientSecret: 'GHSR-p72~-j3~66btWhnthu.gHcE2KeTDE',
-      redirectUri: `${this.location.getOrigin()}`,
+      redirectUri: `${this.location.getLocalizedOrigin()}`,
       responseType: 'code',
       scope: 'openid offline_access',
       showDebugInformation: true,
@@ -28,6 +28,7 @@ export class AuthConfigService {
       strictDiscoveryDocumentValidation: false,
       customQueryParams: {
         p: 'B2C_1_sign_in',
+        ui_locales: this.location.getLocaleFromLocation() || 'en',
       },
     };
   }

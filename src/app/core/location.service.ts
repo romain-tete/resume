@@ -4,11 +4,17 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LocationService {
-  getOrigin(): string {
-    const hasLocale = !!window.location.pathname.match(/^\/(en|fr)/);
-    const localePath = hasLocale ? window.location.pathname.substr(0, 3) : '';
-
+  getLocalizedOrigin(): string {
+    const locale = this.getLocaleFromLocation();
+    const localePath = locale ? `/${locale}` : '';
     return window.location.origin + localePath;
+  }
+
+  getLocaleFromLocation(): 'en' | 'fr' | undefined {
+    const hasLocale = !!window.location.pathname.match(/^\/(en|fr)/);
+    return hasLocale
+      ? (window.location.pathname.substr(1, 2) as 'en' | 'fr')
+      : undefined;
   }
 
   getHost(): string {
