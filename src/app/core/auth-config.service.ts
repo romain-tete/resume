@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AuthConfig } from 'angular-oauth2-oidc';
-import { EnvironmentService } from './environment.service';
 import { LocationService } from './location.service';
 
 interface EnvConfig {
@@ -13,17 +12,14 @@ interface EnvConfig {
   providedIn: 'root',
 })
 export class AuthConfigService {
-  constructor(
-    private location: LocationService,
-    private env: EnvironmentService
-  ) {}
+  constructor(private location: LocationService) {}
 
   getConfig(): AuthConfig {
-    const envConfig = this.getEnvConfig();
     return {
-      issuer: envConfig.issuer,
-      clientId: envConfig.appId,
-      dummyClientSecret: envConfig.appSecret,
+      issuer:
+        'https://xaresume.b2clogin.com/xaresume.onmicrosoft.com/B2C_1_sign_in/v2.0/',
+      clientId: '59bbf0d4-1825-4ae0-a889-c45efa942517',
+      dummyClientSecret: 'GHSR-p72~-j3~66btWhnthu.gHcE2KeTDE',
       redirectUri: `${this.location.getOrigin()}`,
       responseType: 'code',
       scope: 'openid offline_access',
@@ -34,11 +30,5 @@ export class AuthConfigService {
         p: 'B2C_1_sign_in',
       },
     };
-  }
-
-  private getEnvConfig(): EnvConfig {
-    const env = this.env.getConfig();
-
-    return env.identity;
   }
 }
