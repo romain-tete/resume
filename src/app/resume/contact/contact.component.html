@@ -1,18 +1,7 @@
-<ng-template #contactToggleBtn>
-  <button i18n class="btn btn-outline-primary btn-sm" (click)="showContact()">Afficher les informations de
-    contact</button>
-</ng-template>
-<ng-template #contactInformation>
-  <div class="row">
-    <address class="col">
-      Romain Tête<br />
-      <ng-container *ngIf="!isOnline()">
-        57 rue d'Annonay<br />
-        43190 Tence<br />
-        <ng-container i18n>Tél: </ng-container><a href="tel:+33674393989">+33 6.74.39.39.89</a><br />
-      </ng-container>
-      <ng-container i18n>@: </ng-container><a href="mailto:jobsearch.romain@gmail.com">jobsearch.romain@gmail.com</a>
-    </address>
-  </div>
-</ng-template>
-<ng-container [ngTemplateOutlet]="contactShown ? contactInformation : contactToggleBtn"></ng-container>
+<address class="col">
+  Romain Tête<br />
+  57 rue d'Annonay<br />
+  43190 Tence<br />
+  <ng-container i18n>Tél: </ng-container><a href="tel:+33674393989">+33 (0)6.74.39.39.89</a><br />
+  <ng-container i18n>@: </ng-container><a href="mailto:jobsearch.romain@gmail.com">jobsearch.romain@gmail.com</a>
+</address>
