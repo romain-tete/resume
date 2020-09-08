@@ -14,12 +14,12 @@
       "name": "res"
     },
     {
-      "type": "cosmosDB",
+      "type": "CosmosDBConnection",
       "direction": "in",
       "name": "experiences",
       "databaseName": "resume",
       "collectionName": "experiences",
-      "connectionStringSetting": "CosmosDB",
+      "connectionStringSetting": "CosmosDBConnection",
       "partitionKey": "test"
     }
   ],

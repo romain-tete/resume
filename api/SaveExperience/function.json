@@ -14,23 +14,23 @@
       "name": "res"
     },
     {
-      "type": "cosmosDB",
+      "type": "CosmosDBConnection",
       "direction": "in",
       "name": "experience",
       "databaseName": "resume",
       "collectionName": "experiences",
-      "connectionStringSetting": "CosmosDB",
+      "connectionStringSetting": "CosmosDBConnection",
       "id": "{id}",
       "partitionKey": "test"
     },
     {
-      "type": "cosmosDB",
+      "type": "CosmosDBConnection",
       "direction": "out",
       "name": "saveExperienceBinding",
       "databaseName": "resume",
       "collectionName": "experiences",
       "createIfNotExists": "false",
-      "connectionStringSetting": "CosmosDB",
+      "connectionStringSetting": "CosmosDBConnection",
       "partitionKey": "pk"
     }
   ],

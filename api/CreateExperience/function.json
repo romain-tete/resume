@@ -14,7 +14,7 @@
       "name": "res"
     },
     {
-      "type": "cosmosDB",
+      "type": "CosmosDBConnection",
       "direction": "out",
       "name": "newExperienceBinding",
       "databaseName": "resume",
