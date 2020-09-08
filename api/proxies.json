@@ -1,4 +1,9 @@
 {
   "$schema": "http://json.schemastore.org/proxies",
-  "proxies": {}
+  "proxies": {
+    "api": {
+      "matchCondition": { "route": "/api" },
+      "backendUri": "https://api.xcedia.fr"
+    }
+  }
 }

@@ -1,2 +1,0 @@
-#!/bin/bash
-az rest --method put --headers "Content-Type=application/json" --uri "/subscriptions/<subscription>/resourceGroups/<resource_group>/providers/Microsoft.Web/staticSites/<static_app_name>/config/functionappsettings?api-version=2019-12-01-preview" --body @local.settings.properties.json
