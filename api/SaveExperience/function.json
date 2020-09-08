@@ -1,0 +1,38 @@
+{
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": ["put"],
+      "route": "experiences/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "in",
+      "name": "experience",
+      "databaseName": "resume",
+      "collectionName": "experiences",
+      "connectionStringSetting": "CosmosDB",
+      "id": "{id}",
+      "partitionKey": "test"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "saveExperienceBinding",
+      "databaseName": "resume",
+      "collectionName": "experiences",
+      "createIfNotExists": "false",
+      "connectionStringSetting": "CosmosDB",
+      "partitionKey": "pk"
+    }
+  ],
+  "scriptFile": "../dist/SaveExperience/index.js"
+}
