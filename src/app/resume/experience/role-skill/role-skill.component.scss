@@ -1,7 +1,0 @@
-:host {
-  &:not(:last-of-type) {
-    &:after {
-      content: ", ";
-    }
-  }
-}

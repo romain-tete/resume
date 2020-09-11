@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build --prod --localize",
     "build:Azure": "ng build --prod --localize && touch dist/resume/index.html && echo 'Dummy file for Static Web App structure compliance' > dist/resume/index.html",
     "test": "ng test",

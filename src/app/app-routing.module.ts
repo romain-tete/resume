@@ -4,12 +4,14 @@ import { AuthGuardService } from './core/auth-guard.service';
 
 const routes: Routes = [
   {
-    path: 'cv',
+    path: 'experiences',
     loadChildren: () =>
-      import('./resume/resume.module').then((m) => m.ResumeModule),
+      import('./experiences/experiences.module').then(
+        (m) => m.ExperiencesModule
+      ),
     canLoad: [AuthGuardService],
   },
-  { path: '', redirectTo: 'cv', pathMatch: 'full' },
+  { path: '', redirectTo: 'experiences', pathMatch: 'full' },
 ];
 
 @NgModule({

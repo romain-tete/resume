@@ -1,8 +1,9 @@
+import { AuthenticateRequestsService } from './authenticate-requests.service';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { OAuthModule, OAuthService } from 'angular-oauth2-oidc';
 import { AuthConfigService } from './auth-config.service';
 import { LocationService } from './location.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   imports: [HttpClientModule, OAuthModule.forRoot()],
@@ -17,6 +18,11 @@ import { HttpClientModule } from '@angular/common/http';
         return oauthService.loadDiscoveryDocumentAndLogin();
       },
       deps: [OAuthService, AuthConfigService],
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticateRequestsService,
       multi: true,
     },
   ],

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { CoreModule as AppCoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';

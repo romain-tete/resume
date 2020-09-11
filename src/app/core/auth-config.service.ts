@@ -2,12 +2,6 @@ import { Injectable } from '@angular/core';
 import { AuthConfig } from 'angular-oauth2-oidc';
 import { LocationService } from './location.service';
 
-interface EnvConfig {
-  issuer: string;
-  appId: string;
-  appSecret: string;
-}
-
 @Injectable({
   providedIn: 'root',
 })

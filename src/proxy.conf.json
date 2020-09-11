@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://api.xcedia.fr",
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "secure": "true",
+    "logLevel": "debug",
+    "changeOrigin": "true"
+  }
+}
