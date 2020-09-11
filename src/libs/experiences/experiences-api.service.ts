@@ -29,7 +29,9 @@ export class ExperiencesApiService {
   }
 
   contextsUpdate(context: Context): Observable<Context> {
-    return of(context);
+    return this.http.put<Context>(`/api/contexts/${context.id}`, context, {
+      headers: this.getDefaultHeaders(),
+    });
   }
 
   contextDelete(context: Context): Observable<void> {

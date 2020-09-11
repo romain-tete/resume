@@ -1,3 +1,4 @@
+import { experienceActions } from './../../../libs/experiences/experiences.actions';
 import {
   Component,
   Input,
@@ -9,6 +10,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Context } from '@xcedia/experiences';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -30,7 +32,11 @@ export class ContextComponent implements OnInit, OnDestroy {
   form: FormGroup;
   private destroy$ = new Subject();
 
-  constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) {}
+  constructor(
+    private fb: FormBuilder,
+    private cd: ChangeDetectorRef,
+    private store: Store<any>
+  ) {}
 
   editing = false;
   private originalValue: Context;
@@ -57,23 +63,32 @@ export class ContextComponent implements OnInit, OnDestroy {
   cancelEditing(): void {
     this.editing = false;
     this.form.get('label').setValue(this.originalValue.label);
-    this.focusEditButton();
+    this.finalizeEdition();
   }
 
   doneEditing(event: Event): void {
     event.preventDefault();
-
     this.editing = false;
-    this.focusEditButton();
+    if (this.form.dirty) {
+      this.store.dispatch(
+        experienceActions.context.edit({ payload: this.form.value })
+      );
+    }
+    this.finalizeEdition();
   }
 
-  private focusEditButton(): void {
+  private focusEditButton(): void {}
+
+  private finalizeEdition(): void {
+    this.form.markAsPristine();
+    this.form.markAsUntouched();
     this.cd.detectChanges();
     this.editButton.nativeElement.focus();
   }
 
   private createFormGroup(): void {
     this.form = this.fb.group({
+      id: [this.context.id, [Validators.required]],
       label: [this.context.label, [Validators.required]],
     });
   }

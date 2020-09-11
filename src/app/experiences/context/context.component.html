@@ -1,6 +1,7 @@
 <ng-template #view>
-  {{ context.label }} <button #editBtn type="button" class="btn btn-link btn-sm" (click)="startEditing()"><i
-      class="fa fa-pencil" aria-hidden="true"></i></button>
+  {{ context.label }} <button #editBtn type="button" class="btn btn-outline-primary btn-sm" (click)="startEditing()"><i
+      class="fa fa-pencil" aria-hidden="true"></i> Change label</button> <button #editBtn type="button"
+    class="ml-1 btn btn-outline-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Add a role</button>
 </ng-template>
 
 <ng-template #edition>

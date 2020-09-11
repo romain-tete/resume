@@ -1,3 +1,4 @@
+import { ExperiencesEffects } from './../libs/experiences/experiences.effects';
 import { HttpClientModule } from '@angular/common/http';
 import { CoreModule as AppCoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,8 +23,11 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
       enabled: environment.production,
     }),
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([ExperiencesEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
     StoreRouterConnectingModule.forRoot(),
   ],
   providers: [],
