@@ -77,8 +77,6 @@ export class ContextComponent implements OnInit, OnDestroy {
     this.finalizeEdition();
   }
 
-  private focusEditButton(): void {}
-
   private finalizeEdition(): void {
     this.form.markAsPristine();
     this.form.markAsUntouched();

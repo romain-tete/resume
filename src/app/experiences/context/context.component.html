@@ -1,18 +1,27 @@
 <ng-template #view>
-  {{ context.label }} <button #editBtn type="button" class="btn btn-outline-primary btn-sm" (click)="startEditing()"><i
-      class="fa fa-pencil" aria-hidden="true"></i> Change label</button> <button #editBtn type="button"
-    class="ml-1 btn btn-outline-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Add a role</button>
+  <div class="row">
+    <span class="col-md-8 col-12">{{ context.label }}</span>
+    <span class="col-md-4 col-12 text-md-right">
+      <button #editBtn type="button" class="btn btn-outline-primary btn-sm" (click)="startEditing()"><i
+          class="fa fa-pencil" aria-hidden="true"></i> Change label</button> <button #editBtn type="button"
+        class="ml-1 btn btn-outline-primary btn-sm"><i class="fa fa-plus" aria-hidden="true"></i> Add a role</button>
+    </span>
+  </div>
 </ng-template>
 
 <ng-template #edition>
   <form class="form-row" [formGroup]="form">
-    <div class="col-auto">
+    <span class="col-12 col-md-8">
       <label class="sr-only" [for]="id">New label</label>
       <input #labelInput type="text" class="col-auto form-control form-control-sm" name="context-label" [id]="id"
         placeholder="" formControlName="label" (keydown.enter)="doneEditing($event)" (keydown.esc)="cancelEditing()">
-    </div>
-    <button type="button" class="btn btn-sm ml-1" (click)="cancelEditing()">Cancel</button>
-    <button type="button" class="btn btn-outline-primary btn-sm" (click)="doneEditing($event)">Confirm</button>
+    </span>
+    <span class="col-12 col-md-4 text-md-right">
+      <button type="button" class="btn btn-sm ml-1" (click)="cancelEditing()"><i class="fa fa-times"
+          aria-hidden="true"></i> Cancel</button>
+      <button type="button" class="btn btn-outline-primary btn-sm" (click)="doneEditing($event)"><i class="fa fa-check"
+          aria-hidden="true"></i> Confirm</button>
+    </span>
   </form>
 </ng-template>
 
