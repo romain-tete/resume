@@ -1,4 +1,4 @@
-import { ExperiencesApiService } from './../services/experiences-api.service';
+import { ExperiencesApiService } from './experiences-api.service';
 import { Injectable } from '@angular/core';
 import {
   Resolve,
@@ -10,12 +10,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ExperiencesResolver implements Resolve<any[]> {
+export class ContextsResolver implements Resolve<any[]> {
   constructor(private api: ExperiencesApiService) {}
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any[]> {
-    return this.api.experiencesIndex();
+    return this.api.contextsIndex();
   }
 }

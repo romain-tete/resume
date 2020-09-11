@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs';
+import { Context } from './experiences.types';
+import { Observable, of } from 'rxjs';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -15,9 +16,23 @@ export class ExperiencesApiService {
     });
   }
 
-  experiencesIndex(): Observable<any[]> {
+  contextsIndex(): Observable<Context[]> {
     return this.http.get<any[]>('/api/contexts', {
       headers: this.getDefaultHeaders(),
     });
+  }
+
+  contextCreate(context: Context): Observable<Context> {
+    return this.http.post<Context>('/api/contexts', context, {
+      headers: this.getDefaultHeaders(),
+    });
+  }
+
+  contextsUpdate(context: Context): Observable<Context> {
+    return of(context);
+  }
+
+  contextDelete(context: Context): Observable<void> {
+    return of(undefined);
   }
 }

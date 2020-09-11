@@ -1,6 +1,6 @@
-import { ExperiencesResolver } from './experiences.resolver';
-import { ListExperiencesComponent } from './list-experiences/list-experiences.component';
+import { ListContextsComponent } from './list-contexts/list-contexts.component';
 import { NgModule } from '@angular/core';
+import { ContextsResolver } from '@xcedia/experiences';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ExperiencesComponent } from './experiences.component';
@@ -12,8 +12,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ListExperiencesComponent,
-        resolve: { experiences: ExperiencesResolver },
+        component: ListContextsComponent,
+        resolve: { contexts: ContextsResolver },
       },
     ],
   },
