@@ -3,7 +3,10 @@
   "proxies": {
     "api": {
       "matchCondition": { "route": "/api/{*restOfPath}" },
-      "backendUri": "https://api.xcedia.fr/{restOfPath}"
+      "backendUri": "https://api.xcedia.fr/{restOfPath}",
+      "requestOverrides": {
+        "backend.request.headers.Authorization": "{request.headers.Authorization}"
+      }
     }
   }
 }
