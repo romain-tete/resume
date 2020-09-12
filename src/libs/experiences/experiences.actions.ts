@@ -3,17 +3,39 @@ import { createAction, props } from '@ngrx/store';
 
 export const experienceActions = {
   context: {
-    edit: createAction(
+    load: createAction('[Experiences] Load contexts'),
+    loadSuccess: createAction(
+      '[Experiences][Success] Load contexts',
+      props<{ contexts: Context[] }>()
+    ),
+    loadError: createAction(
+      '[Experiences][Error] Load contexts',
+      props<{ error: Error | string }>()
+    ),
+    create: createAction('[Experiences] Create context'),
+    save: createAction(
       '[Experiences] Edit context',
-      props<{ payload: Context }>()
+      props<{ context: Context }>()
     ),
-    editSuccess: createAction(
+    saveSuccess: createAction(
       '[Experiences][Success] Edit context',
-      props<{ payload: Context }>()
+      props<{ context: Context }>()
     ),
-    editError: createAction(
+    saveError: createAction(
       '[Experiences][Success] Edit context',
-      props<{ payload: Error | string }>()
+      props<{ error: Error | string }>()
+    ),
+    delete: createAction(
+      '[Experiences] Delete context',
+      props<{ context: Context }>()
+    ),
+    deleteSuccess: createAction(
+      '[Experiences][Success] Delete context',
+      props<{ id: string }>()
+    ),
+    deleteError: createAction(
+      '[Experiences][Error] Delete context',
+      props<{ error: Error | string }>()
     ),
   },
 };

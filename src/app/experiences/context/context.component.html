@@ -25,4 +25,4 @@
   </form>
 </ng-template>
 
-<ng-container *ngIf="editing; then edition; else view"></ng-container>
+<ng-container *ngIf="state === 'editing'; then edition; else view"></ng-container>

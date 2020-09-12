@@ -1,17 +1,16 @@
-import { ExperiencesEffects } from './../libs/experiences/experiences.effects';
-import { HttpClientModule } from '@angular/common/http';
-import { CoreModule as AppCoreModule } from './core/core.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ExperiencesEffects, experiencesReducer } from '@xcedia/experiences';
 
+import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CoreModule as AppCoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +21,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({ experiences: experiencesReducer }, {}),
     EffectsModule.forRoot([ExperiencesEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
