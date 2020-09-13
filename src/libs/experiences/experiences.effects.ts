@@ -1,4 +1,4 @@
-import { experiencesSelectors } from './experiences.selectors';
+import { selectors } from './experiences.selectors';
 import { Store } from '@ngrx/store';
 import { ExperiencesApiService } from './experiences-api.service';
 import { experienceActions as actions } from './experiences.actions';
@@ -17,40 +17,67 @@ export class ExperiencesEffects {
 
   laodContexts$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.context.load),
+      ofType(actions.contexts.load),
       switchMap(() => this.experiencesAPI.contextsIndex()),
-      map((contexts) => actions.context.loadSuccess({ contexts }))
+      map((contexts) => actions.contexts.loadSuccess({ resources: contexts }))
     )
   );
 
   saveContext$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.context.save),
+      ofType(actions.contexts.save),
       withLatestFrom(this.store),
       switchMap(([action, globalState]) => {
-        const { context } = action;
-        const contextState = experiencesSelectors.contextState(context)(
-          globalState
-        );
+        const { resource } = action;
+        const contextState = selectors.resourceState(
+          'contexts',
+          resource
+        )(globalState);
 
         if (contextState === 'new') {
-          return this.experiencesAPI.contextCreate(context);
+          return this.experiencesAPI.contextCreate(resource);
         } else {
-          return this.experiencesAPI.contextsUpdate(context);
+          return this.experiencesAPI.contextsUpdate(resource);
         }
       }),
-      map((context) => actions.context.saveSuccess({ context })),
-      catchError((error) => of(actions.context.saveError({ error })))
+      map((context) => actions.contexts.saveSuccess({ resource: context })),
+      catchError((error) => of(actions.contexts.saveError({ error })))
     )
   );
 
   deleteContext$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.context.delete),
-      switchMap(({ context }) =>
-        this.experiencesAPI.contextDelete(context).pipe(
-          map(() => actions.context.deleteSuccess({ id: context.id })),
-          catchError((error) => of(actions.context.deleteError({ error })))
+      ofType(actions.contexts.delete),
+      switchMap(({ resource }) =>
+        this.experiencesAPI.contextDelete(resource).pipe(
+          map(() => actions.contexts.deleteSuccess({ id: resource.id })),
+          catchError((error) => of(actions.contexts.deleteError({ error })))
+        )
+      )
+    )
+  );
+
+  loadRoles$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.roles.load),
+      switchMap(() =>
+        this.experiencesAPI.rolesIndex().pipe(
+          map((roles) => actions.roles.loadSuccess({ resources: roles })),
+          catchError((error) => of(actions.roles.loadError({ error })))
+        )
+      )
+    )
+  );
+
+  saveRole$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.roles.save),
+      switchMap(({ resource }) =>
+        this.experiencesAPI.roleUpdate(resource).pipe(
+          map((savedRole) =>
+            actions.roles.saveSuccess({ resource: savedRole })
+          ),
+          catchError((error) => of(actions.roles.saveError({ error })))
         )
       )
     )

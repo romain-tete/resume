@@ -27,7 +27,7 @@ export class ListContextsViewComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.contexts) {
       const last = this.contexts[this.contexts.length - 1];
-      this.canAddMore = !!last.label;
+      this.canAddMore = last && !!last.label;
     }
   }
 
