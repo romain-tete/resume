@@ -25,6 +25,10 @@ export const experienceActions = {
       '[Experiences][Success] Edit context',
       props<{ error: Error | string }>()
     ),
+    cancel: createAction(
+      '[Experiences] Cancel edition',
+      props<{ context: Context }>()
+    ),
     delete: createAction(
       '[Experiences] Delete context',
       props<{ context: Context }>()

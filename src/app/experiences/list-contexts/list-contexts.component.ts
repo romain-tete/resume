@@ -39,4 +39,12 @@ export class ListContextsComponent implements OnInit, OnDestroy {
   addNewContext(): void {
     this.store.dispatch(experienceActions.context.create());
   }
+
+  save(context: Context): void {
+    this.store.dispatch(experienceActions.context.save({ context }));
+  }
+
+  cancel(context: Context): void {
+    this.store.dispatch(experienceActions.context.cancel({ context }));
+  }
 }

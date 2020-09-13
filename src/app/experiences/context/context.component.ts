@@ -1,4 +1,3 @@
-import { experienceActions } from './../../../libs/experiences/experiences.actions';
 import {
   Component,
   Input,
@@ -8,6 +7,9 @@ import {
   ElementRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
+  Output,
+  EventEmitter,
+  AfterViewInit,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -22,16 +24,20 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./context.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContextComponent implements OnInit, OnDestroy {
+export class ContextComponent implements OnInit, AfterViewInit, OnDestroy {
   static sequence = 0;
 
   @Input() context: Context;
+  @Output() save = new EventEmitter<Context>();
+  @Output() cancel = new EventEmitter<Context>();
+
   @ViewChild('labelInput') editInput: ElementRef<HTMLInputElement>;
   @ViewChild('editBtn') editButton: ElementRef<HTMLButtonElement>;
 
   id = `context-${ContextComponent.sequence++}`;
   form: FormGroup;
   private destroy$ = new Subject();
+  private shouldInputGrabFocus = false;
 
   constructor(
     private fb: FormBuilder,
@@ -40,7 +46,6 @@ export class ContextComponent implements OnInit, OnDestroy {
   ) {}
 
   state: 'editing' | 'view';
-  editing = false;
   private originalValue: Context;
 
   ngOnInit(): void {
@@ -50,6 +55,12 @@ export class ContextComponent implements OnInit, OnDestroy {
     this.form.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((value) => (this.context = { ...this.context, ...value }));
+  }
+
+  ngAfterViewInit(): void {
+    if (this.shouldInputGrabFocus === true) {
+      this.editInput.nativeElement.focus();
+    }
   }
 
   ngOnDestroy(): void {
@@ -62,9 +73,11 @@ export class ContextComponent implements OnInit, OnDestroy {
     this.cd.detectChanges();
 
     this.editInput.nativeElement.select();
+    this.editInput.nativeElement.focus();
   }
 
   cancelEditing(): void {
+    this.cancel.emit(this.context);
     this.state = 'view';
     this.form.get('label').setValue(this.originalValue.label);
     this.finalizeEdition();
@@ -72,11 +85,9 @@ export class ContextComponent implements OnInit, OnDestroy {
 
   doneEditing(event: Event): void {
     event.preventDefault();
-    this.editing = false;
+    this.state = 'view';
     if (this.form.dirty) {
-      this.store.dispatch(
-        experienceActions.context.save({ context: this.form.value })
-      );
+      this.save.emit(this.context);
     }
     this.finalizeEdition();
   }
@@ -86,9 +97,10 @@ export class ContextComponent implements OnInit, OnDestroy {
       this.state = 'view';
     } else {
       this.originalValue = this.context;
+      this.shouldInputGrabFocus = true;
     }
-    this.state = this.context.label ? 'view' : 'editing';
 
+    this.state = this.context.label ? 'view' : 'editing';
     if (!this.context.label) {
       this.state = 'editing';
     }

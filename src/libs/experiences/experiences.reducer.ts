@@ -1,3 +1,4 @@
+import { experiencesSelectors } from './experiences.selectors';
 import { experienceActions } from './experiences.actions';
 import { Context } from './experiences.types';
 import { createReducer, on, Action } from '@ngrx/store';
@@ -24,6 +25,7 @@ export const experiencesReducer = createReducer(
   experiencesState,
   on(experienceActions.context.loadSuccess, loadContexts),
   on(experienceActions.context.create, create),
+  on(experienceActions.context.cancel, cancel),
   on(experienceActions.context.save, save),
   on(experienceActions.context.saveSuccess, saved),
   on(experienceActions.context.delete, remove),
@@ -50,6 +52,24 @@ function create(state: State, action: Action): State {
     ...state,
     contexts: [...state.contexts, { context: newContext, state: 'new' }],
   };
+}
+
+function cancel(state: State, action: Action & { context: Context }): State {
+  const contextState = experiencesSelectors.contextState(action.context)({
+    experiences: state,
+  });
+
+  if (contextState === 'new') {
+    const i = state.contexts
+      .map((c) => c.context.id)
+      .indexOf(action.context.id);
+    const changed = [...state.contexts];
+    changed.splice(i, 1);
+
+    return { ...state, contexts: changed };
+  } else {
+    return state;
+  }
 }
 
 function save(
