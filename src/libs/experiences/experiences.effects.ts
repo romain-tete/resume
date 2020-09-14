@@ -69,6 +69,18 @@ export class ExperiencesEffects {
     )
   );
 
+  loadImpacts$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.impacts.load),
+      switchMap(() =>
+        this.experiencesAPI.impactsIndex().pipe(
+          map((impacts) => actions.impacts.loadSuccess({ resources: impacts })),
+          catchError((error) => of(actions.impacts.loadError({ error })))
+        )
+      )
+    )
+  );
+
   saveRole$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.roles.save),
