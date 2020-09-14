@@ -10,12 +10,12 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'xa-list-context-view',
-  templateUrl: './list-contexts-view.component.html',
-  styleUrls: ['./list-contexts-view.component.scss'],
+  selector: 'xa-context-list-view',
+  templateUrl: './context-list-view.component.html',
+  styleUrls: ['./context-list-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListContextsViewComponent implements OnChanges {
+export class ContextListViewComponent implements OnChanges {
   @Input() contexts: Context[];
 
   @Output() addNewContext = new EventEmitter<void>();

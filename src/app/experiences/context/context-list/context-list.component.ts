@@ -1,17 +1,21 @@
-import { experienceActions } from './../../../libs/experiences/experiences.actions';
 import { Store } from '@ngrx/store';
-import { combineLatest, merge, Observable, scheduled, Subject } from 'rxjs';
-import { map, scan, startWith, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Context, Impact, Role, selectors } from '@xcedia/experiences';
+import {
+  Context,
+  experienceActions,
+  Impact,
+  Role,
+  selectors,
+} from '@xcedia/experiences';
 
 @Component({
-  selector: 'xa-list-contexts',
-  templateUrl: './list-contexts.component.html',
-  styleUrls: ['./list-contexts.component.scss'],
+  selector: 'xa-context-list',
+  templateUrl: './context-list.component.html',
+  styleUrls: ['./context-list.component.scss'],
 })
-export class ListContextsComponent implements OnInit, OnDestroy {
+export class ContextListComponent implements OnInit, OnDestroy {
   @HostBinding('role') role = 'list';
 
   add$: Subject<Context> = new Subject();

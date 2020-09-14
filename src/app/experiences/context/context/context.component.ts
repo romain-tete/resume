@@ -1,22 +1,22 @@
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ElementRef,
+  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
-  ViewChild,
-  ElementRef,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Output,
-  EventEmitter,
-  AfterViewInit,
+  ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Context } from '@xcedia/experiences';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'xa-context',

@@ -1,5 +1,5 @@
-<xa-context class="mb-3" *ngFor="let ctx of contexts" [context]="ctx" role="listitem" (save)="doSave($event)"
-  (cancel)="doCancel($event)"></xa-context>
+<xa-context class="mb-3" *ngFor="let ctx of contexts; trackBy trackById" [context]="ctx" role="listitem"
+  (save)="doSave($event)" (cancel)="doCancel($event)"></xa-context>
 <button *ngIf="canAddMore" type="button" class="btn btn-sm btn-outline-primary" (click)="doAddNewContext()">
   <i class="fa fa-plus" aria-hidden="true"></i>
   Add a new context</button>

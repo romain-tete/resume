@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListContextsComponent } from './list-contexts.component';
+import { ImpactListComponent } from './impact-list.component';
 
-describe('ListExperiencesComponent', () => {
-  let component: ListContextsComponent;
-  let fixture: ComponentFixture<ListContextsComponent>;
+describe('ImpactListComponent', () => {
+  let component: ImpactListComponent;
+  let fixture: ComponentFixture<ImpactListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ListContextsComponent],
+      declarations: [ImpactListComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListContextsComponent);
+    fixture = TestBed.createComponent(ImpactListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
