@@ -1,8 +1,10 @@
 <ng-template #view>
-  <div class="d-flex flex-column flex-md-row align-items-md-center">
+  <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
     <h3 class="mr-auto">{{ role.label }}</h3>
     <button #editBtn class="btn btn-sm btn-outline-primary" (click)="startEditing()"><i class="fa fa-pencil" aria-hidden="true"></i> Change
       label</button>
+    <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="doDelete($event)"><i class="fa fa-trash"
+         aria-hidden="true"></i></button>
   </div>
 </ng-template>
 

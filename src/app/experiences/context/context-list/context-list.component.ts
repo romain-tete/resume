@@ -4,7 +4,7 @@ import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   Context,
-  experienceActions,
+  experienceActions as actions,
   Impact,
   Role,
   selectors,
@@ -23,7 +23,7 @@ export class ContextListComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject();
 
-  constructor(private route: ActivatedRoute, private store: Store<any>) {}
+  constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
     this.contexts$ = this.store.select(selectors.resources('Context'));
@@ -34,18 +34,26 @@ export class ContextListComponent implements OnInit, OnDestroy {
   }
 
   saveContext(resource: Context): void {
-    this.store.dispatch(experienceActions.Context.save({ resource }));
+    this.store.dispatch(actions.Context.save({ resource }));
   }
 
   addNewContext(): void {
-    this.store.dispatch(experienceActions.Context.create());
+    this.store.dispatch(actions.Context.create());
   }
 
   save(resource: Context): void {
-    this.store.dispatch(experienceActions.Context.save({ resource }));
+    this.store.dispatch(actions.Context.save({ resource }));
   }
 
   cancel(resource: Context): void {
-    this.store.dispatch(experienceActions.Context.cancel({ resource }));
+    this.store.dispatch(actions.Context.cancel({ resource }));
+  }
+
+  delete(resource: Context): void {
+    this.store.dispatch(actions.Context.delete({ resource }));
+  }
+
+  trackById(index, context: Context): string {
+    return context.id;
   }
 }

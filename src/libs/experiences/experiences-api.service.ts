@@ -1,5 +1,5 @@
 import { ExperiencesResource } from './experiences.types';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -90,8 +90,10 @@ export class Backend<T extends ExperiencesResource>
 
   delete(resource: T): Observable<null> {
     const headers = this.getDefaultHeaders();
-    return this.http.delete<null>(`/api/${this.getEndpoint()}/${resource.id}`, {
-      headers,
-    });
+    console.log(`Delete ${resource.kind} (${resource.id})`);
+    return of(null);
+    // return this.http.delete<null>(`/api/${this.getEndpoint()}/${resource.id}`, {
+    //   headers,
+    // });
   }
 }

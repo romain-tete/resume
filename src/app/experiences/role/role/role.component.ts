@@ -34,6 +34,7 @@ export class RoleComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() role: Role;
   @Output() save = new EventEmitter<Role>();
   @Output() cancel = new EventEmitter<Role>();
+  @Output() delete = new EventEmitter<Role>();
   @ViewChild('labelInput') labelInput: ElementRef<HTMLInputElement>;
   @ViewChild('editBtn') editBtn: ElementRef<HTMLButtonElement>;
 
@@ -83,6 +84,10 @@ export class RoleComponent implements OnInit, OnDestroy, AfterViewInit {
     this.state = 'view';
     this.cd.detectChanges();
     this.editBtn.nativeElement.focus();
+  }
+
+  doDelete(event: MouseEvent): void {
+    this.delete.emit(this.role);
   }
 
   createForm(): void {

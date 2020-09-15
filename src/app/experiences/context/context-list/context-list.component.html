@@ -1,2 +1,5 @@
-<xa-context-list-view [contexts]="contexts$ | async" (saveContext)="saveContext($event)"
-  (addNewContext)="addNewContext()" (cancelEdition)="cancel($event)"></xa-context-list-view>
+<xa-context class="mb-3" *ngFor="let ctx of contexts$ | async; trackBy trackById; let last = last" [context]="ctx" role="listitem"
+            (save)="save($event)" (cancel)="cancel($event)" (delete)="delete($event)"></xa-context>
+<button type="button" class="btn btn-sm btn-outline-primary align-self-start" (click)="addNewContext()">
+  <i class="fa fa-plus" aria-hidden="true"></i>
+  Add a new context</button>

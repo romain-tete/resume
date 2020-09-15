@@ -1,8 +1,10 @@
 <ng-template #view>
-  <div class="d-flex flex-column flex-md-row">
+  <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
     <h2 class="mb-1 mr-auto">{{ context.label }}</h2>
-    <button #editBtn type="button" class="btn btn-outline-primary btn-sm  align-self-start align-self-md-center" (click)="startEditing()"><i
-         class="fa fa-pencil" aria-hidden="true"></i> Change label</button>
+    <button #editBtn type="button" class="btn btn-outline-primary btn-sm" (click)="startEditing()"><i class="fa fa-pencil"
+         aria-hidden="true"></i> Change label</button>
+    <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="doDelete($event)"><i class="fa fa-trash"
+         aria-hidden="true"></i></button>
   </div>
 
   <xa-role-list></xa-role-list>

@@ -20,6 +20,7 @@ export class ContextListViewComponent implements OnChanges {
 
   @Output() addNewContext = new EventEmitter<void>();
   @Output() saveContext = new EventEmitter<Context>();
+  @Output() deleteContext = new EventEmitter<Context>();
   @Output() cancelEdition = new EventEmitter<Context>();
 
   canAddMore = true;
@@ -41,9 +42,5 @@ export class ContextListViewComponent implements OnChanges {
 
   doCancel(context: Context): void {
     this.cancelEdition.emit(context);
-  }
-
-  trackById(index, ctx): string {
-    return ctx.id;
   }
 }

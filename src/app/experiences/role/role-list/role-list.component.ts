@@ -41,6 +41,10 @@ export class RoleListComponent implements OnInit {
     this.store.dispatch(actions.Role.save({ resource: role }));
   }
 
+  deleteRole(role: Role): void {
+    this.store.dispatch(actions.Role.delete({ resource: role }));
+  }
+
   cancelRoleEdition(role: Role): void {
     this.store.dispatch(actions.Role.cancel({ resource: role }));
   }

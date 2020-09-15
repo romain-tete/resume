@@ -40,6 +40,10 @@ export class ImpactListComponent implements OnInit {
     this.store.dispatch(actions.Impact.save({ resource: impact }));
   }
 
+  deleteImpact(impact: Impact): void {
+    this.store.dispatch(actions.Impact.delete({ resource: impact }));
+  }
+
   cancelImpactEdition(impact: Impact): void {
     this.store.dispatch(actions.Impact.cancel({ resource: impact }));
   }

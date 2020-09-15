@@ -33,6 +33,7 @@ export class ContextComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() context: Context;
   @Output() save = new EventEmitter<Context>();
   @Output() cancel = new EventEmitter<Context>();
+  @Output() delete = new EventEmitter<Context>();
 
   @ViewChild('labelInput') editInput: ElementRef<HTMLInputElement>;
   @ViewChild('editBtn') editButton: ElementRef<HTMLButtonElement>;
@@ -93,6 +94,10 @@ export class ContextComponent implements OnInit, AfterViewInit, OnDestroy {
       this.save.emit(this.context);
     }
     this.finalizeEdition();
+  }
+
+  doDelete(event: MouseEvent): void {
+    this.delete.emit(this.context);
   }
 
   private resolveStateFromInput(): void {

@@ -32,6 +32,7 @@ export class ImpactComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Output() save = new EventEmitter<Impact>();
   @Output() cancel = new EventEmitter<Impact>();
+  @Output() delete = new EventEmitter<Impact>();
 
   id = `${ImpactComponent.sequence}++`;
   state: 'editing' | 'view';
@@ -88,6 +89,10 @@ export class ImpactComponent implements OnInit, AfterViewInit, OnDestroy {
     this.state = 'view';
     this.cd.detectChanges();
     this.editButton.nativeElement.focus();
+  }
+
+  doDelete(event: MouseEvent | KeyboardEvent): void {
+    this.delete.emit(this.impact);
   }
 
   private createForm(): void {
