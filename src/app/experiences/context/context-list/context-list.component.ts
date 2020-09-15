@@ -20,17 +20,13 @@ export class ContextListComponent implements OnInit, OnDestroy {
 
   add$: Subject<Context> = new Subject();
   contexts$: Observable<Context[]>;
-  roles$: Observable<Role[]>;
-  impacts$: Observable<Impact[]>;
 
   private destroy$ = new Subject();
 
   constructor(private route: ActivatedRoute, private store: Store<any>) {}
 
   ngOnInit(): void {
-    this.contexts$ = this.store.select(selectors.resources('contexts'));
-    this.roles$ = this.store.select(selectors.resources('roles'));
-    this.impacts$ = this.store.select(selectors.resources('impacts'));
+    this.contexts$ = this.store.select(selectors.resources('Context'));
   }
 
   ngOnDestroy(): void {
@@ -38,18 +34,18 @@ export class ContextListComponent implements OnInit, OnDestroy {
   }
 
   saveContext(resource: Context): void {
-    this.store.dispatch(experienceActions.contexts.save({ resource }));
+    this.store.dispatch(experienceActions.Context.save({ resource }));
   }
 
   addNewContext(): void {
-    this.store.dispatch(experienceActions.contexts.create());
+    this.store.dispatch(experienceActions.Context.create());
   }
 
   save(resource: Context): void {
-    this.store.dispatch(experienceActions.contexts.save({ resource }));
+    this.store.dispatch(experienceActions.Context.save({ resource }));
   }
 
   cancel(resource: Context): void {
-    this.store.dispatch(experienceActions.contexts.cancel({ resource }));
+    this.store.dispatch(experienceActions.Context.cancel({ resource }));
   }
 }

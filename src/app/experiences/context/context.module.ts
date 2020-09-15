@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { ContextComponent } from './context/context.component';
 import { ContextListViewComponent } from './context-list-view/context-list-view.component';
 import { ContextListComponent } from './context-list/context-list.component';
@@ -11,7 +12,7 @@ import { NgModule } from '@angular/core';
     ContextListComponent,
     ContextListViewComponent,
   ],
-  imports: [CommonModule, RoleModule],
+  imports: [CommonModule, ReactiveFormsModule, RoleModule],
   exports: [ContextListComponent],
 })
 export class ContextModule {}

@@ -20,3 +20,6 @@ export interface Impact {
   roleId: string;
   description: string;
 }
+
+export type ExperiencesResource = Context | Role | Impact;
+export type ExperiencesResourcesKind = ExperiencesResource['kind'];

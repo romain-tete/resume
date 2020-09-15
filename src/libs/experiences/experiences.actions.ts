@@ -2,11 +2,14 @@ import { Context, Role, Impact } from './experiences.types';
 import { createAction, props } from '@ngrx/store';
 
 export const experienceActions = {
-  contexts: {
-    load: createAction('[Experiences] Load contexts'),
+  Context: {
+    load: createAction(
+      '[Experiences] Load contexts',
+      props<{ kind: 'Context' }>()
+    ),
     loadSuccess: createAction(
       '[Experiences][Success] Load contexts',
-      props<{ resources: Context[] }>()
+      props<{ kind: 'Context'; resources: Context[] }>()
     ),
     loadError: createAction(
       '[Experiences][Error] Load contexts',
@@ -35,18 +38,18 @@ export const experienceActions = {
     ),
     deleteSuccess: createAction(
       '[Experiences][Success] Delete context',
-      props<{ id: string }>()
+      props<{ resource: Context }>()
     ),
     deleteError: createAction(
       '[Experiences][Error] Delete context',
       props<{ error: Error | string }>()
     ),
   },
-  roles: {
-    load: createAction('[Experiences] Load'),
+  Role: {
+    load: createAction('[Experiences] Load', props<{ kind: 'Role' }>()),
     loadSuccess: createAction(
       '[Experiences][Success] Load',
-      props<{ resources: Role[] }>()
+      props<{ kind: 'Role'; resources: Role[] }>()
     ),
     loadError: createAction(
       '[Experiences][Error] Load roles',
@@ -75,18 +78,21 @@ export const experienceActions = {
     ),
     deleteSuccess: createAction(
       '[Experiences][Success] Delete role',
-      props<{ id: string }>()
+      props<{ resource: Role }>()
     ),
     deleteError: createAction(
       '[Experiences][Error] Delete role',
       props<{ error: Error }>()
     ),
   },
-  impacts: {
-    load: createAction('[Experiences] Load impacts'),
+  Impact: {
+    load: createAction(
+      '[Experiences] Load impacts',
+      props<{ kind: 'Impact' }>()
+    ),
     loadSuccess: createAction(
       '[Experiences][Success] Load impacts',
-      props<{ resources: Impact[] }>()
+      props<{ kind: 'Impact'; resources: Impact[] }>()
     ),
     loadError: createAction(
       '[Experiences][Error] Load impacts',

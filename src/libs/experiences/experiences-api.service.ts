@@ -1,15 +1,49 @@
-import { Context, Impact, Role } from './experiences.types';
-import { Observable, of } from 'rxjs';
+import { ExperiencesResource } from './experiences.types';
+import { Observable } from 'rxjs';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+
+interface ResourceBackend<T extends ExperiencesResource> {
+  index: () => Observable<T[]>;
+  create: (resource: T) => Observable<T>;
+  update: (resource: T) => Observable<T>;
+  delete: (resource: T) => Observable<null>;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExperiencesApiService {
+  static backends: {
+    [kind in ExperiencesResource['kind']]: Backend<any>;
+  } = {
+    Context: null,
+    Role: null,
+    Impact: null,
+  };
+
   constructor(private http: HttpClient) {}
+
+  getResourceBackend<T extends ExperiencesResource>(
+    kind: ExperiencesResource['kind']
+  ): Backend<T> {
+    if (ExperiencesApiService.backends[kind]) {
+      return ExperiencesApiService.backends[kind];
+    } else {
+      const backend = new Backend<T>(this.http, kind);
+      ExperiencesApiService.backends[kind] = backend;
+      return backend;
+    }
+  }
+}
+
+export class Backend<T extends ExperiencesResource>
+  implements ResourceBackend<T> {
+  constructor(
+    private http: HttpClient,
+    private kind: ExperiencesResource['kind']
+  ) {}
 
   private getDefaultHeaders(): HttpHeaders {
     return new HttpHeaders({
@@ -17,66 +51,47 @@ export class ExperiencesApiService {
     });
   }
 
-  contextsIndex(): Observable<Context[]> {
-    return this.http.get<any[]>('/api/contexts', {
-      headers: this.getDefaultHeaders(),
-    });
+  private getEndpoint(): string {
+    const resourceEndpoints: {
+      [key in ExperiencesResource['kind']]: string;
+    } = {
+      Context: 'contexts',
+      Role: 'roles',
+      Impact: 'impacts',
+    };
+
+    return resourceEndpoints[this.kind];
   }
 
-  contextCreate(context: Context): Observable<Context> {
-    return this.http.post<Context>('/api/contexts', context, {
-      headers: this.getDefaultHeaders(),
-    });
-  }
-
-  contextsUpdate(context: Context): Observable<Context> {
-    return this.http.put<Context>(`/api/contexts/${context.id}`, context, {
-      headers: this.getDefaultHeaders(),
-    });
-  }
-
-  contextDelete(context: Context): Observable<null> {
-    return this.http.delete<null>(`/api/roles/${context.id}`);
-  }
-
-  rolesIndex(): Observable<Role[]> {
+  index(): Observable<T[]> {
     const headers = this.getDefaultHeaders();
-    return this.http.get<Role[]>('/api/roles', { headers });
-  }
-
-  roleCreate(role: Role): Observable<Role> {
-    const headers = this.getDefaultHeaders();
-    return this.http.post<Role>('/api/roles', role, { headers });
-  }
-
-  roleUpdate(role: Role): Observable<Role> {
-    const headers = this.getDefaultHeaders();
-    return this.http.put<Role>(`/api/roles/${role.id}`, role, { headers });
-  }
-
-  roleDelete(id: string): Observable<null> {
-    return this.http.delete<null>(`/api/roles/${id}`);
-  }
-
-  impactsIndex(): Observable<Impact[]> {
-    const headers = this.getDefaultHeaders();
-    return this.http.get<Impact[]>('/api/impacts', { headers });
-  }
-
-  impactCreate(impact: Impact): Observable<Impact> {
-    const headers = this.getDefaultHeaders();
-    return this.http.post<Impact>('/api/impacts', impact, { headers });
-  }
-
-  impactUpdate(impact: Impact): Observable<Impact> {
-    const headers = this.getDefaultHeaders();
-    return this.http.put<Impact>(`/api/impacts/${impact.id}`, impact, {
+    return this.http.get<T[]>(`/api/${this.getEndpoint()}`, {
       headers,
     });
   }
 
-  impactDelete(id: string): Observable<null> {
+  create(resource: T): Observable<T> {
     const headers = this.getDefaultHeaders();
-    return this.http.delete<null>(`/api/impacts/${id}`, { headers });
+    return this.http.post<T>(`/api/${this.getEndpoint()}`, resource, {
+      headers,
+    });
+  }
+
+  update(resource: T): Observable<T> {
+    const headers = this.getDefaultHeaders();
+    return this.http.put<T>(
+      `/api/${this.getEndpoint()}/${resource.id}`,
+      resource,
+      {
+        headers,
+      }
+    );
+  }
+
+  delete(resource: T): Observable<null> {
+    const headers = this.getDefaultHeaders();
+    return this.http.delete<null>(`/api/${this.getEndpoint()}/${resource.id}`, {
+      headers,
+    });
   }
 }

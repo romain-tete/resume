@@ -1,1 +1,5 @@
-<xa-role *ngFor="let role of roles$ | async" [role]="role"></xa-role>
+<xa-role *ngFor="let role of roles$ | async; trackBy trackById" class="mt-2 ml-md-4" [role]="role" (cancel)="cancelRoleEdition($event)"
+         (save)="saveRole($event)">
+</xa-role>
+<button class="btn btn-sm btn-outline-primary mt-2 ml-md-4" (click)="addRole()"><i class="fa fa-plus" aria-hidden="true"></i> Add
+  role</button>

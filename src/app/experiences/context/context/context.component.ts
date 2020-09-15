@@ -8,6 +8,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -26,6 +27,8 @@ import { Context } from '@xcedia/experiences';
 })
 export class ContextComponent implements OnInit, AfterViewInit, OnDestroy {
   static sequence = 0;
+
+  @HostBinding('class') classes = 'd-flex flex-column';
 
   @Input() context: Context;
   @Output() save = new EventEmitter<Context>();

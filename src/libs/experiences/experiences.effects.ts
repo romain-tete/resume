@@ -1,11 +1,19 @@
-import { selectors } from './experiences.selectors';
-import { Store } from '@ngrx/store';
-import { ExperiencesApiService } from './experiences-api.service';
-import { experienceActions as actions } from './experiences.actions';
+import { of } from 'rxjs';
+import {
+  catchError,
+  concatMap,
+  map,
+  mergeMap,
+  withLatestFrom,
+} from 'rxjs/operators';
+
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, switchMap, map, withLatestFrom } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import { ExperiencesApiService, Backend } from './experiences-api.service';
+import { experienceActions as actions } from './experiences.actions';
+import { selectors } from './experiences.selectors';
 
 @Injectable()
 export class ExperiencesEffects {
@@ -15,83 +23,60 @@ export class ExperiencesEffects {
     private experiencesAPI: ExperiencesApiService
   ) {}
 
-  laodContexts$ = createEffect(() =>
+  load$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.contexts.load),
-      switchMap(() => this.experiencesAPI.contextsIndex()),
-      map((contexts) => actions.contexts.loadSuccess({ resources: contexts }))
+      ofType(actions.Context.load, actions.Role.load, actions.Impact.load),
+      mergeMap(({ kind }) => {
+        const backend = this.experiencesAPI.getResourceBackend(kind);
+        return backend
+          .index()
+          .pipe(
+            map((resources) =>
+              actions[kind].loadSuccess({ kind, resources } as any)
+            )
+          );
+      })
     )
   );
 
-  saveContext$ = createEffect(() =>
+  save$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.contexts.save),
+      ofType(actions.Context.save, actions.Role.save, actions.Impact.save),
       withLatestFrom(this.store),
-      switchMap(([action, globalState]) => {
+      mergeMap(([action, globalState]) => {
         const { resource } = action;
-        const contextState = selectors.resourceState(
-          'contexts',
-          resource
-        )(globalState);
+        const contextState = selectors.resourceState(resource)(globalState);
 
+        const backend = this.experiencesAPI.getResourceBackend(resource.kind);
         if (contextState === 'new') {
-          return this.experiencesAPI.contextCreate(resource);
+          return backend.create(resource);
         } else {
-          return this.experiencesAPI.contextsUpdate(resource);
+          return backend.update(resource);
         }
       }),
-      map((context) => actions.contexts.saveSuccess({ resource: context })),
-      catchError((error) => of(actions.contexts.saveError({ error })))
+      map((resource) =>
+        actions[resource.kind].saveSuccess({ resource } as any)
+      ),
+      catchError((error) => of(actions.Context.saveError({ error })))
     )
   );
 
-  deleteContext$ = createEffect(() =>
+  delete$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.contexts.delete),
-      switchMap(({ resource }) =>
-        this.experiencesAPI.contextDelete(resource).pipe(
-          map(() => actions.contexts.deleteSuccess({ id: resource.id })),
-          catchError((error) => of(actions.contexts.deleteError({ error })))
-        )
-      )
-    )
-  );
-
-  loadRoles$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(actions.roles.load),
-      switchMap(() =>
-        this.experiencesAPI.rolesIndex().pipe(
-          map((roles) => actions.roles.loadSuccess({ resources: roles })),
-          catchError((error) => of(actions.roles.loadError({ error })))
-        )
-      )
-    )
-  );
-
-  loadImpacts$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(actions.impacts.load),
-      switchMap(() =>
-        this.experiencesAPI.impactsIndex().pipe(
-          map((impacts) => actions.impacts.loadSuccess({ resources: impacts })),
-          catchError((error) => of(actions.impacts.loadError({ error })))
-        )
-      )
-    )
-  );
-
-  saveRole$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(actions.roles.save),
-      switchMap(({ resource }) =>
-        this.experiencesAPI.roleUpdate(resource).pipe(
-          map((savedRole) =>
-            actions.roles.saveSuccess({ resource: savedRole })
-          ),
-          catchError((error) => of(actions.roles.saveError({ error })))
-        )
-      )
+      ofType(
+        actions.Context.delete,
+        actions.Role.delete,
+        actions.Impact.delete
+      ),
+      mergeMap(({ resource }) => {
+        const backend = this.experiencesAPI.getResourceBackend(resource.kind);
+        return backend.delete(resource).pipe(
+          map(() => actions[resource.kind].deleteSuccess({ resource } as any)),
+          catchError((error) =>
+            of(actions[resource.kind].deleteError({ error }))
+          )
+        );
+      })
     )
   );
 }

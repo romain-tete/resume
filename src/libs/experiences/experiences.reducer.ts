@@ -1,10 +1,13 @@
+import {
+  ExperiencesResource,
+  ExperiencesResourcesKind,
+} from './experiences.types';
 import { selectors } from './experiences.selectors';
 import { experienceActions as actions } from './experiences.actions';
 import { Context, Impact, Role } from './experiences.types';
 import { createReducer, on, Action, On } from '@ngrx/store';
 import { v4 as uuid } from 'uuid';
 
-export type ExperiencesResource = Context | Role | Impact;
 export type ExperiencesResourceState = 'new' | 'saving' | 'saved' | 'deleting';
 
 interface ExperiencesResourceEntry {
@@ -12,18 +15,16 @@ interface ExperiencesResourceEntry {
   state: ExperiencesResourceState;
 }
 
-export interface ExperiencesState {
-  contexts: ExperiencesResourceEntry[];
-  roles: ExperiencesResourceEntry[];
-  impacts: ExperiencesResourceEntry[];
-}
+export type ExperiencesState = {
+  [key in ExperiencesResource['kind']]: ExperiencesResourceEntry[];
+};
 
 type State = ExperiencesState;
 
 export const experiencesState: ExperiencesState = {
-  contexts: [],
-  roles: [],
-  impacts: [],
+  Context: [],
+  Role: [],
+  Impact: [],
 };
 
 function loadResources<T extends ExperiencesResource>(
@@ -52,73 +53,76 @@ function createResource<T extends ExperiencesResource>(
   };
 }
 
-function cancelResourceEdition<T extends ExperiencesResource>(
-  stateKey: keyof State
-): (state: State, action: Action & { resource: T }) => State {
+function cancelResourceEdition<T extends ExperiencesResource>(): (
+  state: State,
+  action: Action & { resource: T }
+) => State {
   return (state: State, action: Action & { resource: T }) => {
-    const contextState = selectors.resourceState(
-      stateKey,
-      action.resource
-    )({
+    const contextState = selectors.resourceState(action.resource)({
       experiences: state,
     });
+    const { kind } = action.resource;
 
     if (contextState === 'new') {
-      const i = state[stateKey]
+      const i = state[kind]
         .map((c) => c.resource.id)
         .indexOf(action.resource.id);
-      const changed = [...state[stateKey]];
+      const changed = [...state[kind]];
       changed.splice(i, 1);
 
-      return { ...state, [stateKey]: changed };
+      return { ...state, [kind]: changed };
     } else {
       return state;
     }
   };
 }
 
-function saveResource(
-  stateKey: keyof State
-): (state: State, action: Action & { resource: ExperiencesResource }) => State {
+function saveResource(): (
+  state: State,
+  action: Action & { resource: ExperiencesResource }
+) => State {
   return (state: State, action: Action & { resource: ExperiencesResource }) => {
-    return setContextValueAndState(state, action.resource, stateKey, 'saving', [
+    return setResourceValueAndState(state, action.resource, 'saving', [
       'saved',
     ]);
   };
 }
 
-function savedResource(
-  stateKey: keyof State
-): (state: State, action: Action & { resource: ExperiencesResource }) => State {
+function savedResource(): (
+  state: State,
+  action: Action & { resource: ExperiencesResource }
+) => State {
   return (state: State, action: Action & { resource: ExperiencesResource }) => {
-    return setContextValueAndState(state, action.resource, stateKey, 'saved');
+    return setResourceValueAndState(state, action.resource, 'saved');
   };
 }
 
-function deleteResource(
-  stateKey: keyof ExperiencesState
-): (state: State, action: Action & { resource: ExperiencesResource }) => State {
+function deleteResource(): (
+  state: State,
+  action: Action & { resource: ExperiencesResource }
+) => State {
   return (state: State, action: Action & { resource: ExperiencesResource }) => {
-    return setContextState(state, action.resource.id, stateKey, 'deleting');
+    return setResourceState(state, action.resource, 'deleting');
   };
 }
 
-function deletedResource(
-  stateKey: keyof State
-): (state: State, action: Action & { id: string }) => State {
-  return (state: State, action: Action & { id: string }) => {
-    const i = state[stateKey].map((c) => c.resource.id).indexOf(action.id);
-    const newResources = [...state[stateKey]];
+function deletedResource(): (
+  state: State,
+  action: Action & { resource: ExperiencesResource }
+) => State {
+  return (state: State, action: Action & { resource: ExperiencesResource }) => {
+    const { id, kind } = action.resource;
+    const i = state[kind].map((c) => c.resource.id).indexOf(id);
+    const newResources = [...state[kind]];
     newResources.splice(i, 1);
 
-    return { ...state, [stateKey]: newResources };
+    return { ...state, [kind]: newResources };
   };
 }
 
-function setContextValueAndState(
+function setResourceValueAndState(
   state: State,
   resource: ExperiencesResource,
-  stateKey: keyof ExperiencesState,
   resourceState: ExperiencesResourceState,
   onlyFromStates: ExperiencesResourceState[] = [
     'new',
@@ -128,7 +132,7 @@ function setContextValueAndState(
   ]
 ): State {
   const { id } = resource;
-  const resources: ExperiencesResourceEntry[] = state[stateKey];
+  const resources: ExperiencesResourceEntry[] = state[resource.kind];
   const i = resources.map((r) => r.resource.id).indexOf(id);
   const fromState = resources[i].state;
 
@@ -136,19 +140,18 @@ function setContextValueAndState(
     return state;
   }
 
-  const changed = [...state[stateKey]];
+  const changed = [...state[resource.kind]];
   changed.splice(i, 1, {
     resource,
     state: resourceState,
   });
 
-  return { ...state, contexts: changed };
+  return { ...state, [resource.kind]: changed };
 }
 
-function setContextState(
+function setResourceState(
   state: State,
-  id: string,
-  stateKey: keyof ExperiencesState,
+  resource: ExperiencesResource,
   resourceState: ExperiencesResourceState,
   onlyFromStates: ExperiencesResourceState[] = [
     'new',
@@ -157,21 +160,21 @@ function setContextState(
     'deleting',
   ]
 ): State {
-  const resources = state[stateKey];
-  const i = resources.map((c) => c.resource.id).indexOf(id);
+  const resources = state[resource.kind];
+  const i = resources.map((c) => c.resource.id).indexOf(resource.id);
   const fromState = resources[i].state;
 
   if (onlyFromStates.indexOf(fromState) === -1) {
     return state;
   }
 
-  const changed = [...state[stateKey]];
+  const changed = [...state[resource.kind]];
   changed.splice(i, 1, {
-    resource: state[stateKey][i].resource,
+    resource: state[resource.kind][i].resource,
     state: resourceState,
   });
 
-  return { ...state, contexts: changed };
+  return { ...state, [resource.kind]: changed };
 }
 
 function contextGenerator(action: Action): Context {
@@ -204,23 +207,23 @@ function impactGenerator(action: Action & { role: Role }): Impact {
 }
 
 function createReducerForResource<T extends ExperiencesResource>(
-  stateKey: keyof State,
+  kind: ExperiencesResourcesKind,
   generator: (action: Action & { [key: string]: any }) => T
 ): On<ExperiencesState>[] {
   return [
-    on(actions[stateKey].loadSuccess, loadResources<T>(stateKey)),
-    on(actions[stateKey].create, createResource<T>(stateKey, generator)),
-    on(actions[stateKey].cancel, cancelResourceEdition(stateKey)),
-    on(actions[stateKey].save, saveResource(stateKey)),
-    on(actions[stateKey].saveSuccess, savedResource(stateKey)),
-    on(actions[stateKey].delete, deleteResource(stateKey)),
-    on(actions[stateKey].deleteSuccess, deletedResource(stateKey)),
+    on(actions[kind].loadSuccess, loadResources<T>(kind)),
+    on(actions[kind].create, createResource<T>(kind, generator)),
+    on(actions[kind].cancel, cancelResourceEdition()),
+    on(actions[kind].save, saveResource()),
+    on(actions[kind].saveSuccess, savedResource()),
+    on(actions[kind].delete, deleteResource()),
+    on(actions[kind].deleteSuccess, deletedResource()),
   ];
 }
 
-export const experiencesReducer = createReducer.apply(createReducer, [
+export const experiencesReducer = createReducer(
   experiencesState,
-  ...createReducerForResource<Context>('contexts', contextGenerator),
-  ...createReducerForResource<Role>('roles', roleGenerator),
-  ...createReducerForResource<Impact>('impacts', impactGenerator),
-]);
+  ...createReducerForResource<Context>('Context', contextGenerator),
+  ...createReducerForResource<Role>('Role', roleGenerator),
+  ...createReducerForResource<Impact>('Impact', impactGenerator)
+);
