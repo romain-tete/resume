@@ -1,9 +1,12 @@
-import {
-  ExperiencesResource,
-  ExperiencesResourcesKind,
-} from './experiences.types';
+import { ExperiencesResource, isContext, isRole } from './experiences.types';
 import { selectors } from './experiences.selectors';
-import { experienceActions as actions } from './experiences.actions';
+import {
+  experienceActions as actions,
+  WithResourceKind,
+  WithResourceIndex,
+  WithResource,
+  WithParentResource,
+} from './experiences.actions';
 import { Context, Impact, Role } from './experiences.types';
 import { createReducer, on, Action, On } from '@ngrx/store';
 import { v4 as uuid } from 'uuid';
@@ -15,9 +18,10 @@ interface ExperiencesResourceEntry {
   state: ExperiencesResourceState;
 }
 
-export type ExperiencesState = {
-  [key in ExperiencesResource['kind']]: ExperiencesResourceEntry[];
-};
+export type ExperiencesState = Record<
+  ExperiencesResource['kind'],
+  ExperiencesResourceEntry[]
+>;
 
 type State = ExperiencesState;
 
@@ -27,97 +31,70 @@ export const experiencesState: ExperiencesState = {
   Impact: [],
 };
 
-function loadResources<T extends ExperiencesResource>(
-  stateKey: keyof ExperiencesState
-): (state: State, action: Action & { resources: T[] }) => State {
-  return (state: State, action: Action & { resources: T[] }) => ({
+function loadResources(
+  state: State,
+  action: Action & WithResourceKind & WithResourceIndex
+): State {
+  return {
     ...state,
-    [stateKey]: action.resources.map((r) => ({ resource: r, state: 'saved' })),
+    [action.kind]: action.resources.map((r) => ({
+      resource: r,
+      state: 'saved',
+    })),
+  };
+}
+
+function createResource(state: State, action: Action & WithResource): State {
+  const { resource } = action;
+  const { kind } = resource;
+  if (state[kind][state[kind].length - 1].state === 'new') {
+    return state;
+  }
+  return {
+    ...state,
+    [kind]: [...state[kind], { resource, state: 'new' }],
+  };
+}
+
+function cancelResourceEdition(
+  state: State,
+  action: Action & WithResource
+): State {
+  const resourceState = selectors.resourceState(action.resource)({
+    experiences: state,
   });
+  const { kind } = action.resource;
+
+  if (resourceState === 'new') {
+    const i = state[kind].map((c) => c.resource.id).indexOf(action.resource.id);
+    const changed = [...state[kind]];
+    changed.splice(i, 1);
+
+    return { ...state, [kind]: changed };
+  } else {
+    return state;
+  }
 }
 
-function createResource<T extends ExperiencesResource>(
-  stateKey: keyof ExperiencesState,
-  emptyResourceGenerator: (action: Action & { [key: string]: any }) => T
-): (state: State, action: Action) => State {
-  return (state: State, action: Action) => {
-    if (state[stateKey][state[stateKey].length - 1].state === 'new') {
-      return state;
-    }
-
-    const newResource: T = emptyResourceGenerator(action);
-    return {
-      ...state,
-      [stateKey]: [...state[stateKey], { resource: newResource, state: 'new' }],
-    };
-  };
+function saveResource(state: State, action: Action & WithResource): State {
+  return setResourceValueAndState(state, action.resource, 'saving', ['saved']);
 }
 
-function cancelResourceEdition<T extends ExperiencesResource>(): (
-  state: State,
-  action: Action & { resource: T }
-) => State {
-  return (state: State, action: Action & { resource: T }) => {
-    const contextState = selectors.resourceState(action.resource)({
-      experiences: state,
-    });
-    const { kind } = action.resource;
-
-    if (contextState === 'new') {
-      const i = state[kind]
-        .map((c) => c.resource.id)
-        .indexOf(action.resource.id);
-      const changed = [...state[kind]];
-      changed.splice(i, 1);
-
-      return { ...state, [kind]: changed };
-    } else {
-      return state;
-    }
-  };
+function savedResource(state: State, action: Action & WithResource): State {
+  return setResourceValueAndState(state, action.resource, 'saved');
 }
 
-function saveResource(): (
-  state: State,
-  action: Action & { resource: ExperiencesResource }
-) => State {
-  return (state: State, action: Action & { resource: ExperiencesResource }) => {
-    return setResourceValueAndState(state, action.resource, 'saving', [
-      'saved',
-    ]);
-  };
+function deleteResource(state: State, action: Action & WithResource): State {
+  return setResourceState(state, action.resource, 'deleting');
 }
 
-function savedResource(): (
-  state: State,
-  action: Action & { resource: ExperiencesResource }
-) => State {
-  return (state: State, action: Action & { resource: ExperiencesResource }) => {
-    return setResourceValueAndState(state, action.resource, 'saved');
-  };
-}
+function deletedResource(state: State, action: Action & WithResource): State {
+  const { id, kind } = action.resource;
+  const i = state[kind].map((c) => c.resource.id).indexOf(id);
+  const newResources = [...state[kind]];
+  newResources.splice(i, 1);
 
-function deleteResource(): (
-  state: State,
-  action: Action & { resource: ExperiencesResource }
-) => State {
-  return (state: State, action: Action & { resource: ExperiencesResource }) => {
-    return setResourceState(state, action.resource, 'deleting');
-  };
-}
-
-function deletedResource(): (
-  state: State,
-  action: Action & { resource: ExperiencesResource }
-) => State {
-  return (state: State, action: Action & { resource: ExperiencesResource }) => {
-    const { id, kind } = action.resource;
-    const i = state[kind].map((c) => c.resource.id).indexOf(id);
-    const newResources = [...state[kind]];
-    newResources.splice(i, 1);
-
-    return { ...state, [kind]: newResources };
-  };
+  return { ...state, [kind]: newResources };
 }
 
 function setResourceValueAndState(
@@ -177,53 +154,13 @@ function setResourceState(
   return { ...state, [resource.kind]: changed };
 }
 
-function contextGenerator(action: Action): Context {
-  return {
-    id: uuid(),
-    label: null,
-    kind: 'Context',
-  };
-}
-
-function roleGenerator(action: Action & { context: Context }): Role {
-  return {
-    id: uuid(),
-    kind: 'Role',
-    contextId: action.context.id,
-    start: null,
-    end: null,
-    label: null,
-  };
-}
-
-function impactGenerator(action: Action & { role: Role }): Impact {
-  return {
-    id: uuid(),
-    kind: 'Impact',
-    contextId: action.role.contextId,
-    roleId: action.role.id,
-    description: null,
-  };
-}
-
-function createReducerForResource<T extends ExperiencesResource>(
-  kind: ExperiencesResourcesKind,
-  generator: (action: Action & { [key: string]: any }) => T
-): On<ExperiencesState>[] {
-  return [
-    on(actions[kind].loadSuccess, loadResources<T>(kind)),
-    on(actions[kind].create, createResource<T>(kind, generator)),
-    on(actions[kind].cancel, cancelResourceEdition()),
-    on(actions[kind].save, saveResource()),
-    on(actions[kind].saveSuccess, savedResource()),
-    on(actions[kind].delete, deleteResource()),
-    on(actions[kind].deleteSuccess, deletedResource()),
-  ];
-}
-
 export const experiencesReducer = createReducer(
   experiencesState,
-  ...createReducerForResource<Context>('Context', contextGenerator),
-  ...createReducerForResource<Role>('Role', roleGenerator),
-  ...createReducerForResource<Impact>('Impact', impactGenerator)
+  on(actions.loadSuccess, loadResources),
+  on(actions.create, createResource),
+  on(actions.cancel, cancelResourceEdition),
+  on(actions.save, saveResource),
+  on(actions.saveSuccess, savedResource),
+  on(actions.delete, deleteResource),
+  on(actions.deleteSuccess, deletedResource)
 );

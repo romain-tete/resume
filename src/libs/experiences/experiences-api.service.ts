@@ -15,9 +15,7 @@ interface ResourceBackend<T extends ExperiencesResource> {
   providedIn: 'root',
 })
 export class ExperiencesApiService {
-  static backends: {
-    [kind in ExperiencesResource['kind']]: Backend<any>;
-  } = {
+  static backends: Record<ExperiencesResource['kind'], Backend<any>> = {
     Context: null,
     Role: null,
     Impact: null,
@@ -52,9 +50,7 @@ export class Backend<T extends ExperiencesResource>
   }
 
   private getEndpoint(): string {
-    const resourceEndpoints: {
-      [key in ExperiencesResource['kind']]: string;
-    } = {
+    const resourceEndpoints: Record<ExperiencesResource['kind'], string> = {
       Context: 'contexts',
       Role: 'roles',
       Impact: 'impacts',

@@ -25,15 +25,13 @@ export class ExperiencesEffects {
 
   load$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.Context.load, actions.Role.load, actions.Impact.load),
+      ofType(actions.load),
       mergeMap(({ kind }) => {
         const backend = this.experiencesAPI.getResourceBackend(kind);
         return backend
           .index()
           .pipe(
-            map((resources) =>
-              actions[kind].loadSuccess({ kind, resources } as any)
-            )
+            map((resources) => actions.loadSuccess({ kind, resources } as any))
           );
       })
     )
@@ -41,40 +39,32 @@ export class ExperiencesEffects {
 
   save$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(actions.Context.save, actions.Role.save, actions.Impact.save),
+      ofType(actions.save),
       withLatestFrom(this.store),
       mergeMap(([action, globalState]) => {
         const { resource } = action;
-        const contextState = selectors.resourceState(resource)(globalState);
+        const resourceState = selectors.resourceState(resource)(globalState);
 
         const backend = this.experiencesAPI.getResourceBackend(resource.kind);
-        if (contextState === 'new') {
+        if (resourceState === 'new') {
           return backend.create(resource);
         } else {
           return backend.update(resource);
         }
       }),
-      map((resource) =>
-        actions[resource.kind].saveSuccess({ resource } as any)
-      ),
-      catchError((error) => of(actions.Context.saveError({ error })))
+      map((resource) => actions.saveSuccess({ resource })),
+      catchError((error) => of(actions.saveError({ error })))
     )
   );
 
   delete$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(
-        actions.Context.delete,
-        actions.Role.delete,
-        actions.Impact.delete
-      ),
+      ofType(actions.delete),
       mergeMap(({ resource }) => {
         const backend = this.experiencesAPI.getResourceBackend(resource.kind);
         return backend.delete(resource).pipe(
-          map(() => actions[resource.kind].deleteSuccess({ resource } as any)),
-          catchError((error) =>
-            of(actions[resource.kind].deleteError({ error }))
-          )
+          map(() => actions.deleteSuccess({ resource } as any)),
+          catchError((error) => of(actions.deleteError({ error })))
         );
       })
     )

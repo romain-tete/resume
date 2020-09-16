@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImpactListComponent } from './impact-list.component';
+import { ResourceComponent } from './resource.component';
 
-describe('ImpactListComponent', () => {
-  let component: ImpactListComponent;
-  let fixture: ComponentFixture<ImpactListComponent>;
+describe('ContextComponent', () => {
+  let component: ResourceComponent;
+  let fixture: ComponentFixture<ResourceComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ImpactListComponent],
+      declarations: [ResourceComponent],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ImpactListComponent);
+    fixture = TestBed.createComponent(ResourceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

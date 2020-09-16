@@ -12,17 +12,18 @@ import {
 
 type State = { experiences: ExperiencesState };
 
-function selectResources(stateKey: 'Context'): (state: State) => Context[];
-function selectResources(stateKey: 'Role'): (state: State) => Role[];
-function selectResources(stateKey: 'Impact'): (state: State) => Impact[];
 function selectResources(
-  kind: ExperiencesResourcesKind
+  kind: ExperiencesResourcesKind,
+  parent: ExperiencesResource
 ): (state: State) => ExperiencesResource[] {
   return (state: State) => {
+    const parentResourceId = parent ? parent.kind.toLowerCase() + 'Id' : null;
+
     if (!state.experiences[kind]) {
       return [];
     } else {
       return state.experiences[kind]
+        .filter((r) => !parent || r.resource[parentResourceId] === parent.id)
         .filter((c) => c.state !== 'deleting')
         .map((ce) => ce.resource);
     }

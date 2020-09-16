@@ -1,0 +1,16 @@
+$weights: 500, 400, 400, 400, 400, 400;
+$fontSize: 2rem, 1.7rem, 1rem, 1rem, 0.8rem, 0.8rem;
+
+@mixin listPadding($layer: 1) {
+  padding-left: 2rem * $layer;
+  .label {
+    font-size: nth($fontSize, $layer);
+    font-weight: nth($weights, $layer);
+  }
+}
+
+@for $i from 0 through 5 {
+  :host-context(.resource-list-layer-#{$i}) {
+    @include listPadding($i + 1);
+  }
+}

@@ -1,4 +1,5 @@
-import { ContextModule } from './context/context.module';
+import { ResourceListComponent } from './resource-list/resource-list.component';
+import { ResourceComponent } from './resource/resource.component';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -7,12 +8,11 @@ import { ExperiencesRoutingModule } from './experiences-routing.module';
 import { ExperiencesComponent } from './experiences.component';
 
 @NgModule({
-  declarations: [ExperiencesComponent],
-  imports: [
-    SharedModule,
-    ExperiencesRoutingModule,
-    ReactiveFormsModule,
-    ContextModule,
+  declarations: [
+    ExperiencesComponent,
+    ResourceComponent,
+    ResourceListComponent,
   ],
+  imports: [SharedModule, ExperiencesRoutingModule, ReactiveFormsModule],
 })
 export class ExperiencesModule {}

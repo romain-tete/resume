@@ -11,8 +11,8 @@ export class ExperiencesComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.store.dispatch(actions.Context.load({ kind: 'Context' }));
-    this.store.dispatch(actions.Role.load({ kind: 'Role' }));
-    this.store.dispatch(actions.Impact.load({ kind: 'Impact' }));
+    this.store.dispatch(actions.load({ kind: 'Context' }));
+    this.store.dispatch(actions.load({ kind: 'Role' }));
+    this.store.dispatch(actions.load({ kind: 'Impact' }));
   }
 }

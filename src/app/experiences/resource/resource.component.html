@@ -1,13 +1,13 @@
 <ng-template #view>
   <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
-    <h2 class="mb-1 mr-auto">{{ context.label }}</h2>
+    <span class="label mb-1 mr-auto">{{ resource.label }}</span>
     <button #editBtn type="button" class="btn btn-outline-primary btn-sm" (click)="startEditing()"><i class="fa fa-pencil"
          aria-hidden="true"></i> Change label</button>
     <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="doDelete($event)"><i class="fa fa-trash"
          aria-hidden="true"></i></button>
   </div>
+  <xa-resource-list></xa-resource-list>
 
-  <xa-role-list></xa-role-list>
 </ng-template>
 
 <ng-template #edition>
