@@ -1,6 +1,5 @@
 import { ExperiencesResource } from '@xcedia/experiences';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import {
   AfterViewInit,
@@ -45,7 +44,6 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) {}
 
   state: 'editing' | 'view';
-  private originalValue: ExperiencesResource;
 
   ngOnInit(): void {
     this.id = `resource-${this.resource.kind}-${ResourceComponent.sequence++}`;
@@ -64,7 +62,6 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   startEditing(): void {
-    this.originalValue = { ...this.resource };
     this.state = 'editing';
     this.cd.detectChanges();
 
@@ -75,7 +72,6 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
   cancelEditing(): void {
     this.cancel.emit(this.resource);
     this.state = 'view';
-    this.form.setValue(this.originalValue);
     this.finalizeEdition();
   }
 
@@ -96,7 +92,6 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.resource.label) {
       this.state = 'view';
     } else {
-      this.originalValue = this.resource;
       this.shouldInputGrabFocus = true;
     }
 
@@ -117,10 +112,7 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
     this.form = this.fb.group({
       id: [this.resource.id, [Validators.required]],
       label: [this.resource.label, [Validators.required]],
+      kind: [this.resource.kind, [Validators.required]],
     });
-
-    this.form.valueChanges
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((value) => (this.resource = { ...this.resource, ...value }));
   }
 }
