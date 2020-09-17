@@ -2,16 +2,16 @@
   <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
     <span class="label mb-1 mr-auto">{{ resource.label }}</span>
     <button #editBtn type="button" class="btn btn-outline-primary btn-sm" (click)="startEditing()"><i class="fa fa-pencil"
-         aria-hidden="true"></i> Change label</button>
+         aria-hidden="true"></i> Edit</button>
     <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="doDelete($event)"><i class="fa fa-trash"
          aria-hidden="true"></i></button>
   </div>
-  <xa-resource-list></xa-resource-list>
 
 </ng-template>
 
 <ng-template #edition>
-  <form class="d-flex flex-column align-items-stretch flex-md-row align-items-md-center" [formGroup]="form">
+  <ng-container xaResourceFormFactory (commit)="doneEditing($event)" (rollback)="cancelEditing()"></ng-container>
+  <!-- <form class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center" [formGroup]="form">
     <span class="mb-2 mr-md-auto flex-md-grow-1 d-flex flex-row">
       <label class="sr-only" [for]="id">Context label</label>
       <input #labelInput type="text" class="form-control form-control-sm justify-self-stretch" name="context-label" [id]="id" placeholder=""
@@ -22,7 +22,8 @@
       <button type="button" class="btn btn-outline-primary btn-sm align-self-end" (click)="doneEditing($event)"><i class="fa fa-check"
            aria-hidden="true"></i> Confirm</button>
     </span>
-  </form>
+  </form> -->
 </ng-template>
 
 <ng-container *ngIf="state === 'editing'; then edition; else view"></ng-container>
+<xa-resource-list></xa-resource-list>

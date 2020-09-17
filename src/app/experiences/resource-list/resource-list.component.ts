@@ -53,13 +53,13 @@ export class ResourceListComponent implements OnInit {
   }
 
   setLayers(): void {
-    if (this.parentList && this.parentList.layers.length >= 2) {
+    if (!this.parentList && !this.layers) {
+      throw new Error('No layers definition was provided.');
+    }
+
+    if (this.parentList) {
       this.layers = this.parentList.layers.slice(1);
       this.currentLayer = this.parentList.currentLayer + 1;
-    } else {
-      if (!this.layers) {
-        throw new Error('No layers definition was provided.');
-      }
     }
   }
 

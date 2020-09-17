@@ -1,5 +1,7 @@
+import { take } from 'rxjs/operators';
+import { ResourceFormMutexService } from './../resource-form-mutex.service';
 import { ExperiencesResource } from '@xcedia/experiences';
-import { Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 
 import {
   AfterViewInit,
@@ -33,7 +35,6 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
   @Output() cancel = new EventEmitter<ExperiencesResource>();
   @Output() delete = new EventEmitter<ExperiencesResource>();
 
-  @ViewChild('labelInput') editInput: ElementRef<HTMLInputElement>;
   @ViewChild('editBtn') editButton: ElementRef<HTMLButtonElement>;
 
   id;
@@ -41,46 +42,44 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
   private destroy$ = new Subject();
   private shouldInputGrabFocus = false;
 
-  constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) {}
+  constructor(
+    private fb: FormBuilder,
+    private cd: ChangeDetectorRef,
+    private mutexService: ResourceFormMutexService
+  ) {}
 
   state: 'editing' | 'view';
 
   ngOnInit(): void {
     this.id = `resource-${this.resource.kind}-${ResourceComponent.sequence++}`;
-    this.resolveStateFromInput();
-    this.createFormGroup();
+    this.resolveStateFromResource();
   }
 
-  ngAfterViewInit(): void {
-    if (this.shouldInputGrabFocus === true) {
-      this.editInput.nativeElement.focus();
-    }
-  }
+  ngAfterViewInit(): void {}
 
   ngOnDestroy(): void {
     this.destroy$.next();
   }
 
   startEditing(): void {
-    this.state = 'editing';
-    this.cd.detectChanges();
-
-    this.editInput.nativeElement.select();
-    this.editInput.nativeElement.focus();
+    this.claimMutex()
+      .pipe(take(1))
+      .subscribe(() => {
+        this.state = 'editing';
+        this.cd.detectChanges();
+      });
   }
 
   cancelEditing(): void {
+    this.yieldMutex();
     this.cancel.emit(this.resource);
     this.state = 'view';
     this.finalizeEdition();
   }
 
-  doneEditing(event: Event): void {
-    event.preventDefault();
+  doneEditing(event: Partial<ExperiencesResource>): void {
     this.state = 'view';
-    if (this.form.dirty) {
-      this.save.emit(this.resource);
-    }
+    this.save.emit({ ...this.resource, ...event } as ExperiencesResource);
     this.finalizeEdition();
   }
 
@@ -88,7 +87,22 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
     this.delete.emit(this.resource);
   }
 
-  private resolveStateFromInput(): void {
+  requestMutexRestitution(): Observable<boolean> {
+    // planning for some dialog confirmation in case the form is dirty
+    this.cancelEditing();
+    return of(true);
+  }
+
+  private claimMutex(): Observable<boolean> {
+    return this.mutexService.claimMutex(this);
+  }
+
+  private yieldMutex(): void {
+    // planning for some dialog confirmation in case the form is dirty
+    return this.mutexService.yieldMutex(this);
+  }
+
+  private resolveStateFromResource(): void {
     if (this.resource.label) {
       this.state = 'view';
     } else {
@@ -102,17 +116,8 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private finalizeEdition(): void {
-    this.form.markAsPristine();
-    this.form.markAsUntouched();
     this.cd.detectChanges();
+    this.yieldMutex();
     this.editButton.nativeElement.focus();
-  }
-
-  private createFormGroup(): void {
-    this.form = this.fb.group({
-      id: [this.resource.id, [Validators.required]],
-      label: [this.resource.label, [Validators.required]],
-      kind: [this.resource.kind, [Validators.required]],
-    });
   }
 }
