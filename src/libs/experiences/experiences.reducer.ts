@@ -47,7 +47,10 @@ function loadResources(
 function createResource(state: State, action: Action & WithResource): State {
   const { resource } = action;
   const { kind } = resource;
-  if (state[kind][state[kind].length - 1].state === 'new') {
+  if (
+    state[kind].length > 0 &&
+    state[kind][state[kind].length - 1].state === 'new'
+  ) {
     return state;
   }
   return {

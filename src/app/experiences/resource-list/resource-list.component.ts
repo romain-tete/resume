@@ -1,5 +1,5 @@
 import { ResourceComponent } from './../resource/resource.component';
-import { selectors } from '@xcedia/experiences';
+import { getFactory, selectors } from '@xcedia/experiences';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import {
@@ -10,11 +10,16 @@ import {
   Input,
   OnInit,
   Optional,
+  QueryList,
   Renderer2,
   SkipSelf,
   TemplateRef,
+  ViewChildren,
 } from '@angular/core';
-import { ExperiencesResource } from '@xcedia/experiences';
+import {
+  ExperiencesResource,
+  experienceActions as actions,
+} from '@xcedia/experiences';
 
 @Component({
   selector: 'xa-resource-list',
@@ -22,7 +27,9 @@ import { ExperiencesResource } from '@xcedia/experiences';
   styleUrls: ['./resource-list.component.scss'],
 })
 export class ResourceListComponent implements OnInit {
-  @ContentChild(TemplateRef) template: TemplateRef<any>;
+  @ViewChildren(ResourceComponent) resourceComponents: QueryList<
+    ResourceComponent
+  >;
   @Input() layers: ExperiencesResource['kind'][];
 
   currentLayer = 0;
@@ -33,7 +40,7 @@ export class ResourceListComponent implements OnInit {
     private store: Store,
     private renderer: Renderer2,
     private el: ElementRef<any>,
-    @SkipSelf() @Optional() private parentList: ResourceListComponent,
+    @SkipSelf() @Optional() public parentList: ResourceListComponent,
     @Optional() private parentResource: ResourceComponent
   ) {}
   ngOnInit(): void {
@@ -68,5 +75,15 @@ export class ResourceListComponent implements OnInit {
       this.el.nativeElement,
       `resource-list-layer-${this.currentLayer}`
     );
+  }
+
+  addFirstLayerResource(): void {
+    this.store.dispatch(
+      actions.create({ resource: getFactory(this.layers[0])() })
+    );
+  }
+
+  trackById(index: number, resource: ExperiencesResource): string {
+    return resource.id;
   }
 }

@@ -2,7 +2,7 @@
   <span class="d-flex flex-row flex-md-grow-1 mr-md-auto">
     <label class="sr-only"></label>
     <input #initialFocus formControlName="label" type="text" (keydown.enter)="doCommit($event)" (keydown.esc)="doRollback($event)"
-           class="form-control form-control-sm flex-grow-1">
+           class="form-control form-control-sm flex-grow-1" placeholder="Add an impact label...">
   </span>
   <span class="d-flex flex-row align-items-center ml-2">
     <button type="button" class="btn btn-sm btn-outline-primary" (click)="doCommit($event)"><i class="fa fa-check" aria-hidden="true"></i>

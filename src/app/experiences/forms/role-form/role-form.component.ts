@@ -1,6 +1,7 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ResourceFormComponent } from '../resource-form.component';
+import { isRole } from '@xcedia/experiences';
 
 @Component({
   selector: 'xa-role-form',
@@ -17,8 +18,14 @@ export class RoleFormComponent extends ResourceFormComponent implements OnInit {
   }
 
   createForm(): void {
+    if (!isRole(this.resource)) {
+      throw new Error('The resource provided is not a Role');
+    }
+
     this.form = this.fb.group({
       label: [this.resource.label, Validators.required],
+      start: [this.resource.start, Validators.required],
+      end: [this.resource.end, Validators.required],
     });
   }
 }

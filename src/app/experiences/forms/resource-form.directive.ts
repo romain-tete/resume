@@ -8,12 +8,12 @@ import {
   EventEmitter,
   ComponentRef,
   Output,
+  Input,
 } from '@angular/core';
 import { ExperiencesResource } from '@xcedia/experiences';
-import { Subject, Observable, of } from 'rxjs';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { ResourceComponent } from '../resource/resource.component';
 import { ContextFormComponent } from './context-form/context-form.component';
 import { ImpactFormComponent } from './impact-form/impact-form.component';
 import { ResourceFormComponent } from './resource-form.component';
@@ -29,10 +29,11 @@ const ResourceFormMap: Record<
 };
 
 @Directive({
-  selector: '[xaResourceFormFactory]',
+  selector: '[xaResourceForm]',
   exportAs: 'resourceForm',
 })
-export class ResourceFormFactoryDirective implements OnInit, OnDestroy {
+export class ResourceFormDirective implements OnInit, OnDestroy {
+  @Input() resource: ExperiencesResource;
   @Output() commit = new EventEmitter();
   @Output() rollback = new EventEmitter();
 
@@ -40,7 +41,6 @@ export class ResourceFormFactoryDirective implements OnInit, OnDestroy {
   private destroy$ = new Subject();
 
   constructor(
-    private resourceComponent: ResourceComponent,
     private viewContainerRef: ViewContainerRef,
     private factoryResolver: ComponentFactoryResolver
   ) {}
@@ -54,12 +54,12 @@ export class ResourceFormFactoryDirective implements OnInit, OnDestroy {
   }
 
   createComponent(): void {
-    const ctor = ResourceFormMap[this.resourceComponent.resource.kind];
+    const ctor = ResourceFormMap[this.resource.kind];
     const factory = this.factoryResolver.resolveComponentFactory(ctor);
     this.componentRef = this.viewContainerRef.createComponent(factory);
 
     const { instance } = this.componentRef;
-    instance.resource = this.resourceComponent.resource;
+    instance.resource = this.resource;
 
     instance.commit.pipe(takeUntil(this.destroy$)).subscribe(() =>
       this.commit.emit({

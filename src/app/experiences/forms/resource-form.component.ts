@@ -1,7 +1,16 @@
 import { ExperiencesResource } from '@xcedia/experiences';
-import { EventEmitter, ElementRef, AfterViewInit, OnInit } from '@angular/core';
+import {
+  EventEmitter,
+  ElementRef,
+  AfterViewInit,
+  OnInit,
+  Directive,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+// Angular creates an error when not adding either Directive or Component decorator together with ng* functions
+@Directive()
+// tslint:disable-next-line: directive-class-suffix
 export abstract class ResourceFormComponent implements OnInit, AfterViewInit {
   commit = new EventEmitter();
   rollback = new EventEmitter();

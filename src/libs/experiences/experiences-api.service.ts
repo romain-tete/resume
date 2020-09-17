@@ -86,10 +86,8 @@ export class Backend<T extends ExperiencesResource>
 
   delete(resource: T): Observable<null> {
     const headers = this.getDefaultHeaders();
-    console.log(`Delete ${resource.kind} (${resource.id})`);
-    return of(null);
-    // return this.http.delete<null>(`/api/${this.getEndpoint()}/${resource.id}`, {
-    //   headers,
-    // });
+    return this.http.delete<null>(`/api/${this.getEndpoint()}/${resource.id}`, {
+      headers,
+    });
   }
 }

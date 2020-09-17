@@ -1,0 +1,7 @@
+<select class="custom-select custom-select-sm" [formControl]="form.get('month')">
+  <option *ngFor="let month of monthOptions" [value]="month">{{ month + 1 }}</option>
+</select>
+/
+<select class="custom-select custom-select-sm" [formControl]="form.get('year')">
+  <option *ngFor="let year of yearOptions" [value]="year">{{ year }}</option>
+</select>

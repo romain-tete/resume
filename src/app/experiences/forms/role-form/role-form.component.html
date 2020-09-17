@@ -1,11 +1,22 @@
-<form class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center" [formGroup]="form">
-  <span class="d-flex flex-row flex-md-grow-1 mr-md-auto">
-    <label class="sr-only"></label>
-    <input #initialFocus formControlName="label" type="text" (keydown.enter)="doCommit($event)" (keydown.esc)="doRollback($event)"
-           class="form-control form-control-sm flex-grow-1">
+<form class="d-flex flex-column flex-md-row align-items-stretch align-items-md-start" [formGroup]="form">
+  <span class="d-flex flex-column flex-grow flex-md-grow-1 mr-md-auto">
+    <div>
+      <label class="sr-only"></label>
+      <input #initialFocus formControlName="label" type="text" (keydown.enter)="doCommit($event)" (keydown.esc)="doRollback($event)"
+             class="form-control form-control-sm flex-grow-1" placeholder="Add a role label...">
+    </div>
+    <div class="d-flex flex-row mt-2">
+      <label class="mr-2">From: </label>
+      <xa-month-selector formControlName="start"></xa-month-selector>
+      <label class="mr-2">until: </label>
+      <xa-month-selector formControlName="end"></xa-month-selector>
+    </div>
+    <div class="form-group">
+    </div>
   </span>
   <span class="d-flex flex-row align-items-center ml-2">
-    <button type="button" class="btn btn-sm btn-outline-primary" (click)="doCommit($event)"><i class="fa fa-check" aria-hidden="true"></i>
+    <button [disabled]="!form.valid" type="button" class="btn btn-sm btn-outline-primary" (click)="doCommit($event)"><i class="fa fa-check"
+         aria-hidden="true"></i>
       Confirm</button>
     <button type="button" class="btn btn-sm btn-outline-default ml-1" (click)="doRollback($event)"><i class="fa fa-times"
          aria-hidden="true"></i>
