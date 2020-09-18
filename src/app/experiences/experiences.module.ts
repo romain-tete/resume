@@ -13,6 +13,8 @@ import { ContextFormComponent } from './forms/context-form/context-form.componen
 import { RoleFormComponent } from './forms/role-form/role-form.component';
 import { ImpactFormComponent } from './forms/impact-form/impact-form.component';
 
+import { A11yModule } from '@angular/cdk/a11y';
+
 @NgModule({
   declarations: [
     ExperiencesComponent,
@@ -24,6 +26,11 @@ import { ImpactFormComponent } from './forms/impact-form/impact-form.component';
     ResourceActionsComponent,
     ResourceFormDirective,
   ],
-  imports: [SharedModule, ExperiencesRoutingModule, ReactiveFormsModule],
+  imports: [
+    SharedModule,
+    ExperiencesRoutingModule,
+    ReactiveFormsModule,
+    A11yModule,
+  ],
 })
 export class ExperiencesModule {}

@@ -1,14 +1,14 @@
 <ng-template #view>
-  <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
-    <span class="label mb-1 mr-auto">{{ resource.label }}</span>
-    <button #editBtn type="button" class="btn btn-outline-primary btn-sm" (click)="startEditing()"><i class="fa fa-pencil"
-         aria-hidden="true"></i> Edit</button>
-    <button *ngIf="!!childrenKind" type="button" class="btn btn-sm btn-outline-primary ml-1" (click)="doAdd($event)"><i class="fa fa-plus"
-         aria-hidden="true"></i></button>
-    <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="doDelete($event)"><i class="fa fa-trash"
-         aria-hidden="true"></i></button>
+  <div class="d-flex flex-row align-items-center">
+    <div class="flex-grow-0 label mr-2 mb-1">{{ resource.label }}</div>
+    <div class="flex-grow-0 actions">
+      <button #editBtn type="button" class="btn btn-sm text-primary" (click)="startEditing()"><i class="fa fa-pencil"
+           aria-hidden="true"></i></button>
+      <button *ngIf="!!childrenKind" type="button" class="btn btn-sm text-primary" (click)="doAdd()"><i class="fa fa-plus"
+           aria-hidden="true"></i></button>
+      <button type="button" class="btn btn-sm text-danger" (click)="doDelete()"><i class="fa fa-trash" aria-hidden="true"></i></button>
+    </div>
   </div>
-
 </ng-template>
 
 <ng-template #edition>

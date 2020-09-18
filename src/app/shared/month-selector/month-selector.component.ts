@@ -51,10 +51,14 @@ export class MonthSelectorComponent
   writeValue(value: Date): void {
     if (!value) {
       value = new Date();
+    } else if (typeof value === 'string') {
+      value = new Date(value);
     }
 
     this.month = value.getMonth();
     this.year = value.getFullYear();
+
+    this.form.setValue({ month: this.month, year: this.year });
   }
 
   registerOnChange(fn: (value: Date) => void): void {
@@ -73,14 +77,16 @@ export class MonthSelectorComponent
 
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((value) => {
       const newDate = new Date();
-      newDate.setFullYear(value.year);
-      newDate.setMonth(value.month);
-      newDate.setDate(1);
-      newDate.setHours(0);
-      newDate.setSeconds(0);
-      newDate.setMilliseconds(0);
+      newDate.setUTCFullYear(value.year);
+      newDate.setUTCMonth(value.month);
+      newDate.setUTCDate(1);
+      newDate.setUTCHours(0);
+      newDate.setUTCSeconds(0);
+      newDate.setUTCMilliseconds(0);
 
-      this.onChange(newDate);
+      if (this.onChange) {
+        this.onChange(newDate);
+      }
     });
   }
 

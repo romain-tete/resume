@@ -1,12 +1,12 @@
 import { Store } from '@ngrx/store';
-import { take } from 'rxjs/operators';
+import { filter, take, takeUntil } from 'rxjs/operators';
 import { ResourceFormMutexService } from './../resource-form-mutex.service';
 import {
   ExperiencesResource,
   experienceActions as actions,
   getFactory,
 } from '@xcedia/experiences';
-import { Observable, Subject, of } from 'rxjs';
+import { Observable, Subject, of, merge } from 'rxjs';
 
 import {
   AfterViewInit,
@@ -15,12 +15,17 @@ import {
   Component,
   ElementRef,
   HostBinding,
+  HostListener,
+  Inject,
   Input,
   OnDestroy,
   OnInit,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
+import { CdkMonitorFocus } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'xa-resource',
@@ -36,7 +41,9 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() resource: ExperiencesResource;
   @Input() childrenKind: ExperiencesResource['kind'] = null;
 
-  @ViewChild('editBtn') editButton: ElementRef<HTMLButtonElement>;
+  @ViewChild(CdkMonitorFocus) focusMonitored: CdkMonitorFocus;
+  @ViewChild(CdkMonitorFocus, { read: ElementRef })
+  focusMonitoredEl: ElementRef<HTMLElement>;
 
   id;
   form: FormGroup;
@@ -46,13 +53,15 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
     private cd: ChangeDetectorRef,
     private store: Store,
     private mutexService: ResourceFormMutexService,
-    private el: ElementRef<HTMLElement>
+    @Inject(DOCUMENT) private document: HTMLDocument
   ) {}
 
   state: 'editing' | 'view';
+  showActions = false;
 
   ngOnInit(): void {
     this.id = `resource-${this.resource.kind}-${ResourceComponent.sequence++}`;
+
     this.resolveStateFromResource();
   }
 
@@ -62,16 +71,11 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
     this.destroy$.next();
   }
 
-  focus(): void {
-    this.el.nativeElement.focus();
-  }
-
   startEditing(): void {
     this.claimMutex()
       .pipe(take(1))
       .subscribe(() => {
-        this.state = 'editing';
-        this.cd.detectChanges();
+        this.setState('editing');
       });
   }
 
@@ -103,23 +107,26 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
     return of(true);
   }
 
+  private setState(state: 'editing' | 'view'): void {
+    this.state = state;
+    this.cd.detectChanges();
+  }
+
   private claimMutex(): Observable<boolean> {
     return this.mutexService.claimMutex(this);
   }
 
   private yieldMutex(): void {
-    // planning for some dialog confirmation in case the form is dirty
     return this.mutexService.yieldMutex(this);
   }
 
   private resolveStateFromResource(): void {
-    this.state = this.resource.label ? 'view' : 'editing';
+    this.setState(this.resource.label ? 'view' : 'editing');
   }
 
   private finalizeEdition(): void {
-    this.state = 'view';
-    this.cd.detectChanges();
+    this.setState('view');
+    this.focusMonitoredEl.nativeElement.focus();
     this.yieldMutex();
-    this.editButton.nativeElement.focus();
   }
 }

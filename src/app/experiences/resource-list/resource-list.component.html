@@ -1,9 +1,5 @@
-<ng-template #btn>
-  <button *ngIf="!parentList" type="button" class="btn btn-sm btn-outline-primary" (click)="addFirstLayerResource()"><i class="fa fa-plus"
-       aria-hidden="true"></i></button>
-</ng-template>
-
-<ng-container [ngTemplateOutlet]="btn"></ng-container>
 <xa-resource *ngFor="let resource of resources$ | async; trackBy trackById" [resource]="resource" [childrenKind]="layers[1] || null">
 </xa-resource>
-<ng-container [ngTemplateOutlet]="btn"></ng-container>
+
+<button *ngIf="!parentList" type="button" class="btn btn-sm btn-outline-primary" (click)="addFirstLayerResource()"><i class="fa fa-plus"
+     aria-hidden="true"></i></button>

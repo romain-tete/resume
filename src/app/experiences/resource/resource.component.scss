@@ -1,7 +1,12 @@
-$weights: 500, 400, 400, 400, 400, 400;
-$fontSize: 1.7rem, 1.5rem, 1.3rem, 1rem, 0.8rem, 0.8rem;
+$defaultMarginTop: 0rem;
 
-@mixin listPadding($layer: 1) {
+$weights: 500, 400, 400, 400, 400, 400;
+$fontSize: 1.5rem, 1.3rem, 1rem, 1rem, 0.8rem, 0.8rem;
+$marginTop: 2rem, 0.1rem, $defaultMarginTop, $defaultMarginTop,
+  $defaultMarginTop, $defaultMarginTop;
+
+@mixin layerStyles($layer: 1) {
+  margin-top: nth($marginTop, $layer);
   margin-left: 0.25rem * $layer;
   .label {
     font-size: nth($fontSize, $layer);
@@ -11,6 +16,14 @@ $fontSize: 1.7rem, 1.5rem, 1.3rem, 1rem, 0.8rem, 0.8rem;
 
 @for $i from 0 through 5 {
   :host-context(.resource-list-layer-#{$i}) {
-    @include listPadding($i + 1);
+    @include layerStyles($i + 1);
+  }
+}
+
+:host:focus {
+  outline-style: none;
+
+  & > .label {
+    outline-style: auto;
   }
 }
