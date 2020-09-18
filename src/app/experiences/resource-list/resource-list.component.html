@@ -1,5 +1,4 @@
-<xa-resource *ngFor="let resource of resources$ | async; trackBy trackById" [resource]="resource" [childrenKind]="layers[1] || null">
-</xa-resource>
-
-<button *ngIf="!parentList" type="button" class="btn btn-sm btn-outline-primary" (click)="addFirstLayerResource()"><i class="fa fa-plus"
-     aria-hidden="true"></i></button>
+<xa-resource-list-view [resources]="resources$ | async"></xa-resource-list-view>
+<button *ngIf="!parentList" type="button" class="btn btn-sm btn-outline-primary" (click)="addFirstLayerResource()">
+  <i class="fa fa-plus" aria-hidden="true"></i>
+</button>

@@ -1,0 +1,12 @@
+<button #editBtn type="button" class="btn btn-sm text-primary" (click)="resourceComponent.startEditing()">
+  <i class="fa fa-pencil" aria-hidden="true" tabindex="-1"></i>
+</button>
+
+<button *ngIf="!!resourceComponent.childrenKind" type="button" class="btn btn-sm text-primary"
+  (click)="resourceComponent.doAdd($event)">
+  <i class="fa fa-plus" aria-hidden="true"></i>
+</button>
+
+<button type="button" class="btn btn-sm text-danger" (click)="resourceComponent.doDelete($event)">
+  <i class="fa fa-trash" aria-hidden="true"></i>
+</button>

@@ -1,3 +1,4 @@
+import { ResourceComponent } from './../resource.component';
 import {
   ComponentFactoryResolver,
   Directive,
@@ -29,11 +30,11 @@ const ResourceFormMap: Record<
 };
 
 @Directive({
-  selector: '[xaResourceForm]',
+  // tslint:disable-next-line: directive-selector
+  selector: 'xa-resource-form',
   exportAs: 'resourceForm',
 })
 export class ResourceFormDirective implements OnInit, OnDestroy {
-  @Input() resource: ExperiencesResource;
   @Output() commit = new EventEmitter();
   @Output() rollback = new EventEmitter();
 
@@ -41,6 +42,7 @@ export class ResourceFormDirective implements OnInit, OnDestroy {
   private destroy$ = new Subject();
 
   constructor(
+    private resourceComponent: ResourceComponent,
     private viewContainerRef: ViewContainerRef,
     private factoryResolver: ComponentFactoryResolver
   ) {}
@@ -54,12 +56,12 @@ export class ResourceFormDirective implements OnInit, OnDestroy {
   }
 
   createComponent(): void {
-    const ctor = ResourceFormMap[this.resource.kind];
+    const ctor = ResourceFormMap[this.resourceComponent.resource.kind];
     const factory = this.factoryResolver.resolveComponentFactory(ctor);
     this.componentRef = this.viewContainerRef.createComponent(factory);
 
     const { instance } = this.componentRef;
-    instance.resource = this.resource;
+    instance.resource = this.resourceComponent.resource;
 
     instance.commit.pipe(takeUntil(this.destroy$)).subscribe(() =>
       this.commit.emit({

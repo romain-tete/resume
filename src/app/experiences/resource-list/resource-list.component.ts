@@ -3,23 +3,24 @@ import { getFactory, selectors } from '@xcedia/experiences';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import {
+  AfterViewInit,
   Component,
-  ContentChild,
   ElementRef,
   HostBinding,
+  HostListener,
   Input,
   OnInit,
   Optional,
   QueryList,
   Renderer2,
   SkipSelf,
-  TemplateRef,
   ViewChildren,
 } from '@angular/core';
 import {
   ExperiencesResource,
   experienceActions as actions,
 } from '@xcedia/experiences';
+import { FocusKeyManager } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'xa-resource-list',
@@ -27,13 +28,9 @@ import {
   styleUrls: ['./resource-list.component.scss'],
 })
 export class ResourceListComponent implements OnInit {
-  @ViewChildren(ResourceComponent) resourceComponents: QueryList<
-    ResourceComponent
-  >;
   @Input() layers: ExperiencesResource['kind'][];
 
   currentLayer = 0;
-
   resources$: Observable<ExperiencesResource[]>;
 
   constructor(
@@ -43,6 +40,7 @@ export class ResourceListComponent implements OnInit {
     @SkipSelf() @Optional() public parentList: ResourceListComponent,
     @Optional() private parentResource: ResourceComponent
   ) {}
+
   ngOnInit(): void {
     this.setLayers();
     this.setLayerClass();
@@ -81,9 +79,5 @@ export class ResourceListComponent implements OnInit {
     this.store.dispatch(
       actions.create({ resource: getFactory(this.layers[0])() })
     );
-  }
-
-  trackById(index: number, resource: ExperiencesResource): string {
-    return resource.id;
   }
 }

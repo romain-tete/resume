@@ -1,19 +1,11 @@
 <ng-template #view>
-  <div class="d-flex flex-row align-items-center">
-    <div class="flex-grow-0 label mr-2 mb-1">{{ resource.label }}</div>
-    <div class="flex-grow-0 actions">
-      <button #editBtn type="button" class="btn btn-sm text-primary" (click)="startEditing()"><i class="fa fa-pencil"
-           aria-hidden="true"></i></button>
-      <button *ngIf="!!childrenKind" type="button" class="btn btn-sm text-primary" (click)="doAdd()"><i class="fa fa-plus"
-           aria-hidden="true"></i></button>
-      <button type="button" class="btn btn-sm text-danger" (click)="doDelete()"><i class="fa fa-trash" aria-hidden="true"></i></button>
-    </div>
-  </div>
+  <xa-resource-row #row></xa-resource-row>
 </ng-template>
 
 <ng-template #edition>
-  <ng-container xaResourceForm [resource]="resource" (commit)="doneEditing($event)" (rollback)="cancelEditing()"></ng-container>
+  <xa-resource-form (commit)="doneEditing($event)" (rollback)="cancelEditing()"></xa-resource-form>
 </ng-template>
 
 <ng-container *ngIf="state === 'editing'; then edition; else view"></ng-container>
-<xa-resource-list></xa-resource-list>
+
+<xa-resource-list *ngIf="!!childrenKind"></xa-resource-list>

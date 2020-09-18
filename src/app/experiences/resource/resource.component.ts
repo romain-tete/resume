@@ -1,5 +1,6 @@
+import { ResourceRowComponent } from './resource-row/resource-row.component';
 import { Store } from '@ngrx/store';
-import { filter, take, takeUntil } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { ResourceFormMutexService } from './../resource-form-mutex.service';
 import {
   ExperiencesResource,
@@ -9,23 +10,19 @@ import {
 import { Observable, Subject, of, merge } from 'rxjs';
 
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Host,
   HostBinding,
-  HostListener,
-  Inject,
   Input,
   OnDestroy,
   OnInit,
   ViewChild,
-  ViewChildren,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DOCUMENT } from '@angular/common';
-import { CdkMonitorFocus } from '@angular/cdk/a11y';
+import { CdkMonitorFocus, FocusableOption } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'xa-resource',
@@ -33,7 +30,7 @@ import { CdkMonitorFocus } from '@angular/cdk/a11y';
   styleUrls: ['./resource.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ResourceComponent implements OnInit, OnDestroy, FocusableOption {
   static sequence = 0;
 
   @HostBinding('class') classes = 'd-flex flex-column';
@@ -41,9 +38,8 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() resource: ExperiencesResource;
   @Input() childrenKind: ExperiencesResource['kind'] = null;
 
-  @ViewChild(CdkMonitorFocus) focusMonitored: CdkMonitorFocus;
-  @ViewChild(CdkMonitorFocus, { read: ElementRef })
-  focusMonitoredEl: ElementRef<HTMLElement>;
+  // Using a ref here, and not the actual ResourceRowComponent type to avoid injection cycle
+  @ViewChild('row') private resourceRow: FocusableOption;
 
   id;
   form: FormGroup;
@@ -52,12 +48,14 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private cd: ChangeDetectorRef,
     private store: Store,
-    private mutexService: ResourceFormMutexService,
-    @Inject(DOCUMENT) private document: HTMLDocument
+    private mutexService: ResourceFormMutexService
   ) {}
 
   state: 'editing' | 'view';
   showActions = false;
+
+  @HostBinding('class.active')
+  active = false;
 
   ngOnInit(): void {
     this.id = `resource-${this.resource.kind}-${ResourceComponent.sequence++}`;
@@ -65,10 +63,14 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
     this.resolveStateFromResource();
   }
 
-  ngAfterViewInit(): void {}
-
   ngOnDestroy(): void {
     this.destroy$.next();
+  }
+
+  focus(): void {
+    if (this.resourceRow) {
+      this.resourceRow.focus();
+    }
   }
 
   startEditing(): void {
@@ -126,7 +128,7 @@ export class ResourceComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private finalizeEdition(): void {
     this.setState('view');
-    this.focusMonitoredEl.nativeElement.focus();
     this.yieldMutex();
+    this.focus();
   }
 }
