@@ -1,14 +1,7 @@
 import { ContextualActionsComponent } from './../contextual-actions/contextual-actions.component';
 import { FocusableOption } from '@angular/cdk/a11y';
 import { ResourceComponent } from './../resource.component';
-import {
-  Component,
-  OnInit,
-  ViewChild,
-  ElementRef,
-  ViewChildren,
-  QueryList,
-} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'xa-resource-row',
@@ -20,11 +13,11 @@ export class ResourceRowComponent implements OnInit, FocusableOption {
   contextualActions: ContextualActionsComponent;
   constructor(public resourceComponent: ResourceComponent) {}
 
+  ngOnInit(): void {}
+
   focus(): void {
     if (this.contextualActions) {
       this.contextualActions.focus();
     }
   }
-
-  ngOnInit(): void {}
 }

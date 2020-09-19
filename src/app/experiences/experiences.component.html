@@ -2,5 +2,10 @@
   <xa-page-title i18n>Experiences</xa-page-title>
   <xa-navigation></xa-navigation>
 </xa-page-header>
-<xa-resource-list [layers]="['Context', 'Role', 'Impact']"></xa-resource-list>
-<xa-resource-list [layers]="['Context', 'Role', 'Impact']"></xa-resource-list>
+
+<xa-tree>
+  <xa-resource xaTreeNode
+    *xaResourceList="let resource; let childrenKind=childrenKind; layers: ['Context', 'Role', 'Impact']"
+    [resource]="resource" [childrenKind]="childrenKind">
+  </xa-resource>
+</xa-tree>

@@ -1,4 +1,3 @@
-import { ResourceRowComponent } from './resource-row/resource-row.component';
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
 import { ResourceFormMutexService } from './../resource-form-mutex.service';
@@ -7,14 +6,19 @@ import {
   experienceActions as actions,
   getFactory,
 } from '@xcedia/experiences';
-import { Observable, Subject, of, merge } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
+import {
+  TREE_NODE_INSTANCE,
+  TreeNode,
+  Tree,
+  TreeComponent,
+} from '../../shared/tree-list-key';
 
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ElementRef,
-  Host,
+  forwardRef,
   HostBinding,
   Input,
   OnDestroy,
@@ -22,21 +26,29 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { CdkMonitorFocus, FocusableOption } from '@angular/cdk/a11y';
+import { FocusableOption } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'xa-resource',
   templateUrl: './resource.component.html',
   styleUrls: ['./resource.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: TREE_NODE_INSTANCE,
+      useExisting: forwardRef(() => ResourceComponent),
+    },
+  ],
 })
-export class ResourceComponent implements OnInit, OnDestroy, FocusableOption {
+export class ResourceComponent implements OnInit, OnDestroy, TreeNode {
   static sequence = 0;
 
   @HostBinding('class') classes = 'd-flex flex-column';
 
   @Input() resource: ExperiencesResource;
   @Input() childrenKind: ExperiencesResource['kind'] = null;
+
+  @ViewChild(TreeComponent) subTree: Tree;
 
   // Using a ref here, and not the actual ResourceRowComponent type to avoid injection cycle
   @ViewChild('row') private resourceRow: FocusableOption;

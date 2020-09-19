@@ -1,5 +1,10 @@
+import { Subject } from 'rxjs';
 import { ActionDirective } from './action.directive';
-import { FocusableOption, FocusKeyManager } from '@angular/cdk/a11y';
+import {
+  FocusableOption,
+  FocusKeyManager,
+  FocusMonitor,
+} from '@angular/cdk/a11y';
 import { ResourceComponent } from './../resource.component';
 import {
   Component,
@@ -37,6 +42,6 @@ export class ContextualActionsComponent
   }
 
   focus(): void {
-    this.actions.first.focus();
+    this.listManager.setActiveItem(this.actions.first);
   }
 }

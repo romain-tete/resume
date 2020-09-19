@@ -7,15 +7,15 @@ $marginTop: 2rem, 0.1rem, $defaultMarginTop, $defaultMarginTop,
 
 @mixin layerStyles($layer: 1) {
   margin-top: nth($marginTop, $layer);
-  margin-left: 0.25rem * $layer;
-  .label {
+  margin-left: 0.4rem * $layer;
+  xa-resource-row {
     font-size: nth($fontSize, $layer);
     font-weight: nth($weights, $layer);
   }
 }
 
 @for $i from 0 through 5 {
-  :host-context(.resource-list-layer-#{$i}) {
+  :host-context(.tree-node-level-#{$i}) {
     @include layerStyles($i + 1);
   }
 }
