@@ -7,12 +7,7 @@ import {
   getFactory,
 } from '@xcedia/experiences';
 import { Observable, Subject, of } from 'rxjs';
-import {
-  TREE_NODE_INSTANCE,
-  TreeNode,
-  Tree,
-  TreeComponent,
-} from '../../shared/tree-list-key';
+import { TREE_NODE_INSTANCE, TreeNode } from '../../shared/tree-list-key';
 
 import {
   ChangeDetectionStrategy,
@@ -23,7 +18,9 @@ import {
   Input,
   OnDestroy,
   OnInit,
+  QueryList,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FocusableOption } from '@angular/cdk/a11y';
@@ -43,15 +40,13 @@ import { FocusableOption } from '@angular/cdk/a11y';
 export class ResourceComponent implements OnInit, OnDestroy, TreeNode {
   static sequence = 0;
 
-  @HostBinding('class') classes = 'd-flex flex-column';
-
   @Input() resource: ExperiencesResource;
   @Input() childrenKind: ExperiencesResource['kind'] = null;
 
-  @ViewChild(TreeComponent) subTree: Tree;
-
-  // Using a ref here, and not the actual ResourceRowComponent type to avoid injection cycle
+  // Using a ref here, and not the ResourceRowComponent type to avoid injection cycle
   @ViewChild('row') private resourceRow: FocusableOption;
+  @ViewChildren(ResourceComponent) children: QueryList<ResourceComponent>;
+  nodeInstance = this;
 
   id;
   form: FormGroup;
@@ -71,7 +66,6 @@ export class ResourceComponent implements OnInit, OnDestroy, TreeNode {
 
   ngOnInit(): void {
     this.id = `resource-${this.resource.kind}-${ResourceComponent.sequence++}`;
-
     this.resolveStateFromResource();
   }
 

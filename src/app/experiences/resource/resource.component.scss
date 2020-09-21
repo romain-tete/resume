@@ -21,6 +21,9 @@ $marginTop: 2rem, 0.1rem, $defaultMarginTop, $defaultMarginTop,
 }
 
 :host {
+  display: flex;
+  flex-direction: column;
+
   &.active {
     outline-style: solid;
     outline-color: aquamarine;

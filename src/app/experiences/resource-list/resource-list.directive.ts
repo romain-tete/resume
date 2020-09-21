@@ -5,8 +5,10 @@ import { ResourceComponent } from './../resource/resource.component';
 import { ExperiencesResource, selectors } from '@xcedia/experiences';
 import {
   AfterContentInit,
+  ChangeDetectorRef,
   ContentChild,
   Directive,
+  EmbeddedViewRef,
   Input,
   OnDestroy,
   OnInit,
@@ -15,6 +17,12 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
+
+interface ResourceListContext {
+  $implicit: ExperiencesResource;
+  childrenKind: ExperiencesResource['kind'];
+}
+
 @Directive({
   selector: '[xaResourceList]',
   exportAs: 'resourceList',
@@ -23,16 +31,15 @@ export class ResourceListDirective implements OnInit, OnDestroy {
   @Input() xaResourceListLayers: ExperiencesResource['kind'][];
 
   private destroy$ = new Subject();
+  private viewCache: EmbeddedViewRef<ResourceListContext>[] = [];
 
   constructor(
-    private template: TemplateRef<{
-      $implicit: ExperiencesResource;
-      childrenKind: ExperiencesResource['kind'];
-    }>,
+    private template: TemplateRef<ResourceListContext>,
     @Optional() private resourceComponent: ResourceComponent,
     private store: Store,
     @Optional() @SkipSelf() private parentList: ResourceListDirective,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -63,13 +70,72 @@ export class ResourceListDirective implements OnInit, OnDestroy {
     const resources$ = this.getResources();
 
     resources$.pipe(takeUntil(this.destroy$)).subscribe((resources) => {
-      this.viewContainerRef.clear();
-      resources.forEach((resource) => {
-        this.viewContainerRef.createEmbeddedView(this.template, {
-          $implicit: resource,
-          childrenKind: this.xaResourceListLayers[1] || null,
-        });
-      });
+      this.deleteOldViews(resources);
+
+      this.viewCache = resources.reduce((views, resource, index) => {
+        const view = this.viewCache[index];
+
+        if (!view) {
+          return [...views, this.createAndInsertView(resource, index)];
+        }
+
+        if (view.context.$implicit.id === resource.id) {
+          this.assignContextValues(view, resource);
+          return [...views, view];
+        } else {
+          const elseWhereViewIndex = this.viewCache
+            .map((v) => v.context.$implicit.id)
+            .indexOf(resource.id);
+          const elseWhereView =
+            elseWhereViewIndex !== -1
+              ? this.viewCache[elseWhereViewIndex]
+              : null;
+
+          if (elseWhereView) {
+            this.assignContextValues(elseWhereView, resource);
+            this.viewContainerRef.move(elseWhereView, index);
+            return [...views, elseWhereView];
+          } else {
+            return [...views, this.createAndInsertView(resource, index)];
+          }
+        }
+      }, [] as EmbeddedViewRef<ResourceListContext>[]);
+
+      this.cd.detectChanges();
     });
+  }
+
+  private createAndInsertView(
+    resource: ExperiencesResource,
+    index: number
+  ): EmbeddedViewRef<ResourceListContext> {
+    const newView = this.viewContainerRef.createEmbeddedView(
+      this.template,
+      {
+        $implicit: resource,
+        childrenKind: this.xaResourceListLayers[1],
+      },
+      index
+    );
+
+    return newView;
+  }
+
+  private deleteOldViews(resources: ExperiencesResource[]): void {
+    this.viewCache.forEach((v, index) => {
+      const id = v.context.$implicit.id;
+
+      if (!resources.map((r) => r.id).includes(id)) {
+        this.viewContainerRef.remove(index);
+      }
+    });
+  }
+
+  private assignContextValues(
+    view: EmbeddedViewRef<ResourceListContext>,
+    resource: ExperiencesResource
+  ): void {
+    view.context.$implicit = resource;
+    view.context.childrenKind = this.xaResourceListLayers[1];
   }
 }

@@ -8,7 +8,5 @@
 
 <ng-container *ngIf="state === 'editing'; then edition; else view"></ng-container>
 
-<xa-tree>
-  <xa-resource xaTreeNode *xaResourceList="let resource; let childrenKind=childrenKind" [resource]="resource"
-    [childrenKind]="childrenKind"></xa-resource>
-</xa-tree>
+<xa-resource xaTreeNode *xaResourceList="let resource; let childrenKind=childrenKind" [resource]="resource"
+  [childrenKind]="childrenKind"></xa-resource>
