@@ -34,10 +34,10 @@ export class ResourceListDirective implements OnInit, OnDestroy {
   private viewCache: EmbeddedViewRef<ResourceListContext>[] = [];
 
   constructor(
-    private template: TemplateRef<ResourceListContext>,
     @Optional() private resourceComponent: ResourceComponent,
-    private store: Store,
     @Optional() @SkipSelf() private parentList: ResourceListDirective,
+    private template: TemplateRef<ResourceListContext>,
+    private store: Store,
     private viewContainerRef: ViewContainerRef,
     private cd: ChangeDetectorRef
   ) {}
@@ -86,6 +86,7 @@ export class ResourceListDirective implements OnInit, OnDestroy {
           const elseWhereViewIndex = this.viewCache
             .map((v) => v.context.$implicit.id)
             .indexOf(resource.id);
+
           const elseWhereView =
             elseWhereViewIndex !== -1
               ? this.viewCache[elseWhereViewIndex]

@@ -7,7 +7,7 @@ import {
   getFactory,
 } from '@xcedia/experiences';
 import { Observable, Subject, of } from 'rxjs';
-import { TREE_NODE_INSTANCE, TreeNode } from '../../shared/tree-list-key';
+import { TREE_NODE_INSTANCE, TreeNode } from '../../shared/tree';
 
 import {
   ChangeDetectionStrategy,
@@ -37,7 +37,7 @@ import { FocusableOption } from '@angular/cdk/a11y';
     },
   ],
 })
-export class ResourceComponent implements OnInit, OnDestroy, TreeNode {
+export class ResourceComponent implements OnInit, OnDestroy {
   static sequence = 0;
 
   @Input() resource: ExperiencesResource;
@@ -50,7 +50,7 @@ export class ResourceComponent implements OnInit, OnDestroy, TreeNode {
 
   id;
   form: FormGroup;
-  private destroy$ = new Subject();
+  private destroy$ = new Subject<void>();
 
   constructor(
     private cd: ChangeDetectorRef,

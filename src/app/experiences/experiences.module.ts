@@ -1,5 +1,5 @@
 import { ResourceListDirective } from './resource-list/resource-list.directive';
-import { TreeListKeyModule } from './../shared/tree-list-key/tree-list-key.module';
+import { TreeListKeyModule } from '../shared/tree/tree-list-key.module';
 import { ContextualActionsModule } from './resource/contextual-actions/contextual-actions.module';
 import { ResourceFormDirective } from './resource/forms/resource-form.directive';
 import { ImpactFormComponent } from './resource/forms/impact-form/impact-form.component';

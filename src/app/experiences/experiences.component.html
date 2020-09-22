@@ -3,7 +3,7 @@
   <xa-navigation></xa-navigation>
 </xa-page-header>
 
-<xa-tree-root xaTreeEventsManager [identityFn]="nodeIdentity">
+<xa-tree-root xaTreeEventsManager>
   <xa-resource *xaResourceList="let resource; let childrenKind=childrenKind; layers: ['Context', 'Role', 'Impact']"
     xaTreeNode [resource]="resource" [childrenKind]="childrenKind">
   </xa-resource>

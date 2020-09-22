@@ -5,8 +5,9 @@ import {
   forwardRef,
   QueryList,
   ContentChildren,
-  Input,
+  OnDestroy,
 } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'xa-tree-root',
@@ -18,9 +19,12 @@ import {
     },
   ],
 })
-export class TreeRootComponent implements TreeNode {
+export class TreeRootComponent implements TreeNode, OnDestroy {
   @ContentChildren(TreeNodeDirective) children: QueryList<TreeNode>;
   nodeInstance = null;
+  destroy$ = new Subject<void>();
 
-  @Input() identityFn: (node: TreeNode) => any = (node) => node;
+  ngOnDestroy(): void {
+    this.destroy$.next();
+  }
 }

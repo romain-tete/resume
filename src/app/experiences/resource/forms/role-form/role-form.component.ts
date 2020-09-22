@@ -24,8 +24,8 @@ export class RoleFormComponent extends ResourceFormComponent implements OnInit {
 
     this.form = this.fb.group({
       label: [this.resource.label, Validators.required],
-      start: [this.resource.start, Validators.required],
-      end: [this.resource.end, Validators.required],
+      start: [this.resource.start || new Date(), Validators.required],
+      end: [this.resource.end || new Date(), Validators.required],
     });
   }
 }
