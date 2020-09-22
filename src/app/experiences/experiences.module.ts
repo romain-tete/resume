@@ -1,4 +1,3 @@
-import { DefaultResourceViewComponent } from './resource/views/default-resource-view/default-resource-view.component';
 import { ResourceViewDirective } from './resource/views/resource-view.directive';
 import { ResourceListDirective } from './resource-list/resource-list.directive';
 import { TreeListKeyModule } from '../shared/tree/tree-list-key.module';
@@ -20,6 +19,7 @@ import { ResourceRowComponent } from './resource/resource-row/resource-row.compo
 import { RoleViewComponent } from './resource/views/role-view/role-view.component';
 import { ImpactViewComponent } from './resource/views/impact-view/impact-view.component';
 import { ContextViewComponent } from './resource/views/context-view/context-view.component';
+import { ExactHoverDirective } from './resource/resource-row/exact-hover.directive';
 
 @NgModule({
   declarations: [
@@ -32,8 +32,8 @@ import { ContextViewComponent } from './resource/views/context-view/context-view
     ResourceRowComponent,
     ResourceListDirective,
     ResourceViewDirective,
-    DefaultResourceViewComponent,
     RoleViewComponent,
+    ExactHoverDirective,
     ImpactViewComponent,
     ContextViewComponent,
   ],

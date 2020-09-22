@@ -1,5 +1,7 @@
 <ng-template #view>
-  <xa-resource-row #row></xa-resource-row>
+  <xa-resource-row #row xaExactHover (hoverStart)="row.shouldShowActions = true"
+    (hoverEnd)="row.shouldShowActions = false">
+  </xa-resource-row>
 </ng-template>
 
 <ng-template #edition>

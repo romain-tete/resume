@@ -2,11 +2,7 @@ import { NODE_IDENTITY_FN } from '../shared/tree/tree.types';
 import { ResourceComponent } from './resource/resource.component';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import {
-  experienceActions as actions,
-  factories,
-  getFactory,
-} from '@xcedia/experiences';
+import { experienceActions as actions, getFactory } from '@xcedia/experiences';
 import { TreeNode } from '../shared/tree';
 
 export function nodeIdentityFn(node: TreeNode<ResourceComponent>): string {

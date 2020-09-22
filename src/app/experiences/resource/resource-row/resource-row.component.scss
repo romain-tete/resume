@@ -1,7 +1,14 @@
+$minButtonHeight: 34px;
+
 :host {
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
+  min-height: $minButtonHeight;
+}
+
+.resource-view-container {
+  max-width: 800px;
 }

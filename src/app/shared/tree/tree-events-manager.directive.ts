@@ -81,6 +81,10 @@ export class TreeEventsManagerDirective implements OnInit, OnDestroy {
       return;
     }
 
+    if (node === this.selectedNode) {
+      return;
+    }
+
     const desc = this.walker.find(node);
     this._setActiveItem(desc);
   }

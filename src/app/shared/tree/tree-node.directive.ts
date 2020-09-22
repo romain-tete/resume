@@ -11,7 +11,7 @@ import {
   Renderer2,
   SkipSelf,
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import { ReplaySubject, Subject } from 'rxjs';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { distinctUntilChanged, filter, map, takeUntil } from 'rxjs/operators';
 
@@ -22,6 +22,8 @@ export class TreeNodeDirective implements TreeNode, OnInit, OnDestroy {
   level = 0;
   initialized = false;
   destroy$ = new Subject<void>();
+
+  exactFocus$ = new ReplaySubject<boolean>(1);
 
   get children(): Iterable<TreeNode> {
     return this.nodeInstance.children;
@@ -43,21 +45,24 @@ export class TreeNodeDirective implements TreeNode, OnInit, OnDestroy {
 
     this.focusMonitor
       .monitor(this.el, true)
-      .pipe(
-        takeUntil(this.destroy$),
-        map((focused) => !!focused),
-        distinctUntilChanged(),
-        filter((focused) => !!focused)
-      )
-      .subscribe(() => {
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((focusType) => {
         // This is needed to prevent bubbling up the tree
         // when going up to a leaf (the entire subtree gains a 'focused'
         // status due to watching children focus too)
-        const focusedChild = this.el.nativeElement.querySelector(
-          '.cdk-focused'
-        );
-        if (!focusedChild) {
-          this.eventsManager.setActiveItem(this.nodeInstance);
+
+        if (!!focusType) {
+          const focusedChild = this.el.nativeElement.querySelector(
+            '.cdk-focused'
+          );
+          if (!focusedChild) {
+            this.eventsManager.setActiveItem(this.nodeInstance);
+            this.exactFocus$.next(true);
+          } else {
+            this.exactFocus$.next(false);
+          }
+        } else {
+          this.exactFocus$.next(false);
         }
       });
   }

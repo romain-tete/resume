@@ -1,4 +1,3 @@
-import { DefaultResourceViewComponent } from './default-resource-view/default-resource-view.component';
 import { ResourceViewComponent } from './resource-view.component';
 import { ExperiencesResource } from '@xcedia/experiences';
 import {

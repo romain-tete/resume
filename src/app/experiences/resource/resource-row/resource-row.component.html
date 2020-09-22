@@ -1,2 +1,5 @@
-<ng-container xaResourceView></ng-container>
-<xa-contextual-actions class="flex-shrink-0"></xa-contextual-actions>
+<div class="resource-view-container">
+  <ng-container xaResourceView></ng-container>
+</div>
+<xa-contextual-actions [class.sr-only]="!shouldShowActions" class="resource-actions flex-shrink-0">
+</xa-contextual-actions>
