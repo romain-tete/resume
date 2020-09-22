@@ -1,3 +1,5 @@
+import { DefaultResourceViewComponent } from './resource/views/default-resource-view/default-resource-view.component';
+import { ResourceViewDirective } from './resource/views/resource-view.directive';
 import { ResourceListDirective } from './resource-list/resource-list.directive';
 import { TreeListKeyModule } from '../shared/tree/tree-list-key.module';
 import { ContextualActionsModule } from './resource/contextual-actions/contextual-actions.module';
@@ -26,6 +28,8 @@ import { ResourceRowComponent } from './resource/resource-row/resource-row.compo
     ResourceFormDirective,
     ResourceRowComponent,
     ResourceListDirective,
+    ResourceViewDirective,
+    DefaultResourceViewComponent,
   ],
   imports: [
     SharedModule,
