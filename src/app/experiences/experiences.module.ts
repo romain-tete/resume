@@ -17,6 +17,9 @@ import { ExperiencesComponent } from './experiences.component';
 
 import { A11yModule } from '@angular/cdk/a11y';
 import { ResourceRowComponent } from './resource/resource-row/resource-row.component';
+import { RoleViewComponent } from './resource/views/role-view/role-view.component';
+import { ImpactViewComponent } from './resource/views/impact-view/impact-view.component';
+import { ContextViewComponent } from './resource/views/context-view/context-view.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,9 @@ import { ResourceRowComponent } from './resource/resource-row/resource-row.compo
     ResourceListDirective,
     ResourceViewDirective,
     DefaultResourceViewComponent,
+    RoleViewComponent,
+    ImpactViewComponent,
+    ContextViewComponent,
   ],
   imports: [
     SharedModule,

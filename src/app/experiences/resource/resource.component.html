@@ -3,7 +3,7 @@
 </ng-template>
 
 <ng-template #edition>
-  <xa-resource-form (commit)="doneEditing($event)" (rollback)="cancelEditing()"></xa-resource-form>
+  <ng-container xaResourceForm (commit)="doneEditing($event)" (rollback)="cancelEditing()"></ng-container>
 </ng-template>
 
 <ng-container *ngIf="state === 'editing'; then edition; else view"></ng-container>

@@ -8,19 +8,22 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { ResourceComponent } from '../resource.component';
+import { RoleViewComponent } from './role-view/role-view.component';
+import { ImpactViewComponent } from './impact-view/impact-view.component';
+import { ContextViewComponent } from './context-view/context-view.component';
 
 const ResourceViewsMap: Record<
   ExperiencesResource['kind'],
   new () => ResourceViewComponent
 > = {
-  Context: DefaultResourceViewComponent,
-  Impact: DefaultResourceViewComponent,
-  Role: DefaultResourceViewComponent,
+  Context: ContextViewComponent,
+  Impact: ImpactViewComponent,
+  Role: RoleViewComponent,
 };
 
 @Directive({
   // tslint:disable-next-line: directive-selector
-  selector: 'xa-resource-view',
+  selector: 'xa-resource-view,[xaResourceView]',
 })
 export class ResourceViewDirective implements OnInit {
   constructor(

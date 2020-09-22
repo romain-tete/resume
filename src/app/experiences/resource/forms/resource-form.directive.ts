@@ -31,7 +31,7 @@ const ResourceFormMap: Record<
 
 @Directive({
   // tslint:disable-next-line: directive-selector
-  selector: 'xa-resource-form',
+  selector: 'xa-resource-form,[xaResourceForm]',
   exportAs: 'resourceForm',
 })
 export class ResourceFormDirective implements OnInit, OnDestroy {
