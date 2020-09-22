@@ -1,23 +1,51 @@
 import { Subject } from 'rxjs';
-import { FocusableOption } from '@angular/cdk/a11y';
+import { FocusableOption, FocusMonitor } from '@angular/cdk/a11y';
 import { TreeNode } from './tree.types';
-import { Directive, HostBinding, HostListener } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostBinding,
+  HostListener,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { NodeDescriptor, TreeWalker } from './tree-walker.service';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, distinctUntilChanged, filter } from 'rxjs/operators';
 
 @Directive({
   selector: '[xaTreeEventsManager]',
   providers: [TreeWalker],
 })
-export class TreeEventsManagerDirective {
+export class TreeEventsManagerDirective implements OnInit, OnDestroy {
   selectedNode: TreeNode<FocusableOption> = null;
-  selectedIndex: number;
+  selectedIndex: number = null;
 
   selectionChange = new Subject<void>();
 
   @HostBinding('attr.tabindex') tabindex = 0;
 
-  constructor(private walker: TreeWalker) {}
+  private destroy$ = new Subject();
+
+  constructor(
+    private walker: TreeWalker,
+    private fm: FocusMonitor,
+    private el: ElementRef
+  ) {}
+
+  ngOnInit(): void {
+    this.fm
+      .monitor(this.el.nativeElement, true)
+      .pipe(
+        distinctUntilChanged(),
+        filter((focused) => !focused),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(() => this.setActiveItem(null));
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+  }
 
   @HostListener('keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
@@ -47,6 +75,12 @@ export class TreeEventsManagerDirective {
   }
 
   setActiveItem(node: TreeNode): void {
+    if (node === null) {
+      this.selectedNode = null;
+      this.selectedIndex = null;
+      return;
+    }
+
     const desc = this.walker.find(node);
     this._setActiveItem(desc);
   }
@@ -61,7 +95,7 @@ export class TreeEventsManagerDirective {
     this.selectedNode.destroy$
       .pipe(takeUntil(this.selectionChange))
       .subscribe(() => {
-        const replacement = this.walker.previous(this.selectedNode, false);
+        const replacement = this.walker.previous(this.selectedNode);
         this._setActiveItem(replacement);
       });
   }
