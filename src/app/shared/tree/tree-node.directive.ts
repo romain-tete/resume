@@ -67,6 +67,11 @@ export class TreeNodeDirective implements TreeNode, OnInit, OnDestroy {
   }
 
   private setLevelClass(): void {
+    // OnInit is not guaranteed to have run on parent yet.
+    // When not, the wrong level is computed.
+    this.parent?.setLevelClass();
+    this.level = this.parent ? this.parent.level + 1 : 0;
+
     this.renderer.addClass(
       this.el.nativeElement,
       `tree-node-level-${this.level}`
