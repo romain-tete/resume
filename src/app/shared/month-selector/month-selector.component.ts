@@ -1,6 +1,12 @@
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Component, forwardRef, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  forwardRef,
+  HostListener,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   FormGroup,
@@ -59,6 +65,15 @@ export class MonthSelectorComponent
     this.year = value.getFullYear();
 
     this.form.setValue({ month: this.month, year: this.year });
+  }
+
+  @HostListener('keydown', ['$event'])
+  inhibitArrows(event: KeyboardEvent): void {
+    const arrowKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+
+    if (arrowKeys.includes(event.key)) {
+      event.stopImmediatePropagation();
+    }
   }
 
   registerOnChange(fn: (value: Date) => void): void {
