@@ -37,7 +37,7 @@ function impactGenerator(role: Role): Impact {
   };
 }
 
-export function getFactory<T extends ExperiencesResource>(
+export function getResourceFactory<T extends ExperiencesResource>(
   kind: T['kind']
 ): Factory<T> {
   switch (kind) {
@@ -50,7 +50,7 @@ export function getFactory<T extends ExperiencesResource>(
   }
 }
 
-export const factories: Record<
+export const resourcesFactories: Record<
   ExperiencesResource['kind'],
   (...args: [ExperiencesResource]) => ExperiencesResource
 > = {

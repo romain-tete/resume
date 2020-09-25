@@ -20,6 +20,7 @@ import { RoleViewComponent } from './resource/views/role-view/role-view.componen
 import { ImpactViewComponent } from './resource/views/impact-view/impact-view.component';
 import { ContextViewComponent } from './resource/views/context-view/context-view.component';
 import { ExactHoverDirective } from './resource/resource-row/exact-hover.directive';
+import { ContactModule } from './contact/contact.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ExactHoverDirective } from './resource/resource-row/exact-hover.directi
     A11yModule,
     ContextualActionsModule,
     TreeListKeyModule,
+    ContactModule,
   ],
 })
 export class ExperiencesModule {}

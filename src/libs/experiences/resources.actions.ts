@@ -25,37 +25,46 @@ export type WithParentResource = {
   parentResource?: ExperiencesResource;
 };
 
-export const experienceActions = {
-  load: createAction('[Experiences] Load resources', props<WithResourceKind>()),
+export const resourcesActions = {
+  load: createAction(
+    '[Experiences][Resources] Load',
+    props<WithResourceKind>()
+  ),
   loadSuccess: createAction(
-    '[Experiences][Success] Load resources',
+    '[Experiences][Resources][Success] Load',
     props<WithResourceKind & WithResourceIndex>()
   ),
   loadError: createAction(
-    '[Experiences][Error] Load resources',
+    '[Experiences][Resources][Error] Load',
     props<WithError>()
   ),
-  create: createAction('[Experiences] Create resource', props<WithResource>()),
-  cancel: createAction(
-    '[Experiences] Cancel resource edition',
+  create: createAction(
+    '[Experiences][Resources] Create',
     props<WithResource>()
   ),
-  save: createAction('[Experiences] Save resource', props<WithResource>()),
+  cancel: createAction(
+    '[Experiences][Resources] Cancel edition',
+    props<WithResource>()
+  ),
+  save: createAction('[Experiences][Resources] Save', props<WithResource>()),
   saveSuccess: createAction(
-    '[Experiences][Success] Save resource',
+    '[Experiences][Resources][Success] Save',
     props<WithResource>()
   ),
   saveError: createAction(
-    '[Experiences][Success] Save resource',
+    '[Experiences][Resources][Success] Save',
     props<WithError>()
   ),
-  delete: createAction('[Experiences] Delete resource', props<WithResource>()),
+  delete: createAction(
+    '[Experiences][Resources] Delete',
+    props<WithResource>()
+  ),
   deleteSuccess: createAction(
-    '[Experiences][Success] Delete resource',
+    '[Experiences][Resources][Success] Delete',
     props<WithResource>()
   ),
   deleteError: createAction(
-    '[Experiences][Error] Delete resource',
+    '[Experiences][Resources][Error] Delete',
     props<WithError>()
   ),
 };

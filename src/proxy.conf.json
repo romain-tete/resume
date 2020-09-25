@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "https://api.xcedia.fr",
+    "target": "http://localhost:7071/api",
     "pathRewrite": {
       "^/api": ""
     },

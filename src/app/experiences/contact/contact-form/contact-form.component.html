@@ -1,1 +1,38 @@
-<p>contact-form works!</p>
+<form cdkTrapFocus [formGroup]="form" (ngSubmit)="doSubmit()" (submit)="doSubmit()"
+  [class.was-validated]="form.touched">
+  <p class="small">Only the fullname is strictly required. Providing anything else is left to your discretion.</p>
+  <div class="form-group">
+    <label cdkFocus class="sr-only" for='contact-fullname'>Your full name</label>
+    <input formControlName="fullname" class="form-control" id="contact-fullname" type="text" placeholder="Your fullname"
+      required>
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for='contact-address'>Your address</label>
+    <input formControlName="address" class="form-control" id="contact-address" type="text" placeholder="Your address">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for='contact-address2'>Address complement</label>
+    <input formControlName="address2" class="form-control" id="contact-address2" type="text"
+      placeholder="Address complement">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for='contact-zipcode'>Zipcode</label>
+    <input formControlName="zipcode" class="form-control" id="contact-zipcode" type="number" placeholder="Your zipcode">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for='contact-city'>Your full name:</label>
+    <input formControlName="city" class="form-control" id="contact-city" type="text" placeholder="Your city">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for='contact-email'>Your full name:</label>
+    <input formControlName="email" class="form-control" id="contact-email" type="text" placeholder="Your email">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for='contact-phoneNumber'>Your full name:</label>
+    <input formControlName="phoneNumber" class="form-control" id="contact-phoneNumber" type="text"
+      placeholder="Your phone number">
+  </div>
+
+  <button [disabled]="!form.valid" type="submit" class="btn btn-outline-primary">Confirm</button>
+  <button type="button" class="btn btn-outline-default" (click)="doCancel()">Cancel</button>
+</form>

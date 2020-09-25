@@ -1,1 +1,48 @@
-<p>contact-view works!</p>
+<!-- Used for combining zipcode and city in the same row -->
+<ng-template #composite let-fields let-prefix="prefix">
+  {{ prefix }}
+  <ng-container *ngFor="let field of fields">{{ contact[field] }} </ng-container>
+  <br />
+</ng-template>
+
+<!-- Address row when the field is not composed of multiple fields -->
+<ng-template #atomic let-field let-prefix="prefix">
+  <ng-container *ngIf="contact[field]">{{(prefix || '') + contact[field]}}</ng-container>
+  <br />
+</ng-template>
+
+<!-- Select the proper address row template depending on the definition (composite or not) -->
+<ng-template #addressRow let-def>
+  <ng-container *ngIf="isCompositeFieldDef(def)" [ngTemplateOutlet]="composite"
+    [ngTemplateOutletContext]="{ $implicit: def.composedOf, prefix: def.prefix }"></ng-container>
+  <ng-container *ngIf="!isCompositeFieldDef(def)" [ngTemplateOutlet]="atomic"
+    [ngTemplateOutletContext]="{ $implicit: def.name, prefix: def.prefix }"></ng-container>
+</ng-template>
+
+<!-- When there is not yet any contact information -->
+<ng-template #newContact>
+  <button type="button" class="btn btn-outline-primary" (click)="startEditing()">Add contact information</button>
+</ng-template>
+
+<!-- When information exists -->
+<ng-template #modifyContact>
+  <address>
+    <ng-container *ngFor="let def of fieldDefs">
+      <ng-container *ngIf="shouldDisplayField(def)" [ngTemplateOutlet]="addressRow"
+        [ngTemplateOutletContext]="{ $implicit: def }"></ng-container>
+    </ng-container>
+  </address>
+  <button type="button" class="btn btn-sm btn-outline-primary" (click)="startEditing()">Update contact
+    information</button>
+  <button type="button" class="btn btn-sm btn-outline-danger ml-1" (click)="doDelete()">Delete contact
+    information</button>
+
+</ng-template>
+
+<!-- Edition -->
+<ng-template #form>
+  <xa-contact-form [contact]="contact" (submitContact)="doSave($event)" (cancel)="stopEditing()"></xa-contact-form>
+</ng-template>
+
+
+<ng-container [ngTemplateOutlet]="state === 'editing' ? form : contact ? modifyContact : newContact"></ng-container>

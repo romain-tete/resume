@@ -21,6 +21,20 @@ export interface Impact {
   label: string;
 }
 
+export interface Contact {
+  id: string;
+  kind: 'Contact';
+  contactName: 'default';
+  fullname: string;
+  zipcode?: number;
+  city?: number;
+  address?: string;
+  address2?: string;
+  email?: string;
+  phoneNumber?: string;
+  pictureUrl?: string;
+}
+
 export type ExperiencesResource = Context | Role | Impact;
 export type ExperiencesResourcesKind = ExperiencesResource['kind'];
 

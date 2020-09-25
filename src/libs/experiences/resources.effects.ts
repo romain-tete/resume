@@ -11,16 +11,16 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 
-import { ExperiencesApiService, Backend } from './resources-api.service';
-import { experienceActions as actions } from './resources.actions';
-import { selectors } from './resources.selectors';
+import { ResourcesApiService, Backend } from './resources-api.service';
+import { resourcesActions as actions } from './resources.actions';
+import { resourcesSelectors } from './resources.selectors';
 
 @Injectable()
-export class ExperiencesEffects {
+export class ResourcesEffects {
   constructor(
     private actions$: Actions,
     private store: Store<any>,
-    private experiencesAPI: ExperiencesApiService
+    private experiencesAPI: ResourcesApiService
   ) {}
 
   load$ = createEffect(() =>
@@ -43,7 +43,9 @@ export class ExperiencesEffects {
       withLatestFrom(this.store),
       mergeMap(([action, globalState]) => {
         const { resource } = action;
-        const resourceState = selectors.resourceState(resource)(globalState);
+        const resourceState = resourcesSelectors.resourceState(resource)(
+          globalState
+        );
 
         const backend = this.experiencesAPI.getResourceBackend(resource.kind);
         if (resourceState === 'new') {

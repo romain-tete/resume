@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  max-width: 350px;
+}
+
+input.ng-invalid {
+  color: red;
+}
+
+input[type="number"] {
+  appearance: textfield;
+}

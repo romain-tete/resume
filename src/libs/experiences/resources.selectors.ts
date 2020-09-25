@@ -1,16 +1,10 @@
 import {
-  Context,
-  Impact,
-  Role,
   ExperiencesResource,
   ExperiencesResourcesKind,
 } from './experiences.types';
-import {
-  ExperiencesResourceState,
-  ExperiencesState,
-} from './resources.reducer';
+import { EntryState, ResourcesState } from './resources.reducer';
 
-type State = { experiences: ExperiencesState };
+type State = { experiences: { resources: ResourcesState } };
 
 function selectResources(
   kind: ExperiencesResourcesKind,
@@ -19,10 +13,10 @@ function selectResources(
   return (state: State) => {
     const parentResourceId = parent ? parent.kind.toLowerCase() + 'Id' : null;
 
-    if (!state.experiences[kind]) {
+    if (!state.experiences.resources[kind]) {
       return [];
     } else {
-      return state.experiences[kind]
+      return state.experiences.resources[kind]
         .filter((r) => !parent || r.resource[parentResourceId] === parent.id)
         .filter((c) => c.state !== 'deleting')
         .map((ce) => ce.resource);
@@ -32,16 +26,16 @@ function selectResources(
 
 function resourceState<T extends ExperiencesResource>(
   resource: T
-): (state: State) => ExperiencesResourceState {
+): (state: State) => EntryState {
   return (s: State) => {
-    const i = s.experiences[resource.kind]
+    const i = s.experiences.resources[resource.kind]
       .map((c) => c.resource.id)
       .indexOf(resource.id);
-    return s.experiences[resource.kind][i].state;
+    return s.experiences.resources[resource.kind][i].state;
   };
 }
 
-export const selectors = {
+export const resourcesSelectors = {
   resources: selectResources,
   resourceState,
 };

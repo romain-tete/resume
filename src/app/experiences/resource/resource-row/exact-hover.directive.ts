@@ -23,7 +23,6 @@ export class ExactHoverDirective {
   @HostListener('mouseenter', ['$event'])
   @HostListener('mouseleave', ['$event'])
   onHover(event: MouseEvent): void {
-    console.log('something should happen');
     if (event.type === 'mouseenter') {
       this.hovered = true;
       this.checkChildren();

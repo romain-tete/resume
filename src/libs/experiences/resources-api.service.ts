@@ -14,7 +14,7 @@ interface ResourceBackend<T extends ExperiencesResource> {
 @Injectable({
   providedIn: 'root',
 })
-export class ExperiencesApiService {
+export class ResourcesApiService {
   static backends: Record<ExperiencesResource['kind'], Backend<any>> = {
     Context: null,
     Role: null,
@@ -26,11 +26,11 @@ export class ExperiencesApiService {
   getResourceBackend<T extends ExperiencesResource>(
     kind: ExperiencesResource['kind']
   ): Backend<T> {
-    if (ExperiencesApiService.backends[kind]) {
-      return ExperiencesApiService.backends[kind];
+    if (ResourcesApiService.backends[kind]) {
+      return ResourcesApiService.backends[kind];
     } else {
       const backend = new Backend<T>(this.http, kind);
-      ExperiencesApiService.backends[kind] = backend;
+      ResourcesApiService.backends[kind] = backend;
       return backend;
     }
   }

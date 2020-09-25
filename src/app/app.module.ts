@@ -5,7 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ExperiencesEffects, experiencesReducer } from '@xcedia/experiences';
+import { ExperiencesStateModule } from '@xcedia/experiences';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,11 +19,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppCoreModule,
     BrowserModule,
     AppRoutingModule,
+    ExperiencesStateModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
-    StoreModule.forRoot({ experiences: experiencesReducer }, {}),
-    EffectsModule.forRoot([ExperiencesEffects]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

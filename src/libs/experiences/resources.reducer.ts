@@ -1,31 +1,28 @@
-import { ExperiencesResource, isContext, isRole } from './experiences.types';
-import { selectors } from './resources.selectors';
+import { ExperiencesResource } from './experiences.types';
+import { resourcesSelectors } from './resources.selectors';
 import {
-  experienceActions as actions,
+  resourcesActions as actions,
   WithResourceKind,
   WithResourceIndex,
   WithResource,
-  WithParentResource,
 } from './resources.actions';
-import { Context, Impact, Role } from './experiences.types';
 import { createReducer, on, Action, On } from '@ngrx/store';
-import { v4 as uuid } from 'uuid';
 
-export type ExperiencesResourceState = 'new' | 'saving' | 'saved' | 'deleting';
+export type EntryState = 'new' | 'saving' | 'saved' | 'deleting';
 
-interface ExperiencesResourceEntry {
+interface ResourceEntry {
   resource: ExperiencesResource;
-  state: ExperiencesResourceState;
+  state: EntryState;
 }
 
-export type ExperiencesState = Record<
+export type ResourcesState = Record<
   ExperiencesResource['kind'],
-  ExperiencesResourceEntry[]
+  ResourceEntry[]
 >;
 
-type State = ExperiencesState;
+type State = ResourcesState;
 
-export const experiencesState: ExperiencesState = {
+export const resourcesState: ResourcesState = {
   Context: [],
   Role: [],
   Impact: [],
@@ -63,8 +60,8 @@ function cancelResourceEdition(
   state: State,
   action: Action & WithResource
 ): State {
-  const resourceState = selectors.resourceState(action.resource)({
-    experiences: state,
+  const resourceState = resourcesSelectors.resourceState(action.resource)({
+    experiences: { resources: state },
   });
   const { kind } = action.resource;
 
@@ -103,16 +100,11 @@ function deletedResource(state: State, action: Action & WithResource): State {
 function setResourceValueAndState(
   state: State,
   resource: ExperiencesResource,
-  resourceState: ExperiencesResourceState,
-  onlyFromStates: ExperiencesResourceState[] = [
-    'new',
-    'saving',
-    'saved',
-    'deleting',
-  ]
+  resourceState: EntryState,
+  onlyFromStates: EntryState[] = ['new', 'saving', 'saved', 'deleting']
 ): State {
   const { id } = resource;
-  const resources: ExperiencesResourceEntry[] = state[resource.kind];
+  const resources: ResourceEntry[] = state[resource.kind];
   const i = resources.map((r) => r.resource.id).indexOf(id);
   const fromState = resources[i].state;
 
@@ -132,13 +124,8 @@ function setResourceValueAndState(
 function setResourceState(
   state: State,
   resource: ExperiencesResource,
-  resourceState: ExperiencesResourceState,
-  onlyFromStates: ExperiencesResourceState[] = [
-    'new',
-    'saving',
-    'saved',
-    'deleting',
-  ]
+  resourceState: EntryState,
+  onlyFromStates: EntryState[] = ['new', 'saving', 'saved', 'deleting']
 ): State {
   const resources = state[resource.kind];
   const i = resources.map((c) => c.resource.id).indexOf(resource.id);
@@ -157,8 +144,8 @@ function setResourceState(
   return { ...state, [resource.kind]: changed };
 }
 
-export const experiencesReducer = createReducer(
-  experiencesState,
+export const resourcesReducer = createReducer(
+  resourcesState,
   on(actions.loadSuccess, loadResources),
   on(actions.create, createResource),
   on(actions.cancel, cancelResourceEdition),

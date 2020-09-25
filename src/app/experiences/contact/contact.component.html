@@ -1,1 +1,2 @@
-<p>contact works!</p>
+<xa-contact-view [contact]="contact$ | async" (save)="dispatchSaveAction($event)"
+  (delete)="dispatchDeleteAction($event)"></xa-contact-view>
