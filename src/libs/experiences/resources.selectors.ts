@@ -8,7 +8,7 @@ import {
 import {
   ExperiencesResourceState,
   ExperiencesState,
-} from './experiences.reducer';
+} from './resources.reducer';
 
 type State = { experiences: ExperiencesState };
 

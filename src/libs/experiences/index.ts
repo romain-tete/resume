@@ -1,7 +1,7 @@
 export * from './experiences.types';
-export { ExperiencesApiService } from './experiences-api.service';
-export { selectors } from './experiences.selectors';
-export { experiencesReducer } from './experiences.reducer';
-export { experienceActions } from './experiences.actions';
-export { ExperiencesEffects } from './experiences.effects';
-export { getFactory } from './experiences.factories';
+export { ExperiencesApiService } from './resources-api.service';
+export { selectors } from './resources.selectors';
+export { experiencesReducer } from './resources.reducer';
+export { experienceActions } from './resources.actions';
+export { ExperiencesEffects } from './resources.effects';
+export { getFactory } from './resources.factories';

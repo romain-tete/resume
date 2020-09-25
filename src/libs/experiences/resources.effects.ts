@@ -11,9 +11,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 
-import { ExperiencesApiService, Backend } from './experiences-api.service';
-import { experienceActions as actions } from './experiences.actions';
-import { selectors } from './experiences.selectors';
+import { ExperiencesApiService, Backend } from './resources-api.service';
+import { experienceActions as actions } from './resources.actions';
+import { selectors } from './resources.selectors';
 
 @Injectable()
 export class ExperiencesEffects {

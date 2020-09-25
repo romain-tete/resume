@@ -1,12 +1,12 @@
 import { ExperiencesResource, isContext, isRole } from './experiences.types';
-import { selectors } from './experiences.selectors';
+import { selectors } from './resources.selectors';
 import {
   experienceActions as actions,
   WithResourceKind,
   WithResourceIndex,
   WithResource,
   WithParentResource,
-} from './experiences.actions';
+} from './resources.actions';
 import { Context, Impact, Role } from './experiences.types';
 import { createReducer, on, Action, On } from '@ngrx/store';
 import { v4 as uuid } from 'uuid';
