@@ -2,6 +2,7 @@ export interface Context {
   id: string;
   label: string;
   kind: 'Context';
+  description?: string;
 }
 
 export interface Role {
@@ -9,6 +10,7 @@ export interface Role {
   kind: 'Role';
   contextId: string;
   label: string;
+  description?: string;
   start: Date;
   end: Date;
 }

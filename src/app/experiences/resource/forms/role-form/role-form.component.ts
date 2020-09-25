@@ -1,7 +1,7 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ResourceFormComponent } from '../resource-form.component';
-import { isRole } from '@xcedia/experiences';
+import { isRole, Role } from '@xcedia/experiences';
 
 @Component({
   selector: 'xa-role-form',
@@ -10,7 +10,9 @@ import { isRole } from '@xcedia/experiences';
   // tslint:disable-next-line: no-inputs-metadata-property
   inputs: ['resource'],
 })
-export class RoleFormComponent extends ResourceFormComponent implements OnInit {
+export class RoleFormComponent
+  extends ResourceFormComponent<Role>
+  implements OnInit {
   @ViewChild('initialFocus') initialFocus: ElementRef<HTMLInputElement>;
 
   constructor(private fb: FormBuilder) {
@@ -24,6 +26,7 @@ export class RoleFormComponent extends ResourceFormComponent implements OnInit {
 
     this.form = this.fb.group({
       label: [this.resource.label, Validators.required],
+      description: [this.resource.description],
       start: [this.resource.start || new Date(), Validators.required],
       end: [this.resource.end || new Date(), Validators.required],
     });

@@ -11,11 +11,13 @@ import { FormGroup } from '@angular/forms';
 // Angular creates an error when not adding either Directive or Component decorator together with ng* functions
 @Directive()
 // tslint:disable-next-line: directive-class-suffix
-export abstract class ResourceFormComponent implements OnInit, AfterViewInit {
+export abstract class ResourceFormComponent<
+  T extends ExperiencesResource = ExperiencesResource
+> implements OnInit, AfterViewInit {
   commit = new EventEmitter();
   rollback = new EventEmitter();
   form: FormGroup;
-  resource: ExperiencesResource;
+  resource: T;
   abstract initialFocus: ElementRef<HTMLInputElement>;
 
   ngOnInit(): void {

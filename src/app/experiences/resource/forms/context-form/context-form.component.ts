@@ -21,7 +21,7 @@ import { ResourceFormComponent } from '../resource-form.component';
   outputs: ['commit', 'rollback'],
 })
 export class ContextFormComponent
-  extends ResourceFormComponent
+  extends ResourceFormComponent<Context>
   implements OnInit, AfterViewInit {
   @ViewChild('initialFocus') initialFocus: ElementRef<HTMLInputElement>;
 
@@ -36,6 +36,7 @@ export class ContextFormComponent
 
     this.form = this.fb.group({
       label: [this.resource.label, Validators.required],
+      description: [this.resource.description],
     });
   }
 }
