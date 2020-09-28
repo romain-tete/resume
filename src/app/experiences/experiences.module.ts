@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ExperiencesStateModule } from '@xcedia/experiences';
 
 import { SharedModule } from '../shared/shared.module';
-import { TreeListKeyModule } from '../shared/tree/tree-list-key.module';
+import { TreeListKeyModule } from '../shared/tree/tree.module';
 import { ContactModule } from './contact/contact.module';
 import { ExperiencesRoutingModule } from './experiences-routing.module';
 import { ExperiencesComponent } from './experiences.component';

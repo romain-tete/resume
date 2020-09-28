@@ -11,6 +11,10 @@ export interface NodeDescriptor {
   index: number;
 }
 
+/**
+ * Depth-first preorder tree walking algorithm
+ */
+
 @Injectable()
 export class TreeWalker {
   constructor(
@@ -90,17 +94,21 @@ export class TreeWalker {
   }
 
   private _getItems(): TreeNode[] {
-    const rootNodes = Array.from(this.root.children);
-    const items = [...rootNodes];
-    let cursor = 0;
+    return this._visitNode(this.root);
+  }
 
-    while (cursor < items.length) {
-      const current = items[cursor];
-      const children = Array.from(current.children);
-      items.splice(cursor + 1, 0, ...children);
-      cursor++;
+  private _visitNode(node: TreeNode): TreeNode[] {
+    const nodes = [];
+    if (node.nodeInstance) {
+      // if there is no instance it is only an abstract node (likely the root)
+      nodes.push(node);
     }
-    return items;
+
+    for (const child of node.children) {
+      nodes.push(...this._visitNode(child));
+    }
+
+    return nodes;
   }
 
   private getItemIndex(node: TreeNode): number {

@@ -1,10 +1,11 @@
-import { ResourcesEffects } from './resources.effects';
-import { EffectsModule } from '@ngrx/effects';
-import { resourcesReducer } from './resources.reducer';
-import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
-import { contactReducer } from './contact.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+
 import { ContactEffects } from './contact.effects';
+import { contactReducer } from './contact.reducer';
+import { ResourcesEffects } from './resources.effects';
+import { resourcesReducer } from './resources.reducer';
 
 @NgModule({
   imports: [

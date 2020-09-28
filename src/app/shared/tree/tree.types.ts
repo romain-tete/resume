@@ -8,7 +8,7 @@ export interface TreeNode<T = any> {
   nodeInstance: T;
   destroy$: Observable<void>;
 }
-export const TREE_ROOT = new InjectionToken('TREE_ROOT');
+export const TREE_ROOT = new InjectionToken<TreeNode>('TREE_ROOT');
 export const TREE_NODE_INSTANCE = new InjectionToken<TreeNode>(
   'TREE_NODE_INSTANCE'
 );
