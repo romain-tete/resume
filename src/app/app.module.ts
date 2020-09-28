@@ -1,25 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { ExperiencesStateModule } from '@xcedia/experiences';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule as AppCoreModule } from './core/core.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    AppCoreModule,
-    BrowserModule,
+    AppCoreModule.forClient(),
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
-    ExperiencesStateModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
@@ -30,9 +28,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot(),
-    NgbModule,
+    RouterModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

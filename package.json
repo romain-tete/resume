@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build --prod --localize",
-    "build:Azure": "ng build --prod --localize && touch dist/resume/index.html && echo 'Dummy file for Static Web App structure compliance' > dist/resume/index.html",
+    "build": "ng run resume:app-shell:production",
+    "build:Azure": "npm run build && touch dist/resume/index.html && echo 'Dummy file for Static Web App structure compliance' > dist/resume/index.html",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -21,6 +21,7 @@
     "@angular/localize": "^10.1.2",
     "@angular/platform-browser": "~10.1.2",
     "@angular/platform-browser-dynamic": "~10.1.2",
+    "@angular/platform-server": "~10.1.2",
     "@angular/router": "~10.1.2",
     "@angular/service-worker": "~10.1.2",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",

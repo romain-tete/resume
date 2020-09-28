@@ -1,3 +1,4 @@
+import { LoaderModule } from './loader/loader.module';
 import { PageHeaderModule } from './page-header/page-header.module';
 import { PageTitleModule } from './page-title/page-title.module';
 import { NavigationModule } from './navigation/navigation.module';
@@ -14,6 +15,7 @@ import { MonthSelectorModule } from './month-selector/month-selector.module';
     PageTitleModule,
     PageHeaderModule,
     MonthSelectorModule,
+    LoaderModule,
   ],
 })
 export class SharedModule {}
