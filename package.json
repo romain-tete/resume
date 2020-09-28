@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng run resume:app-shell:production",
-    "build:Azure": "npm run build && touch dist/resume/index.html && echo 'Dummy file for Static Web App structure compliance' > dist/resume/index.html",
+    "build:Azure": "npm run build && touch dist/resume/index.html && echo 'Dummy file for Static Web App structure compliance' > dist/resume/browser/index.html",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
