@@ -10,6 +10,6 @@ export class PageTitleComponent implements AfterContentInit {
   constructor(private el: ElementRef<HTMLElement>, private title: Title) {}
 
   ngAfterContentInit(): void {
-    this.title.setTitle(`Resume - ${this.el.nativeElement.textContent}`);
+    this.title.setTitle(`${this.el.nativeElement.textContent}`);
   }
 }
