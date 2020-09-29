@@ -1,2 +1,3 @@
 <small class="mr-3">{{ resource.start | date:'MMM yyyy' }} - {{ resource.end | date:'MMM yyyy' }}</small>
 {{ resource.label }}
+<p class="small description text-default" *ngIf="resource.description">{{ resource.description }}</p>
