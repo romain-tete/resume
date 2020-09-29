@@ -5,6 +5,8 @@ import { NavigationModule } from './navigation/navigation.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MonthSelectorModule } from './month-selector/month-selector.module';
+import { KeyboardModule } from './keyboard/keyboard.module';
+import { PrintModule } from './print/print.module';
 
 @NgModule({
   declarations: [],
@@ -16,6 +18,8 @@ import { MonthSelectorModule } from './month-selector/month-selector.module';
     PageHeaderModule,
     MonthSelectorModule,
     LoaderModule,
+    KeyboardModule,
+    PrintModule,
   ],
 })
 export class SharedModule {}

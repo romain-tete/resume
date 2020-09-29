@@ -1,3 +1,4 @@
+import { NavigationModule } from './shared/navigation/navigation.module';
 import { CoreModule } from './core/core.module';
 import { PageTitleModule } from './shared/page-title/page-title.module';
 import { NgModule } from '@angular/core';
@@ -21,6 +22,7 @@ const routes: Routes = [{ path: 'shell', component: AppShellComponent }];
     PageHeaderModule,
     PageTitleModule,
     LoaderModule,
+    NavigationModule,
   ],
   bootstrap: [AppComponent],
   declarations: [AppComponent, AppShellComponent],

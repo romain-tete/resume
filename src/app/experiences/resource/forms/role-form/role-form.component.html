@@ -1,4 +1,4 @@
-<form class="d-flex flex-column align-items-stretch" [formGroup]="form">
+<form class="d-flex flex-column align-items-stretch" [formGroup]="form" xaInhibitArrows>
   <div class="form-group">
     <label class="sr-only"></label>
     <input #initialFocus formControlName="label" type="text" (keydown.enter)="doCommit($event)"

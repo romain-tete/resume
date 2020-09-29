@@ -67,15 +67,6 @@ export class MonthSelectorComponent
     this.form.setValue({ month: this.month, year: this.year });
   }
 
-  @HostListener('keydown', ['$event'])
-  inhibitArrows(event: KeyboardEvent): void {
-    const arrowKeys = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
-
-    if (arrowKeys.includes(event.key)) {
-      event.stopImmediatePropagation();
-    }
-  }
-
   registerOnChange(fn: (value: Date) => void): void {
     this.onChange = fn;
   }

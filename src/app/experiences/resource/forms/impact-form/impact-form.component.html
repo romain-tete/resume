@@ -1,14 +1,17 @@
-<form class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center" [formGroup]="form">
+<form class="d-flex flex-column flex-md-row align-items-stretch align-items-md-center" [formGroup]="form"
+  xaInhibitArrows>
   <span class="d-flex flex-row flex-md-grow-1 mr-md-auto">
     <label class="sr-only"></label>
-    <input #initialFocus formControlName="label" type="text" (keydown.enter)="doCommit($event)" (keydown.esc)="doRollback($event)"
-           class="form-control form-control-sm flex-grow-1" placeholder="Add an impact label...">
+    <input #initialFocus formControlName="label" type="text" (keydown.enter)="doCommit($event)"
+      (keydown.esc)="doRollback($event)" class="form-control form-control-sm flex-grow-1"
+      placeholder="Add an impact label...">
   </span>
   <span class="d-flex flex-row align-items-center ml-2">
-    <button type="button" class="btn btn-sm btn-outline-primary" (click)="doCommit($event)"><i class="fa fa-check" aria-hidden="true"></i>
+    <button type="button" class="btn btn-sm btn-outline-primary" (click)="doCommit($event)"><i class="fa fa-check"
+        aria-hidden="true"></i>
       Confirm</button>
-    <button type="button" class="btn btn-sm btn-outline-default ml-1" (click)="doRollback($event)"><i class="fa fa-times"
-         aria-hidden="true"></i>
+    <button type="button" class="btn btn-sm btn-outline-default ml-1" (click)="doRollback($event)"><i
+        class="fa fa-times" aria-hidden="true"></i>
       Cancel</button>
   </span>
 </form>
