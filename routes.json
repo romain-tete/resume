@@ -1,12 +1,6 @@
 {
   "routes": [
     {
-      "route": "/.auth*"
-    },
-    {
-      "route": "/api*"
-    },
-    {
       "route": "/fr/assets/*"
     },
     {
