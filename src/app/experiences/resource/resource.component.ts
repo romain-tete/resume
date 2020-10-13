@@ -1,13 +1,16 @@
 import { Store } from '@ngrx/store';
 import { take } from 'rxjs/operators';
-import { ResourceFormMutexService } from './../resource-form-mutex.service';
+import {
+  ResourceFormMutexService,
+  MutexConsumer,
+} from './../resource-form-mutex.service';
 import {
   ExperiencesResource,
   experienceActions as actions,
   getFactory,
 } from '@xcedia/experiences';
 import { Observable, Subject, of } from 'rxjs';
-import { TREE_NODE_INSTANCE, TreeNode } from '../../shared/tree';
+import { TREE_NODE_INSTANCE } from '../../shared/tree';
 
 import {
   ChangeDetectionStrategy,
@@ -37,7 +40,7 @@ import { FocusableOption } from '@angular/cdk/a11y';
     },
   ],
 })
-export class ResourceComponent implements OnInit, OnDestroy {
+export class ResourceComponent implements OnInit, OnDestroy, MutexConsumer {
   static sequence = 0;
 
   @Input() resource: ExperiencesResource;

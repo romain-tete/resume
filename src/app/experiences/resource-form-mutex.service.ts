@@ -1,19 +1,18 @@
-import { ResourceComponent } from './resource/resource.component';
 import { Observable, of } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class ResourceFormMutexService {
-  mutexHolder: ResourceComponent;
+  mutexHolder: MutexConsumer;
 
-  yieldMutex(directive: ResourceComponent): void {
+  yieldMutex(directive: MutexConsumer): void {
     if (this.mutexHolder === directive) {
       this.mutexHolder = null;
     }
   }
 
-  claimMutex(directive: ResourceComponent): Observable<boolean> {
+  claimMutex(directive: MutexConsumer): Observable<boolean> {
     if (this.mutexHolder) {
       return this.mutexHolder.requestMutexRestitution().pipe(
         take(1),
@@ -28,4 +27,8 @@ export class ResourceFormMutexService {
       return of(true);
     }
   }
+}
+
+export interface MutexConsumer {
+  requestMutexRestitution: () => Observable<boolean>;
 }
